@@ -16,15 +16,11 @@
 <script src="/mplatform/js/jquery-1.11.3.min.js" type="text/javascript"></script>
 <script>
     $(function () {
-
-        $.ajax({
-            url: 'http://openapi.seoul.go.kr:8088/69464c5344776c6433397970724149/json/SearchProgramsByParkIDService/1/100/',
-            success: function (res) {
-                $('#main').html(res);
-            }
-        });
-
     });
+
+    function setData(data){
+        $('#main').html(res);
+    }
 </script>
 </body>
 </html>
