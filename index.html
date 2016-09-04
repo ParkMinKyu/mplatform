@@ -20,9 +20,10 @@
     });
 
     function setData(data){
-        alert(data);
-        
-        $('#main').html(data);
+
+        for(var key in data){
+            $('#main').html(key + "<br/>");
+        }
     }
 </script>
 </body>
