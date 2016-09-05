@@ -35,7 +35,7 @@
 				$('#main').html($('#main').html()+key + "<br/>");
 			}
 		}*/
-    	var count = data["SearchParkProgramService"]["list_total_count"];
+    	var count = $(data).data("SearchParkProgramService").data("list_total_count");
 		var list = data["SearchParkProgramService"]["row"];
         for(var i = 0 ; i < list.length ; i ++){
         	var pData = list[i];
