@@ -33,9 +33,7 @@
 		var list = data['SearchParkProgramService']['row'];
         for(var i = 0 ; i < list.length ; i ++){
         	var pData = list[i];
-        	for(var key in pData){
-        		$('#main').html($('#main').html() + "<div onclick='panTo(\""+pData['LATITUDE']+"\",\""+pData['LONGITUDE']+"\")'>" + key + " : " + pData[key] + "</div>");
-        	}
+        	$('#main').html($('#main').html() + "<div onclick='panTo(\""+pData['LATITUDE']+"\",\""+pData['LONGITUDE']+"\")'>" + pData['P_PARK'] + "( "+pData['P_NAME']+" )" + "</div>");
         }
     }
     
