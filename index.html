@@ -29,7 +29,8 @@
 
     function setData(data){
 		console.log(JSON.stringify(data));
-		for(var key in data){
+		$('#main').html(JSON.stringify(data));
+		/*for(var key in data){
 			console.log(key == 'SearchParkProgramService');
 			var park = data[key];
 			$('#main').html($('#main').html() + data[key] + "<br/>");
@@ -39,7 +40,7 @@
 				console.log(key1 == 'list_total_count');
 				console.log(key1 == 'row');
 			}
-		}
+		}*/
     	/*var park = data.SearchParkProgramService;
 		console.log(data.SearchParkProgramService);
 		console.log(data['SearchParkProgramService']);
