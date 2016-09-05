@@ -26,6 +26,7 @@
 	
 	// 지도를 표시할 div와  지도 옵션으로  지도를 생성합니다
 	var map = new daum.maps.Map(mapContainer, mapOption); 
+	map.addOverlayMapTypeId(daum.maps.MapTypeId.TRAFFIC); 
 
     function setData(data){
     	var count = data['SearchParkProgramService']['list_total_count'];
@@ -33,10 +34,19 @@
         for(var i = 0 ; i < list.length ; i ++){
         	var pData = list[i];
         	for(var key in pData){
-        		$('#main').html($('#main').html() + key + " : " + pData[key] + "<br/>");
+        		$('#main').html($('#main').html() + "<div onclick='panTo(\""+pData['LATITUDE']+"\",\""+pData['LONGITUDE']+"\")'>" + key + " : " + pData[key] + "</div>");
         	}
         }
     }
+    
+    function panTo(lat, lng) {
+        // 이동할 위도 경도 위치를 생성합니다 
+        var moveLatLon = new daum.maps.LatLng(lat, lng);
+        
+        // 지도 중심을 부드럽게 이동시킵니다
+        // 만약 이동할 거리가 지도 화면보다 크면 부드러운 효과 없이 이동합니다
+        map.panTo(moveLatLon);            
+    }   
 </script>
 </body>
 </html>
