@@ -28,8 +28,9 @@
 	var map = new daum.maps.Map(mapContainer, mapOption);  
 
     function setData(data){
-    	var count = data['SearchParkProgramService']['list_total_count'];
-		var list = data['SearchParkProgramService']['row'];
+    	var parkProgramService = data['SearchParkProgramService'];
+    	var totalCount = parkProgramService['list_total_count'];
+		var list = parkProgramService['row'];
         for(var i = 0 ; i < list.length ; i ++){
         	var pData = list[i];
         	$('#main').html($('#main').html() + "<div onclick='panTo(\""+pData['LATITUDE']+"\",\""+pData['LONGITUDE']+"\",\""+pData['P_PARK']+"\")'>" + pData['P_PARK'] + "( "+pData['P_NAME']+" )" + "</div>");
