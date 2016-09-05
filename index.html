@@ -29,16 +29,14 @@
 
     function setData(data){
 		console.log(data);
-		/*for(var key1 in data){
-			for(var key2 in data[key1]){
-				if(key2 == 'row'){
-					for(var key3 in data[key1]) {
-						$('#main').html($('#main').html() + "<div onclick='panTo(\""+data[key1]['LATITUDE']+"\",\""+data[key1]['LONGITUDE']+"\",\""+data[key1]['P_PARK']+"\")'>" + data[key1]['P_PARK'] + "( "+data[key1]['P_NAME']+" )" + "</div>");
-					}
-				}
+		for(var key in data){
+			console.log(key == 'SearchParkProgramService');
+			for(var key1 in data[key]){
+				console.log(key1 == 'list_total_count');
+				console.log(key1 == 'row');
 			}
-		}*/
-    	var park = data.SearchParkProgramService;
+		}
+    	/*var park = data.SearchParkProgramService;
 		console.log(data.SearchParkProgramService);
 		console.log(data['SearchParkProgramService']);
 		console.log(data.length);
@@ -48,7 +46,7 @@
         for(var i = 0 ; i < list.length ; i ++){
         	var pData = list[i];
         	$('#main').html($('#main').html() + "<div onclick='panTo(\""+pData.LATITUDE+"\",\""+pData.LONGITUDE+"\",\""+pData.P_PARK+"\")'>" + pData.P_PARK + "( "+pData.P_NAME+" )" + "</div>");
-        }
+        }*/
     }
     
     function panTo(lat, lng, name) {
