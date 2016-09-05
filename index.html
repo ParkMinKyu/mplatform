@@ -29,7 +29,7 @@
 
     function setData(data){
 		console.log(data);
-		for(var key in data){
+		for(var key in data['SearchParkProgramService']){
 			$('#main').html(key + "<br/>");
 		}
     	/*var count = data['SearchParkProgramService']['list_total_count'];
