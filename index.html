@@ -28,13 +28,10 @@
 	var map = new daum.maps.Map(mapContainer, mapOption);  
 
     function setData(data){
-    	alert(data['SearchParkProgramService']['list_total_count']);
     	var count = data['SearchParkProgramService']['list_total_count'];
-    	alert(count);
 		var list = data['SearchParkProgramService']['row'];
         for(var i = 0 ; i < list.length ; i ++){
         	var pData = list[i];
-        	alert(pData['LATITUDE']);
         	$('#main').html($('#main').html() + "<div onclick='panTo("+pData['LATITUDE']+","+pData['LONGITUDE']+","+pData['P_PARK']+")'>" + pData['P_PARK'] + "( "+pData['P_NAME']+" )" + "</div>");
         }
     }
