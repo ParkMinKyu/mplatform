@@ -29,8 +29,11 @@
 
     function setData(data){
 		console.log(data);
-		for(var key in data['SearchParkProgramService']){
-			$('#main').html(key + "<br/>");
+		for(var key in data){
+			$('#main').html($('#main').html()+key + "<br/>");
+			for(var key in data[key]){
+				$('#main').html($('#main').html()+key + "<br/>");
+			}
 		}
     	/*var count = data['SearchParkProgramService']['list_total_count'];
 		var list = data['SearchParkProgramService']['row'];
