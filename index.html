@@ -29,12 +29,15 @@
 
     function setData(data){
 		console.log(data);
-    	var count = data['SearchParkProgramService']['list_total_count'];
+		for(var key in data){
+			$('#main').html(key + "<br/>");
+		}
+    	/*var count = data['SearchParkProgramService']['list_total_count'];
 		var list = data['SearchParkProgramService']['row'];
         for(var i = 0 ; i < list.length ; i ++){
         	var pData = list[i];
         	$('#main').html($('#main').html() + "<div onclick='panTo(\""+pData['LATITUDE']+"\",\""+pData['LONGITUDE']+"\",\""+pData['P_PARK']+"\")'>" + pData['P_PARK'] + "( "+pData['P_NAME']+" )" + "</div>");
-        }
+        }*/
     }
     
     function panTo(lat, lng, name) {
