@@ -39,6 +39,9 @@
 			}
 		}*/
     	var park = data.SearchParkProgramService;
+		console.log(data.SearchParkProgramService);
+		console.log(data['SearchParkProgramService']);
+		if(park != null)
 		var count = park.list_total_count;
 		var list = park.row;
         for(var i = 0 ; i < list.length ; i ++){
