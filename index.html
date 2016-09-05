@@ -33,7 +33,7 @@
         for(var i = 0 ; i < list.length ; i ++){
         	var pData = list[i];
         	for(var key in pData){
-        		$('#main').html(key + " : " + pData[key] + "<br/>");
+        		$('#main').html($('#main').html() + key + " : " + pData[key] + "<br/>");
         	}
         }
     }
