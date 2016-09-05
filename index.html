@@ -28,10 +28,14 @@
 	var map = new daum.maps.Map(mapContainer, mapOption);  
 
     function setData(data){
-		console.log(data);
+		console.log(JSON.stringify(data));
 		for(var key in data){
 			console.log(key == 'SearchParkProgramService');
-			for(var key1 in data[key]){
+			var park = data[key];
+			$('#main').html($('#main').html() + data[key] + "<br/>");
+			for(var key1 in park){
+				$('#main').html($('#main').html() + park[key1] + "<br/>");
+				$('#main').html($('#main').html() + park[key1] + "<br/>");
 				console.log(key1 == 'list_total_count');
 				console.log(key1 == 'row');
 			}
