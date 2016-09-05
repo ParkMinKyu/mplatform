@@ -28,30 +28,14 @@
 	var map = new daum.maps.Map(mapContainer, mapOption);  
 
     function setData(data){
-		console.log(JSON.stringify(data));
-		$('#main').html(JSON.stringify(data));
-		/*for(var key in data){
-			console.log(key == 'SearchParkProgramService');
-			var park = data[key];
-			$('#main').html($('#main').html() + data[key] + "<br/>");
-			for(var key1 in park){
-				$('#main').html($('#main').html() + park[key1] + "<br/>");
-				$('#main').html($('#main').html() + park[key1] + "<br/>");
-				console.log(key1 == 'list_total_count');
-				console.log(key1 == 'row');
-			}
-		}*/
-    	/*var park = data.SearchParkProgramService;
-		console.log(data.SearchParkProgramService);
-		console.log(data['SearchParkProgramService']);
-		console.log(data.length);
-		if(park != null)
-		var count = park.list_total_count;
-		var list = park.row;
+		console.log(data);
+
+    	var count = data["SearchProgramsByParkIDService"]["list_total_count"];
+		var list = data["SearchProgramsByParkIDService"]["row"];
         for(var i = 0 ; i < list.length ; i ++){
         	var pData = list[i];
-        	$('#main').html($('#main').html() + "<div onclick='panTo(\""+pData.LATITUDE+"\",\""+pData.LONGITUDE+"\",\""+pData.P_PARK+"\")'>" + pData.P_PARK + "( "+pData.P_NAME+" )" + "</div>");
-        }*/
+        	$('#main').html($('#main').html() + "<div onclick='panTo(\""+pData['LATITUDE']+"\",\""+pData['LONGITUDE']+"\",\""+pData['P_PARK']+"\")'>" + pData['P_PARK'] + "( "+pData['P_NAME']+" )" + "</div>");
+        }
     }
     
     function panTo(lat, lng, name) {
