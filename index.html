@@ -40,6 +40,7 @@
     }
     
     function panTo(lat, lng) {
+    	$(window).scrollTop(0);
         // 이동할 위도 경도 위치를 생성합니다 
         var moveLatLon = new daum.maps.LatLng(lat, lng);
         
