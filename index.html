@@ -28,6 +28,7 @@
 	var map = new daum.maps.Map(mapContainer, mapOption);  
 
     function setData(data){
+    	alert(data['SearchParkProgramService']['list_total_count']);
     	var count = data['SearchParkProgramService']['list_total_count'];
     	alert(count);
 		var list = data['SearchParkProgramService']['row'];
