@@ -104,19 +104,19 @@
     	*/
     	var xml = $.parseXML(data);
     	$(xml).find('item').each(function(index, node){
-    		$('#POP').text($(note).find('POP').text());
-    		$('#PTY').text($(note).find('PTY').text());
-    		$('#R06').text($(note).find('R06').text());
-    		$('#REH').text($(note).find('REH').text());
-    		$('#S06').text($(note).find('S06').text());
-    		$('#SKY').text($(note).find('SKY').text());
-    		$('#T3H').text($(note).find('T3H').text());
-    		$('#TMN').text($(note).find('TMN').text());
-    		$('#TMX').text($(note).find('TMX').text());
-    		$('#UUU').text($(note).find('UUU').text());
-    		$('#VVV').text($(note).find('VVV').text());
-    		$('#WAV').text($(note).find('WAV').text());
-    		$('#VEC').text($(note).find('VEC').text());
+    		$('#POP').text($(node).find('POP').text());
+    		$('#PTY').text($(node).find('PTY').text());
+    		$('#R06').text($(node).find('R06').text());
+    		$('#REH').text($(node).find('REH').text());
+    		$('#S06').text($(node).find('S06').text());
+    		$('#SKY').text($(node).find('SKY').text());
+    		$('#T3H').text($(node).find('T3H').text());
+    		$('#TMN').text($(node).find('TMN').text());
+    		$('#TMX').text($(node).find('TMX').text());
+    		$('#UUU').text($(node).find('UUU').text());
+    		$('#VVV').text($(node).find('VVV').text());
+    		$('#WAV').text($(node).find('WAV').text());
+    		$('#VEC').text($(node).find('VEC').text());
     	});
     }
     
