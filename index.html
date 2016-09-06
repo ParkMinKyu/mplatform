@@ -104,19 +104,7 @@
     	*/
     	var xml = $.parseXML(data);
     	$(xml).find('item').each(function(index, node){
-    		$('#POP').text($(node).find('POP').text());
-    		$('#PTY').text($(node).find('PTY').text());
-    		$('#R06').text($(node).find('R06').text());
-    		$('#REH').text($(node).find('REH').text());
-    		$('#S06').text($(node).find('S06').text());
-    		$('#SKY').text($(node).find('SKY').text());
-    		$('#T3H').text($(node).find('T3H').text());
-    		$('#TMN').text($(node).find('TMN').text());
-    		$('#TMX').text($(node).find('TMX').text());
-    		$('#UUU').text($(node).find('UUU').text());
-    		$('#VVV').text($(node).find('VVV').text());
-    		$('#WAV').text($(node).find('WAV').text());
-    		$('#VEC').text($(node).find('VEC').text());
+   			$('#'+$(node).find('category')+' span').text($(node).find('fcstValue').text());
     	});
     }
     
