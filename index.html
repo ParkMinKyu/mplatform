@@ -107,7 +107,7 @@
     	var xml = $.parseXML(data);
     	$(xml).find('item').each(function(index, node){
     		if($(node).find('category').text() == 'SKY'){
-    			var skyVal = parseInt($(node).find('fcstValue').text());
+    			var skyVal = parseInt($(node).find('obsrValue').text());
     			if( skyVal < 3 ){
     				$('#'+ $(node).find('category').text() +' span').text("맑음");
     			}else if( skyVal < 6 ){
@@ -118,7 +118,7 @@
     				$('#'+ $(node).find('category').text() +' span').text("흐림");
     			}
     		}else{
-    			$('#'+ $(node).find('category').text() +' span').text($(node).find('fcstValue').text());
+    			$('#'+ $(node).find('category').text() +' span').text($(node).find('obsrValue').text());
     		}
     	});
     }
