@@ -15,20 +15,16 @@
 
 </div>
 <div id="weather">
-	<div id="POP">강수확률 : <span></span></div>
-    <div id="PTY">강수형태 : <span></span></div>
-    <div id="R06">6시간 강수량 : <span></span></div>
-    <div id="REH">습도 : <span></span></div>
-    <div id="S06">6시간 신적설 : <span></span></div>
-    <div id="SKY">하늘상태 : <span></span></div>
-    <div id="T3H">3시간 기온 : <span></span></div>
-    <div id="TMN">일최저기온 : <span></span></div>
-    <div id="TMX">일최고기온 : <span></span></div>
-    <div id="UUU">풍속(동서성분) : <span></span></div>
-    <div id="VVV">풍속(남북성분) : <span></span></div>
-    <div id="WAV">파고 : <span></span></div>
-    <div id="VEC">풍향 : <span></span></div>
-    <div id="WSD">풍속 : <span></span></div>
+	<div id="T1H">기온 : <span></span></div>
+	<div id="RN1">1시간 강수량 : <span></span></div>
+	<div id="SKY">하늘상태 : <span></span></div>
+	<div id="UUU">동서바람성분 : <span></span></div>
+	<div id="VVV">남북바람성분 : <span></span></div>
+	<div id="REH">습도 : <span></span></div>
+	<div id="PTY">강수형태 : <span></span></div>
+	<div id="LGT">낙뢰 : <span></span></div>
+	<div id="VEC">풍향 : <span></span></div>
+	<div id="WSD">풍속 : <span></span></div>    
 </div>
 <script src="/mplatform/js/jquery-1.11.3.min.js" type="text/javascript"></script>
 <script type="text/javascript" src="//apis.daum.net/maps/maps3.js?apikey=5f101424c141ce53e3ed5e26f10ca225"></script>
@@ -89,20 +85,16 @@
     	- Base_time  : 0200, 0500, 0800, 1100, 1400, 1700, 2000, 2300 (1일 8회)
 		- API 제공 시간(~이후) : 02:30, 05:30, 08:30, 11:30, 14:30, 20:30, 23:30
 
-    	POP	강수확률	 %	-1 %	8
-    	PTY	강수형태	코드값	-1	4
-    	R06	6시간 강수량	범주 (1 mm)	-1 mm	8
-    	REH	습도	 %	-1 %	8
-    	S06	6시간 신적설	범주(1 cm)	-1 cm	8
-    	SKY	하늘상태	코드값	-1	4
-    	T3H	3시간 기온	 ℃	-50 ℃	10
-    	TMN	일최저기온	 ℃	-50 ℃	10
-    	TMX	일최고기온	 ℃	-50 ℃	10
-    	UUU	풍속(동서성분)	 m/s	-100 m/s	12
-    	VVV	풍속(남북성분)	 m/s	-100 m/s	12
-    	WAV	파고	 M	-1 m	8
-    	VEC	풍향	 m/s	-1	10
-    	WSD	풍속	1	-1	10 
+    	T1H	기온	 ℃	-50 ℃	10
+	RN1	1시간 강수량	mm	-1 mm	8
+	SKY	하늘상태	코드값	-1	4
+	UUU	동서바람성분	m/s	-100 m/s	12
+	VVV	남북바람성분	m/s	-100 m/s	12
+	REH	습도	%	-1 %	8
+	PTY	강수형태	코드값	-1	4
+	LGT	낙뢰	코드값	-1	4
+	VEC	풍향	0	-1	10
+	WSD	풍속	1	-1	10
     	*/
     	
     	/*
