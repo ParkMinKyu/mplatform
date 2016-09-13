@@ -44,6 +44,7 @@
 
     function setParkList(data){
 		console.log(data);
+		$('#parkList').html('');
 
     	var count = data["SearchParkInfoService"]["list_total_count"];
 		var list = data["SearchParkInfoService"]["row"];
@@ -55,6 +56,7 @@
 
     function setParkProgramList(data){
 		console.log(data);
+		$('#parkProgramList').html('');
 
     	var count = data["SearchProgramsByParkIDService"]["list_total_count"];
 		var list = data["SearchProgramsByParkIDService"]["row"];
