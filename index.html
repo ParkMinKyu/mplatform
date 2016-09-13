@@ -42,7 +42,7 @@
 	var map = new daum.maps.Map(mapContainer, mapOption);  
 	map.addOverlayMapTypeId(daum.maps.MapTypeId.TRAFFIC); 
 
-    function parkList(data){
+    function setParkList(data){
 		console.log(data);
 
     	var count = data["SearchParkInfoService"]["list_total_count"];
