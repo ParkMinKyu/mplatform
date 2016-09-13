@@ -11,7 +11,10 @@
 </head>
 <body>
 <div id="map" style="width:100%;height:300px;"></div>
-<div id="main">
+<div id="parkList">
+
+</div>
+<div id="parkProgramList">
 
 </div>
 <div id="weather">
@@ -39,14 +42,25 @@
 	var map = new daum.maps.Map(mapContainer, mapOption);  
 	map.addOverlayMapTypeId(daum.maps.MapTypeId.TRAFFIC); 
 
-    function setData(data){
+    function parkList(data){
+		console.log(data);
+
+    	var count = data["SearchParkInfoService"]["list_total_count"];
+		var list = data["SearchParkInfoService"]["row"];
+        for(var i = 0 ; i < list.length ; i ++){
+        	var pData = list[i];
+        	$('#parkList').html($('#main').html() + "<div onclick='panTo(\""+pData['LATITUDE']+"\",\""+pData['LONGITUDE']+"\",\""+pData['P_PARK']+"\")'>" + pData['P_PARK'] + "( "+pData['P_NAME']+" )" + "</div>");
+        }
+    }
+
+    function setParkProgramList(data){
 		console.log(data);
 
     	var count = data["SearchProgramsByParkIDService"]["list_total_count"];
 		var list = data["SearchProgramsByParkIDService"]["row"];
         for(var i = 0 ; i < list.length ; i ++){
         	var pData = list[i];
-        	$('#main').html($('#main').html() + "<div onclick='panTo(\""+pData['LATITUDE']+"\",\""+pData['LONGITUDE']+"\",\""+pData['P_PARK']+"\")'>" + pData['P_PARK'] + "( "+pData['P_NAME']+" )" + "</div>");
+        	$('#parkProgramList').html($('#main').html() + "<div onclick='panTo(\""+pData['LATITUDE']+"\",\""+pData['LONGITUDE']+"\",\""+pData['P_PARK']+"\")'>" + pData['P_PARK'] + "( "+pData['P_NAME']+" )" + "</div>");
         }
     }
     
