@@ -49,7 +49,7 @@
 		var list = data["SearchParkInfoService"]["row"];
         for(var i = 0 ; i < list.length ; i ++){
         	var pData = list[i];
-        	$('#parkList').html($('#main').html() + "<div onclick='panTo(\""+pData['LATITUDE']+"\",\""+pData['LONGITUDE']+"\",\""+pData['P_PARK']+"\")'>" + pData['P_PARK'] + "( "+pData['P_NAME']+" )" + "</div>");
+        	$('#parkList').html($('#main').html() + "<div onclick='panTo(\""+pData['LATITUDE']+"\",\""+pData['LONGITUDE']+"\",\""+pData['P_PARK']+"\")'>" + pData['P_PARK'] + "( "+pData['P_ADDR']+" )" + "</div>");
         }
     }
 
