@@ -82,6 +82,7 @@
 
     function getApplicationData(){
         JavascriptBridge.getParkList();
+        JavascriptBridge.getParkProgramList('');
     }
 
     function compare(a,b) {
@@ -155,7 +156,6 @@
             }
         }
         pageMove(2);
-        JavascriptBridge.getParkProgramList('');
     }
 
     function displayParkList(areaName){
