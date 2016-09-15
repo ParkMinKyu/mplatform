@@ -36,34 +36,84 @@
 <script src="/mplatform/js/jquery-1.11.3.min.js" type="text/javascript"></script>
 <script type="text/javascript" src="//apis.daum.net/maps/maps3.js?apikey=5f101424c141ce53e3ed5e26f10ca225"></script>
 <script>
+	var mapContainer = document.getElementById('map'), // 지도를 표시할 div
+	    mapOption = {
+	        center: new daum.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
+	        level: 5 // 지도의 확대 레벨
+	    };
+
+	// 지도를 표시할 div와  지도 옵션으로  지도를 생성합니다
+	var map = new daum.maps.Map(mapContainer, mapOption);
+	map.addOverlayMapTypeId(daum.maps.MapTypeId.TRAFFIC);
+
+	var parkList = {};
+
 	$(function(){
 		$('#getParkList').click(function(){
-			JavascriptBridge.getParkList();
+		    if(parkList.totalCount == null)
+			    JavascriptBridge.getParkList();
+			else
+			    displayArea();
 		});
 
 		$('#kakaoBtn').click(function(){
 			JavascriptBridge.sendMessage("test");
 		});
 	});
-	var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
-	    mapOption = { 
-	        center: new daum.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
-	        level: 5 // 지도의 확대 레벨
-	    };
-	
-	// 지도를 표시할 div와  지도 옵션으로  지도를 생성합니다
-	var map = new daum.maps.Map(mapContainer, mapOption);  
-	map.addOverlayMapTypeId(daum.maps.MapTypeId.TRAFFIC); 
+
+    function compare(a,b) {
+      var pat = /(서울특별시) ([가-힣]+)/g;
+      var pat2 = /(서울특별시) ([가-힣]+)/g;
+      var addr1;
+      var addr2;
+      if(pat.test(a.P_ADDR)){
+            addr1 = RegExp.$2;
+      }
+      if(pat2.test(b.P_ADDR)){
+            addr2 = RegExp.$2;
+      }
+      if (addr1 < addr2)
+        return -1;
+      if (addr1 > addr2)
+        return 1;
+      return 0;
+    }
 
     function setParkList(data){
-		console.log(data);
-		$('#parkList').html('');
+		parkList.totalCount = data["SearchParkInfoService"]["list_total_count"];
+        parkList.row = data["SearchParkInfoService"]["row"];
+        parkList.row.sort(compare);
+        displayArea();
+    }
 
-    	var count = data["SearchParkInfoService"]["list_total_count"];
-		var list = data["SearchParkInfoService"]["row"];
-        for(var i = 0 ; i < list.length ; i ++){
-        	var pData = list[i];
-        	$('#parkList').append("<div onclick='JavascriptBridge.getParkProgramList(\""+pData['P_IDX']+"\")'>" + pData['P_PARK'] + "( "+pData['P_ADDR']+" )" + "</div>");
+    function displayArea(){
+		$('#areaList').html('');
+        for(var i = 0 ; i < parkList.row.length ; i ++){
+            var park = parkList.row[i];
+            var pat = /(서울특별시) ([가-힣]+)/g;
+            if(pat.test(park.P_ADDR)){
+                var areaName = RegExp.$2;
+                if( $('#'+areaName).length > 0 ){
+                    var count = parseInt($('#' + areaName + ' #count').text())+1;
+                    $('#' + areaName + ' #count').text(count);
+                }
+                else{
+                    $('#areaList').append('<div onclick="displayParkList(\''+areaName+'\');" id="'+areaName+'">'+areaName+' ( <span id="count">'+1+'</span>개 )</div>');
+                 }
+            }
+        }
+    }
+
+    function displayParkList(areaName){
+		$('#parkList').html('');
+        for(var i = 0 ; i < parkList.row.length ; i ++){
+            var park = parkList.row[i];
+            var pat = /(서울특별시) ([가-힣]+)/g;
+            if(pat.test(park.P_ADDR)){
+                var matchName = RegExp.$2;
+                if(matchName == areaName)
+                    $('#parkList').append('<div onclick="JavascriptBridge.getParkProgramList(\''+park.P_IDX+'\');" id="'+park.P_IDX+'">'+park.P_PARK+' ( '+park.P_ADDR+' )</div>');
+            }
         }
     }
 
