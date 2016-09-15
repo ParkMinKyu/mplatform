@@ -16,13 +16,13 @@
 		<img src="/mplatform/images/main.jpeg"/><br>
 		<button id="startBtn">시작</button>
 	</div>
-	<div id="pageNo2" style="visibility: hidden;position: absolute;">
+	<div id="pageNo2" style="position: absolute;">
 		지역별 공원 현황
 		<div id="areaList">
 
 		</div>
 	</div>
-	<div id="pageNo3" style="visibility: hidden;position: absolute;">
+	<div id="pageNo3" style="position: absolute;">
 		<div id="parkList">
 
 		</div>
@@ -39,7 +39,7 @@
 			<div id="WSD">풍속 : <span></span></div>
 		</div>
 	</div>
-	<div id="pageNo4" style="visibility: hidden;position: absolute;">
+	<div id="pageNo4" style="position: absolute;">
 		<div id="map" style="width:100%;height:300px;"></div>
 		<div id="parkProgramList">
 
@@ -133,9 +133,9 @@
             $('#backBtn').hide();
         }
 
-        $('#main div').css('visibility','hidden');
-        $('#pageNo'+pageNo).css('visibility','visible');
-        $('#pageNo'+pageNo+' div').css('visibility','visible');
+        $('#main div').hide();
+        $('#pageNo'+pageNo).show();
+        $('#pageNo'+pageNo+' div').show();
         $('#pageIdx').val(pageNo);
     }
 
