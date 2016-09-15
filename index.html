@@ -82,7 +82,7 @@
 
     function getApplicationData(){
         JavascriptBridge.getParkList();
-        JavascriptBridge.getParkProgramList('');
+        JavascriptBridge.getParkProgramList();
     }
 
     function compare(a,b) {
@@ -169,7 +169,7 @@
                     $('#parkList').append('<div onclick="displayParkProgramList(\''+park.P_IDX+'\');" id="'+park.P_IDX+'">'+park.P_PARK+' ( 프로그램 '+getProgramCount(park.P_IDX)+'개 )</div>');
             }
             if( i == (parkList.row.length -1) ){
-             	JavascriptBridge.getWeather(\''+park.LATITUDE+'\', \''park.LONGITUDE+'\');
+             	//JavascriptBridge.getWeather(park.LATITUDE, park.LONGITUDE);
             }
         }
 
