@@ -60,6 +60,7 @@
 	map.addOverlayMapTypeId(daum.maps.MapTypeId.TRAFFIC);
 
 	function panTo(lat, lng, name) {
+		map.relayout();
     	var markerPosition  = new daum.maps.LatLng(lat, lng);
     	// 마커를 생성합니다
     	var marker = new daum.maps.Marker({
