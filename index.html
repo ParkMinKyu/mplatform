@@ -10,7 +10,7 @@
 	<img src="https://github.com/ParkMinKyu/newLotto/blob/gh-pages/kakaolink_btn_small.png?raw=true"/>
 </a>
 <div id="main" style="margin: 80px auto;">
-	<input type="hidden" id="pageIdx" value="0">
+	<input type="text" id="pageIdx" value="0">
 	<button id="backBtn" style="display:none;">뒤로가기</button>
 	<div id="pageNo1" style="position: absolute;">
 		<img src="/mplatform/images/main.jpeg"/><br>
@@ -40,7 +40,7 @@
 		</div>
 	</div>
 	<div id="pageNo4" style="position: absolute; display: none;">
-		<div id="map" style="width:100%;height:300px;"></div>
+		<div id="map" style="width:100%;height:300px;border:1px solid;"></div>
 		<div id="parkProgramList">
 
 		</div>
@@ -60,6 +60,9 @@
 	map.addOverlayMapTypeId(daum.maps.MapTypeId.TRAFFIC);
 
 	function panTo(lat, lng, name) {
+		$('#map').css('width','100%');
+		$('#map').css('height','300px');
+
 		map.relayout();
     	var markerPosition  = new daum.maps.LatLng(lat, lng);
     	// 마커를 생성합니다
