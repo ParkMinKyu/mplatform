@@ -151,6 +151,7 @@
             }
         }
         pageMove(2);
+        JavascriptBridge.getParkProgramList('');
     }
 
     function displayParkList(areaName){
@@ -161,7 +162,6 @@
             if(pat.test(park.P_ADDR)){
                 var matchName = RegExp.$2;
                 if(matchName == areaName){
-                	JavascriptBridge.getParkProgramList(park.P_IDX);
                     $('#parkList').append('<div onclick="displayParkProgramList(\''+park.P_IDX+'\');" id="'+park.P_IDX+'">'+park.P_PARK+' ( 프로그램 '+getProgramCount(park.P_IDX)+'개 )</div>');
 				}
             }
