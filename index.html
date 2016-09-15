@@ -160,8 +160,10 @@
             var pat = /(서울특별시) ([가-힣]+)/g;
             if(pat.test(park.P_ADDR)){
                 var matchName = RegExp.$2;
-                if(matchName == areaName)
+                if(matchName == areaName){
+                	JavascriptBridge.getParkProgramList(park.P_IDX);
                     $('#parkList').append('<div onclick="displayParkProgramList(\''+park.P_IDX+'\');" id="'+park.P_IDX+'">'+park.P_PARK+' ( 프로그램 '+getProgramCount(park.P_IDX)+'개 )</div>');
+				}
             }
             if( i == (parkList.row.length -1) ){
              	JavascriptBridge.getWeather(park.LATITUDE, park.LONGITUDE);
