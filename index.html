@@ -65,7 +65,7 @@
 	$(function(){
         $('#startBtn').click(function(){
             if(parkList.row == null || parkProgramList.row == null)
-                getApplicationData();
+                JavascriptBridge.getParkList();
             else
                 displayArea();
         });
@@ -79,11 +79,6 @@
             pageMove(pageNo - 1);
         });
     });
-
-    function getApplicationData(){
-        JavascriptBridge.getParkList();
-        JavascriptBridge.getParkProgramList('');
-    }
 
     function compare(a,b) {
       var pat = /(서울특별시) ([가-힣]+)/g;
@@ -120,6 +115,7 @@
 		parkList.totalCount = data["SearchParkInfoService"]["list_total_count"];
         parkList.row = data["SearchParkInfoService"]["row"];
         parkList.row.sort(compare);
+        JavascriptBridge.getParkProgramList('');
     }
 
     function setParkProgramList(data){
