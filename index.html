@@ -105,9 +105,9 @@
             $('#backBtn').hide();
         }
 
-        $('#main div').hide();
-        $('#pageNo'+pageNo).show();
-        $('#pageNo'+pageNo+' div').show();
+        $('#main div').css('visibility','hidden');
+        $('#pageNo'+pageNo).css('visibility','visible');
+        $('#pageNo'+pageNo+' div').css('visibility','visible');
         $('#pageIdx').val(pageNo);
     }
 
