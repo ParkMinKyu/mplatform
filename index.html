@@ -83,6 +83,7 @@
     function getApplicationData(){
         JavascriptBridge.getParkList();
         JavascriptBridge.getParkProgramList('');
+        displayArea();
     }
 
     function compare(a,b) {
@@ -120,7 +121,6 @@
 		parkList.totalCount = data["SearchParkInfoService"]["list_total_count"];
         parkList.row = data["SearchParkInfoService"]["row"];
         parkList.row.sort(compare);
-        displayArea();
     }
 
     function setParkProgramList(data){
