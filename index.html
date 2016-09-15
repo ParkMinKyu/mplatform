@@ -124,6 +124,9 @@
     }
 
     function getProgramCount(parkId){
+    	if(parkProgramList.row == 0)
+    		return 0;
+
         var list = parkProgramList.row;
         var count = 0;
         for(var i = 0 ; i < list.length ; i ++){
