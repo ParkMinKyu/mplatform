@@ -115,13 +115,12 @@
 		parkList.totalCount = data["SearchParkInfoService"]["list_total_count"];
         parkList.row = data["SearchParkInfoService"]["row"];
         parkList.row.sort(compare);
-        JavascriptBridge.getParkProgramList('');
+        displayArea();
     }
 
     function setParkProgramList(data){
         parkProgramList.totalCount = data["SearchProgramsByParkIDService"]["list_total_count"];
         parkProgramList.row = data["SearchProgramsByParkIDService"]["row"];
-        displayArea();
     }
 
     function getProgramCount(parkId){
