@@ -174,15 +174,16 @@
     function displayParkProgramList(parkId){
 		$('#parkProgramList').html('');
 		var list = parkProgramList.row;
+		var mapData = {};
         for(var i = 0 ; i < list.length ; i ++){
         	var pData = list[i];
         	if(pData.P_IDX == parkId){
+        		mapData = pData;
         	    $('#parkProgramList').append("<div>" + pData['P_PARK'] + "( "+pData['P_NAME']+" )" + "</div>");
-        	    panTo(pData['LATITUDE'],pData['LONGITUDE'],pData['P_PARK']);
-        	}
+			}
         }
-
         pageMove(4);
+		panTo(mapData['LATITUDE'],mapData['LONGITUDE'],mapData['P_PARK']);
     }
 
     function setWeather(data){
