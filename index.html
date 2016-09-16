@@ -128,7 +128,7 @@
 		parkList.totalCount = data["SearchParkInfoService"]["list_total_count"];
         parkList.row = data["SearchParkInfoService"]["row"];
         parkList.row.sort(compare);
-
+		setMarkers();
         displayArea();
     }
 
