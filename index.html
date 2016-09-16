@@ -63,7 +63,6 @@
 		$('#map').css('width','100%');
 		$('#map').css('height','300px');
 
-		map.relayout();
     	var markerPosition  = new daum.maps.LatLng(lat, lng);
     	// 마커를 생성합니다
     	var marker = new daum.maps.Marker({
@@ -88,6 +87,7 @@
         // 지도 중심을 부드럽게 이동시킵니다
         // 만약 이동할 거리가 지도 화면보다 크면 부드러운 효과 없이 이동합니다
         map.panTo(moveLatLon);
+        map.relayout();
     }
 
 	var parkList = {};
@@ -218,7 +218,7 @@
         }
         pageMove(4);
 
-		setTime(panTo(lat, lng, parkName),100);
+		panTo(lat, lng, parkName);
     }
 
     function setWeather(data){
