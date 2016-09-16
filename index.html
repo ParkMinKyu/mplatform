@@ -6,17 +6,14 @@
 	<meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, width=device-width">
 </head>
 <body>
-<a href="#" id="kakaoBtn">
-	<img src="https://github.com/ParkMinKyu/newLotto/blob/gh-pages/kakaolink_btn_small.png?raw=true"/>
-</a>
-<div id="main" style="margin: 80px auto;">
+<div id="main" style="margin: 0 auto;">
 	<input type="text" id="pageIdx" value="0">
 	<button id="backBtn" style="display:none;">뒤로가기</button>
-	<div id="pageNo1" style="">
+	<div id="pageNo1">
 		<img src="/mplatform/images/main.jpeg"/><br>
 		<button id="startBtn">시작</button>
 	</div>
-	<div id="pageNo2" style=" display: none;">
+	<div id="pageNo2" style="display: none;">
 		지역별 공원 현황
 		<div id="areaList">
 
@@ -39,8 +36,11 @@
 			<div id="WSD">풍속 : <span></span></div>
 		</div>
 	</div>
-	<div id="pageNo4" style=" display: none;">
+	<div id="pageNo4" style="display: none;">
 		<div id="map" style="width:100%;height:300px;border:1px solid;"></div>
+		<a href="#" id="kakaoBtn">
+			<img src="https://github.com/ParkMinKyu/newLotto/blob/gh-pages/kakaolink_btn_small.png?raw=true"/>
+		</a>
 		<div id="parkProgramList">
 
 		</div>
@@ -86,8 +86,8 @@
         var moveLatLon = new daum.maps.LatLng(lat, lng);
         // 지도 중심을 부드럽게 이동시킵니다
         // 만약 이동할 거리가 지도 화면보다 크면 부드러운 효과 없이 이동합니다
-        map.panTo(moveLatLon);
         map.relayout();
+        map.panTo(moveLatLon);
     }
 
 	var parkList = {};
