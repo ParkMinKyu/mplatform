@@ -221,6 +221,7 @@
 
     function displayParkList(areaName){
 		$('#parkList').html('');
+		var isFirst = true;
         for(var i = 0 ; i < parkList.row.length ; i ++){
             var park = parkList.row[i];
             var pat = /(서울특별시) ([가-힣]+)/g;
@@ -229,9 +230,10 @@
                 if(matchName == areaName){
                     $('#parkList').append('<div onclick="displayParkProgramList(\''+park.P_IDX+'\',\''+park.LATITUDE+'\',\''+park.LONGITUDE+'\');" id="'+park.P_IDX+'">'+park.P_PARK+' ( 프로그램 '+getProgramCount(park.P_IDX)+'개 )</div>');
 				}
-            }
-            if( i == (parkList.row.length -1) ){
-             	JavascriptBridge.getWeather(park.LATITUDE, park.LONGITUDE);
+				if( isFirst ){
+             		JavascriptBridge.getWeather(park.LATITUDE, park.LONGITUDE);
+             		isFirst = false;
+            	}
             }
         }
 
