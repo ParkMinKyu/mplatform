@@ -229,11 +229,11 @@
                 var matchName = RegExp.$2;
                 if(matchName == areaName){
                     $('#parkList').append('<div onclick="displayParkProgramList(\''+park.P_IDX+'\',\''+park.LATITUDE+'\',\''+park.LONGITUDE+'\');" id="'+park.P_IDX+'">'+park.P_PARK+' ( 프로그램 '+getProgramCount(park.P_IDX)+'개 )</div>');
+                    if( isFirst ){
+						JavascriptBridge.getWeather(park.LATITUDE, park.LONGITUDE);
+						isFirst = false;
+            		}
 				}
-				if( isFirst ){
-             		JavascriptBridge.getWeather(park.LATITUDE, park.LONGITUDE);
-             		isFirst = false;
-            	}
             }
         }
 
