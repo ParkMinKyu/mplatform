@@ -11,6 +11,9 @@
 	<input type="text" id="parkName" value="">
 	<input type="text" id="lat" value="">
 	<input type="text" id="lng" value="">
+	<input type="text" id="targetName" value="">
+	<input type="text" id="targetLat" value="">
+	<input type="text" id="targetLng" value="">
 	<input type="text" id="contentTypeId" value="">
 	<button id="backBtn" style="display:none;">뒤로가기</button>
 	<div id="pageNo1">
@@ -251,8 +254,13 @@
     		var dist = parseInt($(node).find("dist").text());
     		var lng = $(node).find("mapx").text();
     		var lat = $(node).find("mapy").text();
-			$('#parkProgramList').append("<div onclick='JavascriptBridge.showMap(\""+lat+"\",\""+lng+"\",\""+title+"\");'>"+title+" ( "+dist+"m)</div>");
+			$('#parkProgramList').append("<div onclick='showMapToTarget(\""+lat+"\",\""+lng+"\",\""+title+"\");'>"+title+" ( "+dist+"m)</div>");
+			//$('#parkProgramList').append("<div onclick='JavascriptBridge.showMap(\""+lat+"\",\""+lng+"\",\""+title+"\");'>"+title+" ( "+dist+"m)</div>");
     	});
+    }
+
+    function showMapToTarget(lat, lng, title){
+		JavascriptBridge.showMapToTarget($('#lat').val(), $('#lng').val(), $('#parkName').val(), lat, lng, title);
     }
 </script>
 </body>
