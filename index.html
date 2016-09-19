@@ -254,7 +254,8 @@
     		var dist = parseInt($(node).find("dist").text());
     		var lng = $(node).find("mapx").text();
     		var lat = $(node).find("mapy").text();
-			$('#parkProgramList').append("<div onclick='showMapAndTarget(\""+lat+"\",\""+lng+"\",\""+title+"\");'>"+title+" ( "+dist+"m)</div>");
+    		var tel = $(node).find("tel").text();
+			$('#parkProgramList').append("<div onclick='showMapAndTarget(\""+lat+"\",\""+lng+"\",\""+title+"\");'>"+title+" ( "+dist+"m) <br> <a href=\"tel:"+tel+"\">"+tel+"</a></div>");
     	});
     }
 
