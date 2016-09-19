@@ -262,7 +262,14 @@
     	$('#targetName').val($('#parkName').val() + "," + title);
 		$('#targetLat').val($('#lat').val() + "," + lat);
 		$('#targetLng').val($('#lng').val() + "," + lng);
-		JavascriptBridge.showMapAndTarget($('#targetLat').val(), $('#targetLng').val(), $('#targetName').val());
+		var title = $('#targetName').val();
+		var lat = $('#targetLat').val();
+		var lng = $('#targetLng').val();
+		console.log(title);
+		console.log(lat);
+		console.log(lng);
+
+		JavascriptBridge.showMapAndTarget(lat, lng, title);
     }
 </script>
 </body>
