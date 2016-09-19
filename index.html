@@ -255,7 +255,7 @@
     		var lng = $(node).find("mapx").text();
     		var lat = $(node).find("mapy").text();
     		var tel = $(node).find("tel").text();
-			$('#parkProgramList').append("<div onclick='showMapAndTarget(\""+lat+"\",\""+lng+"\",\""+title+"\");'>"+title+" ( "+dist+"m) <br> <a href=\"tel:"+tel+"\">"+tel+"</a></div>");
+			$('#parkProgramList').append("<div onclick='showMapAndTarget(\""+lat+"\",\""+lng+"\",\""+title+"\");'>"+title+" ( "+dist+"m)</div><div><a href=\"tel:"+tel+"\">"+tel+"</a></div>");
     	});
     }
 
