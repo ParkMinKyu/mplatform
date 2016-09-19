@@ -44,6 +44,9 @@
 		<a href="#" id="showMapBtn">
 			공원 위치 보기
 		</a>
+		<a href="#" id="partyBtn">
+			주변 행사정보 보기
+		</a>
 		<a href="#" id="touristBtn">
 			주변 관광지 보기
 		</a>
@@ -80,6 +83,11 @@
 
         $('#showMapBtn').click(function(){
 			JavascriptBridge.showMap($('#lat').val(), $('#lng').val(), $('#parkName').val());
+		});
+
+		$('#partyBtn').click(function(){
+			$('#contentTypeId').val(15)
+			JavascriptBridge.getTourist($('#lat').val(), $('#lng').val(), $('#contentTypeId').val());
 		});
 
 		$('#touristBtn').click(function(){
