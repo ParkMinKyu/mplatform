@@ -258,11 +258,11 @@
     	});
     }
 
-    function showMapToTarget(lat, lng, title){
+    function showMapAndTarget(lat, lng, title){
     	$('#targetName').val($('#parkName').val() + "," + title);
 		$('#targetLat').val($('#lat').val() + "," + lat);
 		$('#targetLng').val($('#lng').val() + "," + lng);
-		JavascriptBridge.showMap($('#targetLat').val(), $('#targetLng').val(), $('#targetName').val());
+		JavascriptBridge.showMapAndTarget($('#targetLat').val(), $('#targetLng').val(), $('#targetName').val());
     }
 </script>
 </body>
