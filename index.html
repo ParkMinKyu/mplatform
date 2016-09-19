@@ -240,9 +240,10 @@
 		$('#parkProgramList').html('');
     	$(xml).find('item').each(function(index, node){
     		var title = $(node).find("title").text();
-    		var lat = $(node).find("mapy").text();
+    		var dist = parseInt($(node).find("dist").text());
     		var lng = $(node).find("mapx").text();
-			$('#parkProgramList').append("<div>"+title+"</div>");
+    		var lng = $(node).find("mapx").text();
+			$('#parkProgramList').append("<div>"+title+" ( "+dist+"m)</div>");
     	});
     }
 </script>
