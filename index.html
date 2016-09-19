@@ -85,7 +85,7 @@
         });
 
         $('#showMapBtn').click(function(){
-			JavascriptBridge.showMap($('#lat').val(), $('#lng').val(), $('#parkName').val());
+			JavascriptBridge.showMap(true, $('#lat').val(), $('#lng').val(), $('#parkName').val());
 		});
 
 		$('#partyBtn').click(function(){
@@ -265,11 +265,8 @@
 		var title = $('#targetName').val();
 		var lat = $('#targetLat').val();
 		var lng = $('#targetLng').val();
-		console.log(title);
-		console.log(lat);
-		console.log(lng);
 
-		JavascriptBridge.showMapAndTarget(lat, lng, title);
+		JavascriptBridge.showMap(false, lat, lng, title);
     }
 </script>
 </body>
