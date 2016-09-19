@@ -250,8 +250,8 @@
     		var title = $(node).find("title").text();
     		var dist = parseInt($(node).find("dist").text());
     		var lng = $(node).find("mapx").text();
-    		var lng = $(node).find("mapx").text();
-			$('#parkProgramList').append("<div>"+title+" ( "+dist+"m)</div>");
+    		var lat = $(node).find("mapy").text();
+			$('#parkProgramList').append("<div onclick='JavascriptBridge.showMap(\""+lat+"\",\""+lng+"\",\""+title+"\");'>"+title+" ( "+dist+"m)</div>");
     	});
     }
 </script>
