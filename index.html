@@ -188,7 +188,7 @@
             if(pat.test(park.P_ADDR)){
                 var matchName = RegExp.$2;
                 if(matchName == areaName){
-                    $('#parkList').append('<div onclick="displayParkProgramList(\''+park.P_PARK+'\',\''+park.LATITUDE+'\',\''+park.LONGITUDE+'\');" id="'+park.P_IDX+'">'+park.P_PARK+' ( 프로그램 '+getProgramCount(park.P_IDX)+'개 )</div>');
+                    $('#parkList').append('<div onclick="displayParkProgramList(\''+park.P_IDX+'\',\''+park.LATITUDE+'\',\''+park.LONGITUDE+'\',\''+park.P_PARK+'\');" id="'+park.P_IDX+'">'+park.P_PARK+' ( 프로그램 '+getProgramCount(park.P_IDX)+'개 )</div>');
                     if( isFirst ){
 						JavascriptBridge.getWeather(park.LATITUDE, park.LONGITUDE);
 						isFirst = false;
@@ -200,11 +200,11 @@
         pageMove(3);
     }
 
-    function displayParkProgramList(parkName, lat, lng){
+    function displayParkProgramList(parkId, lat, lng, parkName){
 		$('#parkProgramList').html('');
 		$('#parkName').val(parkName);
-		$('#lng').html(lng);
-		$('#lat').html(lat);
+		$('#lat').val(lat);
+		$('#lng').val(lng);
 		var list = parkProgramList.row;
         for(var i = 0 ; i < list.length ; i ++){
         	var pData = list[i];
