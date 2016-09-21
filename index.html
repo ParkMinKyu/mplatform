@@ -15,6 +15,8 @@
 	<input type="hidden" id="targetLat" value="">
 	<input type="hidden" id="targetLng" value="">
 	<input type="hidden" id="contentTypeId" value="">
+	<input type="hidden" id="areaCode" value="1">
+	<input type="hidden" id="segunCode" value="">
 	<button id="backBtn" style="display:none;">뒤로가기</button>
 	<div id="pageNo1">
 		<img src="/mplatform/images/main.jpeg" style="width:100%;"/><br>
@@ -90,7 +92,7 @@
 
 		$('#partyBtn').click(function(){
 			$('#contentTypeId').val(15)
-			JavascriptBridge.getTourist($('#lat').val(), $('#lng').val(), $('#contentTypeId').val());
+			JavascriptBridge.getTourist($('#lat').val(), $('#lng').val(), $('#contentTypeId').val(), $('#areaCode').val(), $('#segunCode').val());
 		});
 
 		$('#touristBtn').click(function(){
@@ -182,7 +184,7 @@
                     $('#' + areaName + ' #count').text(count);
                 }
                 else{
-                    $('#areaList').append('<div onclick="displayParkList(\''+areaName+'\');" id="'+areaName+'">'+areaName+' ( 공원 <span id="count">'+1+'</span>개 )</div>');
+                    $('#areaList').append('<div onclick="displayParkList(\''+areaName+'\',(i+1));" id="'+areaName+'">'+areaName+' ( 공원 <span id="count">'+1+'</span>개 )</div>');
                  }
             }
         }
@@ -190,7 +192,9 @@
         JavascriptBridge.getParkProgramList('');
     }
 
-    function displayParkList(areaName){
+    function displayParkList(areaName, segunCode){
+    	$('#areaCode').val(1);
+    	$('#segunCode').val(segunCode);
 		$('#parkList').html('');
 		var isFirst = true;
         for(var i = 0 ; i < parkList.row.length ; i ++){
