@@ -269,7 +269,7 @@
     		}else{
     			dist = dist + " m"
     		}
-			$('#parkProgramList').append("<div onclick='showMapAndTarget(\""+lat+"\",\""+lng+"\",\""+title+"\");'>"+title+" ( "+dist+")</div><div><a href=\"tel:"+tel+"\">"+tel+"</a></div>");
+			$('#parkProgramList').append("<div onclick='showMapAndTarget(\""+lat+"\",\""+lng+"\",\""+(title.replace(/"/gi,''))+"\");'>"+title+" ( "+dist+")</div><div><a href=\"tel:"+tel+"\">"+tel+"</a></div>");
 
     	});
     }
