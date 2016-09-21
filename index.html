@@ -256,15 +256,17 @@
 		$('#parkProgramList').html('');
     	$(xml).find('item').each(function(index, node){
     		var title = $(node).find("title").text();
-    		var dist = 9999;
+    		var dist = parseInt($(node).find("dist").text());
     		var lng = $(node).find("mapx").text();
     		var lat = $(node).find("mapy").text();
     		var tel = $(node).find("tel").text();
 
     		if($(node).find("contenttypeid").text() == "15"){
+    			alert($('#lat').val());
+    			alert($('#lng').val());
+    			alert(lat);
+    			alert(lng);
     			dist = calculateDistance($('#lat').val(), $('#lng').val(), lat, lng);
-    		}else{
-    			dist = parseInt($(node).find("dist").text());
     		}
 			$('#parkProgramList').append("<div onclick='showMapAndTarget(\""+lat+"\",\""+lng+"\",\""+title+"\");'>"+title+" ( "+dist+"m)</div><div><a href=\"tel:"+tel+"\">"+tel+"</a></div>");
 
