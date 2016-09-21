@@ -16,7 +16,7 @@
 	<input type="hidden" id="targetLng" value="">
 	<input type="hidden" id="contentTypeId" value="">
 	<input type="hidden" id="areaCode" value="1">
-	<input type="hidden" id="segunCode" value="">
+	<input type="hidden" id="sigunguCode" value="">
 	<button id="backBtn" style="display:none;">뒤로가기</button>
 	<div id="pageNo1">
 		<img src="/mplatform/images/main.jpeg" style="width:100%;"/><br>
@@ -92,7 +92,7 @@
 
 		$('#partyBtn').click(function(){
 			$('#contentTypeId').val(15)
-			JavascriptBridge.getTourist($('#lat').val(), $('#lng').val(), $('#contentTypeId').val(), $('#areaCode').val(), $('#segunCode').val());
+			JavascriptBridge.getTourist($('#lat').val(), $('#lng').val(), $('#contentTypeId').val(), $('#areaCode').val(), $('#sigunguCode').val());
 		});
 
 		$('#touristBtn').click(function(){
@@ -192,9 +192,9 @@
         JavascriptBridge.getParkProgramList('');
     }
 
-    function displayParkList(areaName, segunCode){
+    function displayParkList(areaName, sigunguCode){
     	$('#areaCode').val(1);
-    	$('#segunCode').val(segunCode);
+    	$('#sigunguCode').val(sigunguCode);
 		$('#parkList').html('');
 		var isFirst = true;
         for(var i = 0 ; i < parkList.row.length ; i ++){
