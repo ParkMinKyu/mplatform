@@ -15,7 +15,7 @@
 	}
 	 
 	#weather{
-	width: 155px;
+	width: 250px;
 	    float: right;
 	    margin-top: 5px;
 	}
@@ -94,11 +94,10 @@
 			</div>
 		<div id="weather">
 			<div id="T1H">기온 : <span></span></div>
-			<div id="RN1">1시간 강수량 : <span></span></div>
 			<div id="SKY">하늘상태 : <span></span></div>
 			<div id="REH">습도 : <span></span></div>
-			<div id="VEC">풍향 : <span></span></div>
-			<div id="WSD">풍속 : <span></span></div>
+			<div id="pm10Value">미세먼지 : <span></span>㎍/㎥</div>
+			<div id="pm25Value">초미세먼지 : <span></span>㎍/㎥</div>
 		</div>
 	</div>
 	<div id="pageNo4" style="display: none;">
@@ -119,6 +118,11 @@
 			<img src="kakaolink_btn_small.png"/>
 		</a>
 		<div id="parkProgramList">
+		</div>
+	</div>
+	<div id="pageNo5" style="display: none;">
+		<div id="detailContents">
+
 		</div>
 	</div>
 </div>
@@ -277,6 +281,7 @@
                     $('#parkList').append('<div onclick="displayParkProgramList(\''+park.P_IDX+'\',\''+park.LATITUDE+'\',\''+park.LONGITUDE+'\',\''+park.P_PARK+'\');" id="'+park.P_IDX+'">'+park.P_PARK+' ( 프로그램 '+getProgramCount(park.P_IDX)+'개 )</div>');
                     if( isFirst ){
 						JavascriptBridge.getWeather(park.LATITUDE, park.LONGITUDE);
+						JavascriptBridge.getPM1025(areaName);
 						isFirst = false;
             		}
 				}
@@ -342,6 +347,39 @@
     		}
 			$('#parkProgramList').append("<div onclick='showMapAndTarget(\""+lat+"\",\""+lng+"\",\""+(title.replace(/"/gi,''))+"\");'>"+title+" ( "+dist+")</div><div><a href=\"tel:"+tel+"\">"+tel+"</a></div>");
 
+    	});
+    }
+
+	function setPM1025(data){
+    	var xml = $.parseXML(data);
+    	$(xml).find('item').each(function(index, node){
+			//- 0~30: 좋음, 31~80: 보통, 81~150: 나쁨, 151~: 매우나쁨
+			var pm10 = parseInt($(node).find('pm10Value').text());
+			//- 0~15: 좋음, 16~50: 보통, 51~100: 나쁨, 101~: 매우나쁨
+			var pm25 = parseInt($(node).find('pm25Value').text());
+
+			if(pm10 <= 30){
+				pm10 = "(좋음) " + pm10;
+			}else if(pm10 <= 80){
+				pm10 = "(보통) " + pm10;
+			}else if(pm10 <= 150){
+				pm10 = "(나쁨) " + pm10;
+			}else{
+				pm10 = "(매우나쁨) " + pm10;
+			}
+
+			if(pm25 <= 15){
+				pm25 = "(좋음) " + pm25;
+			}else if(pm25 <= 50){
+				pm25 = "(보통) " + pm25;
+			}else if(pm25 <= 100){
+				pm25 = "(나쁨) " + pm25;
+			}else{
+				pm25 = "(매우나쁨) " + pm25;
+			}
+
+    		$('#pm10Value span').text(pm10);
+			$('#pm25Value span').text(pm25);
     	});
     }
 
