@@ -4,9 +4,40 @@
     <meta charset="UTF-8">
     <title>Mplatform by ParkMinKyu</title>
 	<meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, width=device-width">
+	<style>
+	// 페이지의 높이를 브라우저 높이로 선언
+	html,body { height: 100%; margin: 0; padding: 0; }
+	 
+	#main {
+	min-height: 100%; 
+	// relative 선언을 통해 하단바의 absolute position 이 정확한 위치에 오도록 한다.
+	position: relative;
+	// content 시작 위치부터 그라디언트 효과가 나타나도록 한다.	
+	margin: 0 auto;
+	}
+	 
+	#container #header {
+	height: 70px;
+	background-color: white;
+	}
+	 
+	#container #content {
+	// 하단바가 표시되는 공간 부여
+	padding-bottom: 50px;
+	}
+	 
+	#container #footer {
+	// 하단바를 하단에 고정
+	position: absolute;
+	bottom: 0;
+	width: 100%;
+	height: 50px;
+	background-color: silver;
+	}
+	</style>
 </head>
 <body style="margin : 0;">
-<div id="main" style="margin: 0 auto;">
+<div id="main">
 	<input type="hidden" id="pageIdx" value="0">
 	<input type="hidden" id="parkName" value="">
 	<input type="hidden" id="lat" value="">
@@ -20,53 +51,58 @@
 	<div id="header" style="background: url(/mplatform/header.png)no-repeat;background-size: 100%;display:none;">
   		<img id="backBtn" src="/mplatform/back.png" style="margin-top: 4px; margin-left: 6px;">
   	</div>
-	<div id="pageNo1">
-		<img src="/mplatform/images/main.jpeg" style="width:100%;"/><br>
-		<button id="startBtn" style="width:100%;">시작</button>
-	</div>
-	<div id="pageNo2" style="display: none;">
-		지역별 공원 현황
-		<div id="areaList">
+	<div id="content">
+		<div id="pageNo1">
+			<img src="/mplatform/images/main.jpeg" style="width:100%;"/><br>
+			<button id="startBtn" style="width:100%;">시작</button>
+		</div>
+		<div id="pageNo2" style="display: none;">
+			지역별 공원 현황
+			<div id="areaList">
 
+			</div>
 		</div>
-	</div>
-	<div id="pageNo3" style=" display: none;">
-		<div id="parkList">
+		<div id="pageNo3" style=" display: none;">
+			<div id="parkList">
 
+			</div>
+			<div id="weather">
+				<div id="T1H">기온 : <span></span></div>
+				<div id="RN1">1시간 강수량 : <span></span></div>
+				<div id="SKY">하늘상태 : <span></span></div>
+				<div id="UUU">동서바람성분 : <span></span></div>
+				<div id="VVV">남북바람성분 : <span></span></div>
+				<div id="REH">습도 : <span></span></div>
+				<div id="PTY">강수형태 : <span></span></div>
+				<div id="LGT">낙뢰 : <span></span></div>
+				<div id="VEC">풍향 : <span></span></div>
+				<div id="WSD">풍속 : <span></span></div>
+			</div>
 		</div>
-		<div id="weather">
-			<div id="T1H">기온 : <span></span></div>
-			<div id="RN1">1시간 강수량 : <span></span></div>
-			<div id="SKY">하늘상태 : <span></span></div>
-			<div id="UUU">동서바람성분 : <span></span></div>
-			<div id="VVV">남북바람성분 : <span></span></div>
-			<div id="REH">습도 : <span></span></div>
-			<div id="PTY">강수형태 : <span></span></div>
-			<div id="LGT">낙뢰 : <span></span></div>
-			<div id="VEC">풍향 : <span></span></div>
-			<div id="WSD">풍속 : <span></span></div>
-		</div>
-	</div>
-	<div id="pageNo4" style="display: none;">
-		<a href="#" id="showMapBtn">
-			공원 위치 보기
-		</a>
-		<a href="#" id="partyBtn">
-			주변 행사정보 보기
-		</a>
-		<a href="#" id="touristBtn">
-			주변 관광지 보기
-		</a>
-		<a href="#" id="eateryBtn">
-			주변 음식점 보기
-		</a>
-		<a href="#" id="kakaoBtn">
-			<img src="https://github.com/ParkMinKyu/newLotto/blob/gh-pages/kakaolink_btn_small.png?raw=true"/>
-		</a>
-		<div id="parkProgramList">
+		<div id="pageNo4" style="display: none;">
+			<a href="#" id="showMapBtn">
+				공원 위치 보기
+			</a>
+			<a href="#" id="partyBtn">
+				주변 행사정보 보기
+			</a>
+			<a href="#" id="touristBtn">
+				주변 관광지 보기
+			</a>
+			<a href="#" id="eateryBtn">
+				주변 음식점 보기
+			</a>
+			<a href="#" id="kakaoBtn">
+				<img src="https://github.com/ParkMinKyu/newLotto/blob/gh-pages/kakaolink_btn_small.png?raw=true"/>
+			</a>
+			<div id="parkProgramList">
 
+			</div>
 		</div>
 	</div>
+	<div id="footer">
+  		<img id="backBtn" src="/mplatform/footer.png" style="width: 100%;">
+  	</div>
 </div>
 <script src="/mplatform/js/jquery-1.11.3.min.js" type="text/javascript"></script>
 <script>
