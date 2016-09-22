@@ -72,7 +72,6 @@
 	
 	<div id="pageNo1">
 		<img src="/mplatform/images/main.jpeg" style="width:100%;"/><br>
-		<button id="startBtn" style="width:100%;">시작</button>
 	</div>
 	<div id="pageNo2" style="display: none;">
 		<h3>지역별 공원 현황</h3>
@@ -129,12 +128,10 @@
 //        쇼핑 : 38
 //        음식점 : 39
 	$(function(){
-        $('#startBtn').click(function(){
             if(parkList.row == null || parkProgramList.row == null)
                 JavascriptBridge.getParkList();
             else
                 displayArea();
-        });
 
         $('#showMapBtn').click(function(){
 			JavascriptBridge.showMap(true, $('#lat').val(), $('#lng').val(), $('#parkName').val());
@@ -184,21 +181,22 @@
     }
 
     function pageMove(pageNo){
-        $('#main div').hide();
-        if(parseInt(pageNo) > 1){
-	  $('#header').show();
-	  $('#footer').show();
-	  $('#main').css("min-height",($(window).height() - $('#footer').height() - $('#header').height() )+"px");	
-          $('#main').css("max-height",($(window).height() - $('#footer').height() - $('#header').height() )+"px");
-    	}else{
-    	  $('#header').hide();
-    	  $('#footer').hide();
-    	  $('#main').css("min-height", "100%");	
-          $('#main').css("max-height", "100%");
-    	}
-        $('#pageNo'+pageNo).show();
-        $('#pageNo'+pageNo+' div').show();
-        $('#pageIdx').val(pageNo);
+        $('#main div').fadeOut('slow', function(){
+        	if(parseInt(pageNo) > 1){
+		  $('#header').show();
+		  $('#footer').show();
+		  $('#main').css("min-height",($(window).height() - $('#footer').height() - $('#header').height() )+"px");	
+	          $('#main').css("max-height",($(window).height() - $('#footer').height() - $('#header').height() )+"px");
+	    	}else{
+	    	  $('#header').hide();
+	    	  $('#footer').hide();
+	    	  $('#main').css("min-height", "100%");	
+	          $('#main').css("max-height", "100%");
+	    	}
+	        $('#pageNo'+pageNo).show();
+	        $('#pageNo'+pageNo+' div').show();
+	        $('#pageIdx').val(pageNo);	
+        });
     }
 
     function setParkList(data){
@@ -245,7 +243,7 @@
             }
         }
         pageMove(2);
-        JavascriptBridge.getParkProgramList('');
+        //JavascriptBridge.getParkProgramList('');
     }
 
     function displayParkList(areaName, sigunguCode){
