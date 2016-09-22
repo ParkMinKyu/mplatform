@@ -47,53 +47,48 @@
 	<input type="hidden" id="areaCode" value="1">
 	<input type="hidden" id="sigunguCode" value="">
 	
-	<div id="content">
-		<div id="pageNo1">
-			<img src="/mplatform/images/main.jpeg" style="width:100%;"/><br>
-			<button id="startBtn" style="width:100%;">시작</button>
+	<div id="pageNo1">
+		<img src="/mplatform/images/main.jpeg" style="width:100%;"/><br>
+		<button id="startBtn" style="width:100%;">시작</button>
+	</div>
+	<div id="pageNo2" style="display: none;">
+		지역별 공원 현황
+		<div id="areaList">
+			</div>
+	</div>
+	<div id="pageNo3" style=" display: none;">
+		<div id="parkList">
+			</div>
+		<div id="weather">
+			<div id="T1H">기온 : <span></span></div>
+			<div id="RN1">1시간 강수량 : <span></span></div>
+			<div id="SKY">하늘상태 : <span></span></div>
+			<div id="UUU">동서바람성분 : <span></span></div>
+			<div id="VVV">남북바람성분 : <span></span></div>
+			<div id="REH">습도 : <span></span></div>
+			<div id="PTY">강수형태 : <span></span></div>
+			<div id="LGT">낙뢰 : <span></span></div>
+			<div id="VEC">풍향 : <span></span></div>
+			<div id="WSD">풍속 : <span></span></div>
 		</div>
-		<div id="pageNo2" style="display: none;">
-			지역별 공원 현황
-			<div id="areaList">
-
-			</div>
-		</div>
-		<div id="pageNo3" style=" display: none;">
-			<div id="parkList">
-
-			</div>
-			<div id="weather">
-				<div id="T1H">기온 : <span></span></div>
-				<div id="RN1">1시간 강수량 : <span></span></div>
-				<div id="SKY">하늘상태 : <span></span></div>
-				<div id="UUU">동서바람성분 : <span></span></div>
-				<div id="VVV">남북바람성분 : <span></span></div>
-				<div id="REH">습도 : <span></span></div>
-				<div id="PTY">강수형태 : <span></span></div>
-				<div id="LGT">낙뢰 : <span></span></div>
-				<div id="VEC">풍향 : <span></span></div>
-				<div id="WSD">풍속 : <span></span></div>
-			</div>
-		</div>
-		<div id="pageNo4" style="display: none;">
-			<a href="#" id="showMapBtn">
-				공원 위치 보기
-			</a>
-			<a href="#" id="partyBtn">
-				주변 행사정보 보기
-			</a>
-			<a href="#" id="touristBtn">
-				주변 관광지 보기
-			</a>
-			<a href="#" id="eateryBtn">
-				주변 음식점 보기
-			</a>
-			<a href="#" id="kakaoBtn">
-				<img src="https://github.com/ParkMinKyu/newLotto/blob/gh-pages/kakaolink_btn_small.png?raw=true"/>
-			</a>
-			<div id="parkProgramList">
-
-			</div>
+	</div>
+	<div id="pageNo4" style="display: none;">
+		<a href="#" id="showMapBtn">
+			공원 위치 보기
+		</a>
+		<a href="#" id="partyBtn">
+			주변 행사정보 보기
+		</a>
+		<a href="#" id="touristBtn">
+			주변 관광지 보기
+		</a>
+		<a href="#" id="eateryBtn">
+			주변 음식점 보기
+		</a>
+		<a href="#" id="kakaoBtn">
+			<img src="https://github.com/ParkMinKyu/newLotto/blob/gh-pages/kakaolink_btn_small.png?raw=true"/>
+		</a>
+		<div id="parkProgramList">
 		</div>
 	</div>
 </div>
@@ -113,9 +108,6 @@
 //        쇼핑 : 38
 //        음식점 : 39
 	$(function(){
-	
-	$('#main').css("min-height",($(window).height() - $('#footer').height() - $('#header').height() )+"px")	
-	
         $('#startBtn').click(function(){
             if(parkList.row == null || parkProgramList.row == null)
                 JavascriptBridge.getParkList();
@@ -182,6 +174,7 @@
         $('#pageNo'+pageNo).show();
         $('#pageNo'+pageNo+' div').show();
         $('#pageIdx').val(pageNo);
+        $('#main').css("min-height",($(window).height() - $('#footer').height() - $('#header').height() )+"px")	
     }
 
     function setParkList(data){
