@@ -193,8 +193,14 @@
 	    	  $('#main').css("min-height", "100%");	
 	          $('#main').css("max-height", "100%");
 	    	}
-	        $('#pageNo'+pageNo).show();
-	        $('#pageNo'+pageNo+' div').show();
+	    	
+	        if(parseInt(pageNo) > 2){
+	        	$('#backBtn').show();
+	        }else{
+	        	$('#backBtn').hide();
+	        }
+	        $('#pageNo'+pageNo).fadeIn();
+	        $('#pageNo'+pageNo+' div').fadeIn();
 	        $('#pageIdx').val(pageNo);	
         });
     }
@@ -242,7 +248,7 @@
                  }
             }
         }
-        pageMove(2);
+        setTime(pageMove(2),1000);
         //JavascriptBridge.getParkProgramList('');
     }
 
