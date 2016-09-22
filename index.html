@@ -181,8 +181,8 @@
     }
 
     function pageMove(pageNo){
-        $('#main div').fadeOut('slow', function(){
-        	if(parseInt(pageNo) > 1){
+        $('#main div').hide();
+        if(parseInt(pageNo) > 1){
 		  $('#header').show();
 		  $('#footer').show();
 		  $('#main').css("min-height",($(window).height() - $('#footer').height() - $('#header').height() )+"px");	
@@ -199,10 +199,9 @@
 	        }else{
 	        	$('#backBtn').hide();
 	        }
-	        $('#pageNo'+pageNo).fadeIn();
-	        $('#pageNo'+pageNo+' div').fadeIn();
+	        $('#pageNo'+pageNo).show();
+	        $('#pageNo'+pageNo+' div').show();
 	        $('#pageIdx').val(pageNo);	
-        });
     }
 
     function setParkList(data){
