@@ -4,15 +4,12 @@
     <meta charset="UTF-8">
     <title>Mplatform by ParkMinKyu</title>
 	<meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, width=device-width">
-	<style>
-	// 페이지의 높이를 브라우저 높이로 선언
+	<style type="text/css">
 	html,body { height: 100%; margin: 0; padding: 0; }
 	 
 	#main {
 	min-height: 100%; 
-	// relative 선언을 통해 하단바의 absolute position 이 정확한 위치에 오도록 한다.
 	position: relative;
-	// content 시작 위치부터 그라디언트 효과가 나타나도록 한다.	
 	margin: 0 auto;
 	}
 	 
@@ -22,12 +19,10 @@
 	}
 	 
 	#container #content {
-	// 하단바가 표시되는 공간 부여
 	padding-bottom: 50px;
 	}
 	 
 	#container #footer {
-	// 하단바를 하단에 고정
 	position: absolute;
 	bottom: 0;
 	width: 100%;
@@ -36,7 +31,7 @@
 	}
 	</style>
 </head>
-<body style="margin : 0;">
+<body>
 <div id="main">
 	<input type="hidden" id="pageIdx" value="0">
 	<input type="hidden" id="parkName" value="">
