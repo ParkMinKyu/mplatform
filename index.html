@@ -80,7 +80,7 @@
 			</div>
 	</div>
 	<div id="pageNo3" style=" display: none;">
-		<h3>공원 목록</h3>
+		<h3><span id="areaPark"></span> 공원 목록</h3>
 		<div id="parkList">
 			</div>
 		<div id="weather">
@@ -93,7 +93,7 @@
 		</div>
 	</div>
 	<div id="pageNo4" style="display: none;">
-		<h3>주변 정보</h3>
+		<h3><span id="parkInfo"></span> 주변 정보</h3>
 		<a href="#" id="showMapBtn">
 			공원 위치 보기
 		</a>
@@ -193,6 +193,8 @@
     	}else{
     	  $('#header').hide();
     	  $('#footer').hide();
+    	  $('#main').css("min-height", "100%");	
+          $('#main').css("max-height", "100%");
     	}
         $('#pageNo'+pageNo).show();
         $('#pageNo'+pageNo+' div').show();
@@ -247,6 +249,7 @@
     }
 
     function displayParkList(areaName, sigunguCode){
+    	$('#areaPark').text(areaName);
     	$('#areaCode').val(1);
     	$('#sigunguCode').val(sigunguCode);
 		$('#parkList').html('');
@@ -270,6 +273,7 @@
     }
 
     function displayParkProgramList(parkId, lat, lng, parkName){
+    		$('#parkInfo').text(parkName);
 		$('#parkProgramList').html('');
 		$('#parkName').val(parkName);
 		$('#lat').val(lat);
