@@ -54,15 +54,18 @@
 	}
 	
 	#pageNo1{
-		background: url(/mplatform/bg_park.gif);
-	    width: 360px;
-	    height: 640px;
+		background: url(bg_park.gif)no-repeat;
+		background-size: cover;
+		height: 100%;
+		width: 100%;
+		position: absolute;
+		text-align: center;
 	}
 	</style>
 </head>
 <body>
-<div id="header" style="background: url(/mplatform/header.png)no-repeat;background-size: 100%;display:none;height:39px;">
-	<img id="backBtn" src="/mplatform/back.png" style="margin-top: 4px; margin-left: 6px;">
+<div id="header" style="background: url(header.png)no-repeat;background-size: 100%;display:none;height:39px;">
+	<img id="backBtn" src="back.png" style="margin-top: 4px; margin-left: 6px;">
 </div>
 <div id="main">
 	<input type="hidden" id="pageIdx" value="0">
@@ -76,7 +79,10 @@
 	<input type="hidden" id="areaCode" value="1">
 	<input type="hidden" id="sigunguCode" value="">
 	
-	<div id="pageNo1"></div>
+	<div id="pageNo1">
+		<img src="btn_logo.png"><br>
+		<img src="img_main01.png">
+	</div>
 	<div id="pageNo2" style="display: none;">
 		<h3>지역별 공원 현황</h3>
 		<div id="areaList">
@@ -110,7 +116,7 @@
 			주변 음식점 보기
 		</a>
 		<a href="#" id="kakaoBtn">
-			<img src="https://github.com/ParkMinKyu/newLotto/blob/gh-pages/kakaolink_btn_small.png?raw=true"/>
+			<img src="kakaolink_btn_small.png"/>
 		</a>
 		<div id="parkProgramList">
 		</div>
