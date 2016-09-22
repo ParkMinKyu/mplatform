@@ -5,7 +5,7 @@
     <title>Mplatform by ParkMinKyu</title>
 	<meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, width=device-width">
 </head>
-<body>
+<body style="margin : 0;">
 <div id="main" style="margin: 0 auto;">
 	<input type="hidden" id="pageIdx" value="0">
 	<input type="hidden" id="parkName" value="">
@@ -17,20 +17,20 @@
 	<input type="hidden" id="contentTypeId" value="">
 	<input type="hidden" id="areaCode" value="1">
 	<input type="hidden" id="sigunguCode" value="">
-	<img id="backBtn" src="/mplatform/back.png" style="display:none;"/>
+	<div id="header" style="background: url(/mplatform/header.png)no-repeat;background-size: 100%;">
+  		<img id="backBtn" src="/mplatform/back.png" style="margin-top: 4px; margin-left: 6px;">
+  	</div>
 	<div id="pageNo1">
 		<img src="/mplatform/images/main.jpeg" style="width:100%;"/><br>
 		<button id="startBtn" style="width:100%;">시작</button>
 	</div>
 	<div id="pageNo2" style="display: none;">
-		<img src="/mplatform/header.png" style="width:100%;"/>
 		지역별 공원 현황
 		<div id="areaList">
 
 		</div>
 	</div>
 	<div id="pageNo3" style=" display: none;">
-		<img src="/mplatform/header.png" style="width:100%;"/>
 		<div id="parkList">
 
 		</div>
@@ -48,7 +48,6 @@
 		</div>
 	</div>
 	<div id="pageNo4" style="display: none;">
-		<img src="/mplatform/header.png" style="width:100%;"/>
 		<a href="#" id="showMapBtn">
 			공원 위치 보기
 		</a>
@@ -137,12 +136,17 @@
     }
 
     function pageMove(pageNo){
+    	if(parseInt(pageNo) > 1){
+	 $('#header').show();
+    	}else{
+    		$('#header').hide();
+    	}
         if(parseInt(pageNo) > 2){
             $('#backBtn').show();
         }else{
             $('#backBtn').hide();
         }
-
+	
         $('#main div').hide();
         $('#pageNo'+pageNo).show();
         $('#pageNo'+pageNo+' div').show();
