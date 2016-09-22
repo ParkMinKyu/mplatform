@@ -136,13 +136,12 @@
     }
 
     function pageMove(pageNo){
-    	if(parseInt(pageNo) > 1){
-	 $('#header').show();
-    	}else{
-    		$('#header').hide();
-    	}
-    	
         $('#main div').hide();
+        if(parseInt(pageNo) > 1){
+	  $('#header').show();
+    	}else{
+    	  $('#header').hide();
+    	}
         $('#pageNo'+pageNo).show();
         $('#pageNo'+pageNo+' div').show();
         $('#pageIdx').val(pageNo);
