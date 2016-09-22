@@ -97,7 +97,7 @@
 		</div>
 	</div>
 </div>
-<div id="footer">
+<div id="footer" style="display:none;">
 	<img id="backBtn" src="/mplatform/footer.png" style="width: 100%;">
 </div>
 <script src="/mplatform/js/jquery-1.11.3.min.js" type="text/javascript"></script>
@@ -174,8 +174,10 @@
         $('#main div').hide();
         if(parseInt(pageNo) > 1){
 	  $('#header').show();
+	  $('#footer').show();
     	}else{
     	  $('#header').hide();
+    	  $('#footer').hide();
     	}
         $('#pageNo'+pageNo).show();
         $('#pageNo'+pageNo+' div').show();
