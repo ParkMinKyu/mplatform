@@ -11,6 +11,7 @@
 	min-height: 100%; 
 	position: relative;
 	margin: 0 auto;
+	overflow: scroll;
 	}
 	 
 	#container #header {
@@ -174,7 +175,8 @@
         $('#pageNo'+pageNo).show();
         $('#pageNo'+pageNo+' div').show();
         $('#pageIdx').val(pageNo);
-        $('#main').css("min-height",($(window).height() - $('#footer').height() - $('#header').height() )+"px")	
+        $('#main').css("min-height",($(window).height() - $('#footer').height() - $('#header').height() )+"px");	
+        $('#main').css("max-height",($(window).height() - $('#footer').height() - $('#header').height() )+"px");
     }
 
     function setParkList(data){
