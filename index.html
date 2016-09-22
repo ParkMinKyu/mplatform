@@ -184,6 +184,8 @@
         if(parseInt(pageNo) > 1){
 	  $('#header').show();
 	  $('#footer').show();
+	  $('#main').css("min-height",($(window).height() - $('#footer').height() - $('#header').height() )+"px");	
+          $('#main').css("max-height",($(window).height() - $('#footer').height() - $('#header').height() )+"px");
     	}else{
     	  $('#header').hide();
     	  $('#footer').hide();
@@ -191,8 +193,6 @@
         $('#pageNo'+pageNo).show();
         $('#pageNo'+pageNo+' div').show();
         $('#pageIdx').val(pageNo);
-        $('#main').css("min-height",($(window).height() - $('#footer').height() - $('#header').height() )+"px");	
-        $('#main').css("max-height",($(window).height() - $('#footer').height() - $('#header').height() )+"px");
     }
 
     function setParkList(data){
