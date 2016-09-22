@@ -17,7 +17,7 @@
 	<input type="hidden" id="contentTypeId" value="">
 	<input type="hidden" id="areaCode" value="1">
 	<input type="hidden" id="sigunguCode" value="">
-	<div id="header" style="background: url(/mplatform/header.png)no-repeat;background-size: 100%;">
+	<div id="header" style="background: url(/mplatform/header.png)no-repeat;background-size: 100%;display:none;">
   		<img id="backBtn" src="/mplatform/back.png" style="margin-top: 4px; margin-left: 6px;">
   	</div>
 	<div id="pageNo1">
@@ -141,12 +141,7 @@
     	}else{
     		$('#header').hide();
     	}
-        if(parseInt(pageNo) > 2){
-            $('#backBtn').show();
-        }else{
-            $('#backBtn').hide();
-        }
-	
+    	
         $('#main div').hide();
         $('#pageNo'+pageNo).show();
         $('#pageNo'+pageNo+' div').show();
