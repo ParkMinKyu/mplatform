@@ -107,13 +107,12 @@
 		<div id="parkList">
 			</div>
 		<div id="weather">
-			<div id="T1H">기온 : <span></span></div>
-			<div id="RN1">1시간 강수량 : <span></span></div>
-			<div id="SKY">하늘상태 : <span></span></div>
-			<div id="REH">습도 : <span></span></div>
-			<div id="VEC">풍향 : <span></span></div>
-			<div id="WSD">풍속 : <span></span></div>
-		</div>
+  			<div id="T1H">기온 : <span></span></div>
+  			<div id="SKY">하늘상태 : <span></span></div>
+  			<div id="REH">습도 : <span></span></div>
+ 			<div id="pm10Value">미세먼지 : <span></span>㎍/㎥</div>
+ 			<div id="pm25Value">초미세먼지 : <span></span>㎍/㎥</div>
+  		</div>
 	</div>
 	<div id="pageNo4" style="display: none;">
 		<h3><span id="parkInfo"></span> 주변 정보</h3>
@@ -389,7 +388,7 @@
 			}
 
     		$('#pm10Value span').text(pm10);
-			$('#pm25Value span').text(pm25);
+		$('#pm25Value span').text(pm25);
     	});
     }
 
