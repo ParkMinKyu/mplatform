@@ -61,6 +61,11 @@
 	    margin-top: 5px;
 	}
 
+	#programName{
+		font-size : 15px;
+		font-weight:bold;
+	}
+
 	#parkProgramList > div{
 		border: 1px solid #82a56f;
 	    height: 95px;
@@ -272,7 +277,7 @@
 
 			for(var i = 0 ; i < list.length ; i ++){
 				var pData = list[i];
-				$('#parkProgramList').append("<div>" + pData['P_NAME'] + "<br><span>시작일 : "+pData['P_EDUDAY_S']+"</span><br><span>종료일 : "+pData['P_EDUDAY_E']+"</span><br><span>시간 : "+pData['P_EDUTIME']+"</span><br><span>요일 : "+pData['P_PRODAY']+"</span><br><span>대상 : "+pData['P_EDUPERSON']+"</span></div>");
+				$('#parkProgramList').append("<div><span id='programName'>" + pData['P_NAME'] + "</span><br><span>시작일 : "+pData['P_EDUDAY_S']+"</span><br><span>종료일 : "+pData['P_EDUDAY_E']+"</span><br><span>시간 : "+pData['P_EDUTIME']+"</span><br><span>요일 : "+pData['P_PRODAY']+"</span><br><span>대상 : "+pData['P_EDUPERSON']+"</span></div>");
 			}
 		}
         pageMove(4);
