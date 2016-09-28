@@ -195,18 +195,27 @@
 		$(document).on("click","#partyBtn",function(){
 			$('#contentTypeId').val(15)
 			$('#parkInfo').text($(this).data("name") + " 주변 행사");
+			$('#parkName').val($(this).data("name"));
+			$('#lat').val($(this).data("lat"));
+			$('#lng').val($(this).data("lng"));
 			JavascriptBridge.getTourist($(this).data("lat"), $(this).data("lng"), $('#contentTypeId').val(), $('#areaCode').val(), $('#sigunguCode').val());
 		});
 
 		$(document).on("click","#touristBtn",function(){
 			$('#contentTypeId').val(14)
 			$('#parkInfo').text($(this).data("name") + " 주변 관광지");
+			$('#parkName').val($(this).data("name"));
+			$('#lat').val($(this).data("lat"));
+			$('#lng').val($(this).data("lng"));
 			JavascriptBridge.getTourist($(this).data("lat"), $(this).data("lng"), $('#contentTypeId').val());
 		});
 
 		$(document).on("click","#eateryBtn",function(){
 			$('#contentTypeId').val(39)
 			$('#parkInfo').text($(this).data("name") + " 주변 음식점");
+			$('#parkName').val($(this).data("name"));
+			$('#lat').val($(this).data("lat"));
+			$('#lng').val($(this).data("lng"));
 			JavascriptBridge.getTourist($(this).data("lat"), $(this).data("lng"), $('#contentTypeId').val());
 		});
 
