@@ -164,30 +164,33 @@
            else
                displayArea();
 	});
-        $('#showMapBtn').click(function(){
+
+
+
+        $(document).on("click","#showMapBtn",function(){
 			JavascriptBridge.showMap(true, $(this).data("lat"), $(this).data("lng"), $(this).data("name"));
 		});
 
-		$('#programBtn').click(function(){
+		$(document).on("click","#programBtn",function(){
 			displayParkProgramList($(this).data("idx"), $(this).data("lat"), $(this).data("lng"), $(this).data("name"));
 		});
 
-		$('#partyBtn').click(function(){
+		$(document).on("click","#partyBtn",function(){
 			$('#contentTypeId').val(15)
-			JavascriptBridge.getTourist($('#lat').val(), $('#lng').val(), $('#contentTypeId').val(), $('#areaCode').val(), $('#sigunguCode').val());
+			JavascriptBridge.getTourist($(this).data("lat"), $(this).data("lng"), $('#contentTypeId').val(), $('#areaCode').val(), $('#sigunguCode').val());
 		});
 
-		$('#touristBtn').click(function(){
+		$(document).on("click","#touristBtn",function(){
 			$('#contentTypeId').val(14)
-			JavascriptBridge.getTourist($('#lat').val(), $('#lng').val(), $('#contentTypeId').val());
+			JavascriptBridge.getTourist($(this).data("lat"), $(this).data("lng"), $('#contentTypeId').val());
 		});
 
-		$('#eateryBtn').click(function(){
+		$(document).on("click","#eateryBtn",function(){
 			$('#contentTypeId').val(39)
-			JavascriptBridge.getTourist($('#lat').val(), $('#lng').val(), $('#contentTypeId').val());
+			JavascriptBridge.getTourist($(this).data("lat"), $(this).data("lng"), $('#contentTypeId').val());
 		});
 
-		$('#kakaoBtn').click(function(){
+		$(document).on("click","#kakaoBtn",function(){
 			JavascriptBridge.sendMessage("test");
 		});
 
