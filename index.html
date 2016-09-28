@@ -378,7 +378,7 @@
 
     function setTourist(data){
     	var xml = $.parseXML(data);
-		$('#parkProgramList').html(xml);
+		$('#parkProgramList').html('');
 
     	$(xml).find('item').each(function(index, node){
     		var title = $(node).find("title").text();
