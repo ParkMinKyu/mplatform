@@ -382,7 +382,9 @@
 
     	$(xml).find('item').each(function(index, node){
     		var title = $(node).find("title").text();
+    		console.log(title)
     		var dist = parseInt($(node).find("dist").text());
+    		console.log(dist)
     		var lng = $(node).find("mapx").text();
     		var lat = $(node).find("mapy").text();
     		var tel = $(node).find("tel").text();
