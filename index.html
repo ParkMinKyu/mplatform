@@ -258,10 +258,10 @@
 
     function setParkProgramList(data){
 		$('#parkProgramList').html('');
-		var list = data["SearchProgramsByParkIDService"]["row"];
-
-		if(list == null)
+		if(data == null || !data["SearchProgramsByParkIDService"] || !data["SearchProgramsByParkIDService"]["row"])
 			$('#parkProgramList').append("<div>진행 중인 프로그램이 없습니다.</div>");
+
+		var list = data["SearchProgramsByParkIDService"]["row"];
 
         for(var i = 0 ; i < list.length ; i ++){
         	var pData = list[i];
