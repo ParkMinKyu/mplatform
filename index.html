@@ -176,7 +176,7 @@
 			$('#parkName').val($(this).data("name"));
 			$('#lat').val($(this).data("lat"));
 			$('#lng').val($(this).data("lng"));
-			JavascriptBridge.getParkProgramList($(this).data("idx"));
+			JavascriptBridge.getParkProgramList($(this).data("pidx"));
 		});
 
 		$(document).on("click","#partyBtn",function(){
@@ -312,11 +312,11 @@
             if(pat.test(park.P_ADDR)){
                 var matchName = RegExp.$2;
                 if(matchName == areaName){
-                    	var parkLocationBtn = '<a href="#" id="showMapBtn" data-lat="'+park.LATITUDE+'" data-lng="'+park.LONGITUDE+' "data-name="'+park.P_PARK+'" "data-idx="'+park.P_IDX+'"><img src="btn_location.png" alt="공원위치 보기" width="34" height="35"></a>';
-			var programBtn = '<a href="#" id="programBtn" data-lat="'+park.LATITUDE+'" data-lng="'+park.LONGITUDE+'" "data-name="'+park.P_PARK+'" "data-idx="'+park.P_IDX+'"><img src="btn_program.png" alt="공원 프로그램 보기" width="34" height="35"></a>';
-			var partyBtn = '<a href="#" id="partyBtn" data-lat="'+park.LATITUDE+'" data-lng="'+park.LONGITUDE+'" "data-name="'+park.P_PARK+'" "data-idx="'+park.P_IDX+'"><img src="btn_event.png" alt="공원 주변행사 보기" width="34" height="35"></a>';
-			var touristBtn = '<a href="#" id="touristBtn" data-lat="'+park.LATITUDE+'" data-lng="'+park.LONGITUDE+'" "data-name="'+park.P_PARK+'" "data-idx="'+park.P_IDX+'"><img src="btn_tourist spot.png" alt="공원 주변 관광지 보기" width="34" height="35"></a>';
-			var eateryBtn = '<a href="#" id="eateryBtn" data-lat="'+park.LATITUDE+'" data-lng="'+park.LONGITUDE+'" "data-name="'+park.P_PARK+'" "data-idx="'+park.P_IDX+'"><img src="btn_restaurant.png" alt="공원 주변 음식점 보기" width="34" height="35"></a>';
+                    	var parkLocationBtn = '<a href="#" id="showMapBtn" data-lat="'+park.LATITUDE+'" data-lng="'+park.LONGITUDE+' "data-name="'+park.P_PARK+'" "data-pidx="'+park.P_IDX+'"><img src="btn_location.png" alt="공원위치 보기" width="34" height="35"></a>';
+			var programBtn = '<a href="#" id="programBtn" data-lat="'+park.LATITUDE+'" data-lng="'+park.LONGITUDE+'" "data-name="'+park.P_PARK+'" "data-pidx="'+park.P_IDX+'"><img src="btn_program.png" alt="공원 프로그램 보기" width="34" height="35"></a>';
+			var partyBtn = '<a href="#" id="partyBtn" data-lat="'+park.LATITUDE+'" data-lng="'+park.LONGITUDE+'" "data-name="'+park.P_PARK+'" "data-pidx="'+park.P_IDX+'"><img src="btn_event.png" alt="공원 주변행사 보기" width="34" height="35"></a>';
+			var touristBtn = '<a href="#" id="touristBtn" data-lat="'+park.LATITUDE+'" data-lng="'+park.LONGITUDE+'" "data-name="'+park.P_PARK+'" "data-pidx="'+park.P_IDX+'"><img src="btn_tourist spot.png" alt="공원 주변 관광지 보기" width="34" height="35"></a>';
+			var eateryBtn = '<a href="#" id="eateryBtn" data-lat="'+park.LATITUDE+'" data-lng="'+park.LONGITUDE+'" "data-name="'+park.P_PARK+'" "data-pidx="'+park.P_IDX+'"><img src="btn_restaurant.png" alt="공원 주변 음식점 보기" width="34" height="35"></a>';
 			var kakaoBtn = '<a href="#" id="kakaoBtn"><img src="kakaolink_btn_small.png" alt="카카오톡 링크" width="34" height="35" ></a>';
                     $('#parkList').append('<div id="'+park.P_IDX +'">'+park.P_PARK + '<br>' + parkLocationBtn + programBtn + partyBtn + touristBtn + eateryBtn + kakaoBtn + '</div>');
                     if( isFirst ){
