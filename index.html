@@ -75,8 +75,10 @@
 	</style>
 </head>
 <body>
-<div id="header" style="background: url(header.png)no-repeat;background-size: 100%;display:none;height:39px;">
-	<img id="backBtn" src="back.png" style="margin-top: 4px; margin-left: 6px;">
+<!--<div id="header" style="background: url(header.png)no-repeat;background-size: 100%;display:none;height:39px;">-->
+<div id="header" style="background-color:#7ac6de;height:39px;text-align:center;width:100%; display:none;">
+<img id="backBtn" src="back.png" style="margin-top: 4px; margin-left: 6px; position: absolute;">
+<img id="logo" src="btn_logo2.png" style="margin-top:5px;">
 </div>
 <div id="main">
 	<input type="hidden" id="pageIdx" value="0">
@@ -107,12 +109,12 @@
 		<div id="parkList">
 			</div>
 		<div id="weather">
-  			<div id="T1H">기온 : <span></span></div>
+			<div id="T1H">기온 : <span></span></div>
   			<div id="SKY">하늘상태 : <span></span></div>
   			<div id="REH">습도 : <span></span></div>
  			<div id="pm10Value">미세먼지 : <span></span>㎍/㎥</div>
  			<div id="pm25Value">초미세먼지 : <span></span>㎍/㎥</div>
-  		</div>
+		</div>
 	</div>
 	<div id="pageNo4" style="display: none;">
 		<h3><span id="parkInfo"></span> 주변 정보</h3>
