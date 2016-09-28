@@ -386,7 +386,8 @@
     		var lng = $(node).find("mapx").text();
     		var lat = $(node).find("mapy").text();
     		var tel = $(node).find("tel").text();
-
+			title = (title.replace(/"/gi,''));
+			title = (title.replace(/'/gi,''));
     		if($(node).find("contenttypeid").text() == "15"){
     			dist = parseInt(calculateDistance($('#lat').val(), $('#lng').val(), lat, lng) * 1000);
     		}
@@ -395,7 +396,7 @@
     		}else{
     			dist = dist + " m"
     		}
-    		var parkLocationBtn = "<a href='#' id='targetMapBtn' onclick='showMapAndTarget(\""+lat+"\",\""+lng+"\",\""+(title.replace(/"/gi,''))+"\");'><img src='btn_location.png' alt='공원위치 보기' width='34' height='35'></a>";
+    		var parkLocationBtn = "<a href='#' id='targetMapBtn' onclick='showMapAndTarget(\""+lat+"\",\""+lng+"\",\""+title+"\");'><img src='btn_location.png' alt='공원위치 보기' width='34' height='35'></a>";
     		var telBtn = "<a href=\"tel:"+tel+"\">"+tel+"</a>";
 			$('#parkProgramList').append("<div>"+title+" ( "+dist+")<br>"+parkLocationBtn+ tel+"</div>");
 
