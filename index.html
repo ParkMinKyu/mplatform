@@ -258,15 +258,16 @@
 
     function setParkProgramList(data){
 		$('#parkProgramList').html('');
-		if(data == null || !data["SearchProgramsByParkIDService"] || !data["SearchProgramsByParkIDService"]["row"])
+		if(data == null || data["SearchProgramsByParkIDService"] == null || data["SearchProgramsByParkIDService"]["row"] == null)
 			$('#parkProgramList').append("<div>진행 중인 프로그램이 없습니다.</div>");
+		else{
+			var list = data["SearchProgramsByParkIDService"]["row"];
 
-		var list = data["SearchProgramsByParkIDService"]["row"];
-
-        for(var i = 0 ; i < list.length ; i ++){
-        	var pData = list[i];
-            $('#parkProgramList').append("<div>" + pData['P_PARK'] + "( "+pData['P_NAME']+" )" + "</div>");
-        }
+			for(var i = 0 ; i < list.length ; i ++){
+				var pData = list[i];
+				$('#parkProgramList').append("<div>" + pData['P_PARK'] + "( "+pData['P_NAME']+" )" + "</div>");
+			}
+		}
         pageMove(4);
     }
 
