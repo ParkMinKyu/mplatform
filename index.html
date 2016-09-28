@@ -137,7 +137,7 @@
 		</div>
 	</div>
 	<div id="pageNo4" style="display: none;">
-		<h3><span id="parkInfo"></span> 주변 정보</h3>		
+		<h3><span id="parkInfo"></span> 정보</h3>
 		<div id="parkProgramList">
 		</div>
 	</div>
@@ -172,22 +172,28 @@
 		});
 
 		$(document).on("click","#programBtn",function(){
+			$('#parkInfo').text($(this).data("name") + " 프로그램");
+			$('#parkName').val($(this).data("name"));
+			$('#lat').val($(this).data("lat"));
+			$('#lng').val($(this).data("lng"));
 			JavascriptBridge.getParkProgramList($(this).data("idx"));
-			displayParkProgramList($(this).data("idx"), $(this).data("lat"), $(this).data("lng"), $(this).data("name"));
 		});
 
 		$(document).on("click","#partyBtn",function(){
 			$('#contentTypeId').val(15)
+			$('#parkInfo').text($(this).data("name") + " 주변 행사");
 			JavascriptBridge.getTourist($(this).data("lat"), $(this).data("lng"), $('#contentTypeId').val(), $('#areaCode').val(), $('#sigunguCode').val());
 		});
 
 		$(document).on("click","#touristBtn",function(){
 			$('#contentTypeId').val(14)
+			$('#parkInfo').text($(this).data("name") + " 주변 관광지");
 			JavascriptBridge.getTourist($(this).data("lat"), $(this).data("lng"), $('#contentTypeId').val());
 		});
 
 		$(document).on("click","#eateryBtn",function(){
 			$('#contentTypeId').val(39)
+			$('#parkInfo').text($(this).data("name") + " 주변 음식점");
 			JavascriptBridge.getTourist($(this).data("lat"), $(this).data("lng"), $('#contentTypeId').val());
 		});
 
@@ -251,8 +257,15 @@
     }
 
     function setParkProgramList(data){
-        parkProgramList.totalCount = data["SearchProgramsByParkIDService"]["list_total_count"];
-        parkProgramList.row = data["SearchProgramsByParkIDService"]["row"];
+		$('#parkProgramList').html('');
+		var list = data["SearchProgramsByParkIDService"]["row"];
+        for(var i = 0 ; i < list.length ; i ++){
+        	var pData = list[i];
+        	if(pData.P_IDX == parkId){
+        	    $('#parkProgramList').append("<div>" + pData['P_PARK'] + "( "+pData['P_NAME']+" )" + "</div>");
+			}
+        }
+        pageMove(4);
     }
 
     function getProgramCount(parkId){
@@ -316,22 +329,6 @@
         }
 
         pageMove(3);
-    }
-
-    function displayParkProgramList(parkId, lat, lng, parkName){
-    	$('#parkInfo').text(parkName);
-		$('#parkProgramList').html('');
-		$('#parkName').val(parkName);
-		$('#lat').val(lat);
-		$('#lng').val(lng);
-		var list = parkProgramList.row;
-        for(var i = 0 ; i < list.length ; i ++){
-        	var pData = list[i];
-        	if(pData.P_IDX == parkId){
-        	    $('#parkProgramList').append("<div>" + pData['P_PARK'] + "( "+pData['P_NAME']+" )" + "</div>");
-			}
-        }
-        pageMove(4);
     }
 
     function setWeather(data){
