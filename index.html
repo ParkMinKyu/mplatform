@@ -261,9 +261,7 @@
 		var list = data["SearchProgramsByParkIDService"]["row"];
         for(var i = 0 ; i < list.length ; i ++){
         	var pData = list[i];
-        	if(pData.P_IDX == parkId){
-        	    $('#parkProgramList').append("<div>" + pData['P_PARK'] + "( "+pData['P_NAME']+" )" + "</div>");
-			}
+            $('#parkProgramList').append("<div>" + pData['P_PARK'] + "( "+pData['P_NAME']+" )" + "</div>");
         }
         pageMove(4);
     }
