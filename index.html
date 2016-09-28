@@ -380,9 +380,6 @@
     	var xml = $.parseXML(data);
 		$('#parkProgramList').html('');
 
-		if($(xml).find('item').length == 0)
-			$('#parkProgramList').append("<div>검색 결과가 없습니다.</div>");
-
     	$(xml).find('item').each(function(index, node){
     		var title = $(node).find("title").text();
     		var dist = parseInt($(node).find("dist").text());
