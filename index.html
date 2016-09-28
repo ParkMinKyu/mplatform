@@ -377,11 +377,9 @@
     }
 
     function setTourist(data){
-    	//var xml = $.parseXML(data);
-		//$('#parkProgramList').html(data);
-		$('#parkProgramList').text(data);
+    	var xml = $.parseXML(data);
+		$('#parkProgramList').html(xml);
 
-/*
     	$(xml).find('item').each(function(index, node){
     		var title = $(node).find("title").text();
     		var dist = parseInt($(node).find("dist").text());
@@ -403,7 +401,7 @@
 			$('#parkProgramList').append("<div>"+title+" ( "+dist+")<br>"+parkLocationBtn+ tel+"</div>");
 
     	});
-*/
+
     	pageMove(4);
     }
 
