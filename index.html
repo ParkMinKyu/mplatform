@@ -377,17 +377,18 @@
     }
 
     function setTourist(data){
-    	console.log(data);
     	var xml = $.parseXML(data);
-    	console.log(xml);
-		$('#parkProgramList').html('');
+		$('#parkProgramList').html(xml);
 
+/*
     	$(xml).find('item').each(function(index, node){
     		var title = $(node).find("title").text();
     		var dist = parseInt($(node).find("dist").text());
     		var lng = $(node).find("mapx").text();
     		var lat = $(node).find("mapy").text();
     		var tel = $(node).find("tel").text();
+			title = (title.replace(/"/gi,''));
+			title = (title.replace(/'/gi,''));
     		if($(node).find("contenttypeid").text() == "15"){
     			dist = parseInt(calculateDistance($('#lat').val(), $('#lng').val(), lat, lng) * 1000);
     		}
@@ -401,7 +402,7 @@
 			$('#parkProgramList').append("<div>"+title+" ( "+dist+")<br>"+parkLocationBtn+ tel+"</div>");
 
     	});
-
+*/
     	pageMove(4);
     }
 
