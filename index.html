@@ -265,7 +265,7 @@
 
 			for(var i = 0 ; i < list.length ; i ++){
 				var pData = list[i];
-				$('#parkProgramList').append("<div>" + pData['P_PARK'] + "( "+pData['P_NAME']+" )" + "</div>");
+				$('#parkProgramList').append("<div>" + pData['P_NAME'] + "<br><span>시작일 : "+pData['P_EDUDAY_S']+"</span><br><span>종료일 : "+pData['P_EDUDAY_E']+"</span><br><span>시간 : "+pData['P_EDUTIME']+"</span><br><span>요일 : "+pData['P_PRODAY']+"</span></div>");
 			}
 		}
         pageMove(4);
