@@ -312,7 +312,7 @@
             if(pat.test(park.P_ADDR)){
                 var matchName = RegExp.$2;
                 if(matchName == areaName){
-                    	var parkLocationBtn = '<a href="#" id="showMapBtn" data-lat="'+park.LATITUDE+'" data-lng="'+park.LONGITUDE+' "data-name="'+park.P_PARK+'" "data-pidx="'+park.P_IDX+'"><img src="btn_location.png" alt="공원위치 보기" width="34" height="35"></a>';
+var parkLocationBtn = '<a href="#" id="showMapBtn" data-lat="'+park.LATITUDE+'" data-lng="'+park.LONGITUDE+'" "data-name="'+park.P_PARK+'" "data-pidx="'+park.P_IDX+'"><img src="btn_location.png" alt="공원위치 보기" width="34" height="35"></a>';
 			var programBtn = '<a href="#" id="programBtn" data-lat="'+park.LATITUDE+'" data-lng="'+park.LONGITUDE+'" "data-name="'+park.P_PARK+'" "data-pidx="'+park.P_IDX+'"><img src="btn_program.png" alt="공원 프로그램 보기" width="34" height="35"></a>';
 			var partyBtn = '<a href="#" id="partyBtn" data-lat="'+park.LATITUDE+'" data-lng="'+park.LONGITUDE+'" "data-name="'+park.P_PARK+'" "data-pidx="'+park.P_IDX+'"><img src="btn_event.png" alt="공원 주변행사 보기" width="34" height="35"></a>';
 			var touristBtn = '<a href="#" id="touristBtn" data-lat="'+park.LATITUDE+'" data-lng="'+park.LONGITUDE+'" "data-name="'+park.P_PARK+'" "data-pidx="'+park.P_IDX+'"><img src="btn_tourist spot.png" alt="공원 주변 관광지 보기" width="34" height="35"></a>';
