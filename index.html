@@ -388,6 +388,7 @@
     		var tel = $(node).find("tel").text();
 			title = (title.replace(/"/gi,''));
 			title = (title.replace(/'/gi,''));
+			console.log(title)
     		if($(node).find("contenttypeid").text() == "15"){
     			dist = parseInt(calculateDistance($('#lat').val(), $('#lng').val(), lat, lng) * 1000);
     		}
