@@ -259,6 +259,10 @@
     function setParkProgramList(data){
 		$('#parkProgramList').html('');
 		var list = data["SearchProgramsByParkIDService"]["row"];
+
+		if(list == null)
+			$('#parkProgramList').append("<div>진행 중인 프로그램이 없습니다.</div>");
+
         for(var i = 0 ; i < list.length ; i ++){
         	var pData = list[i];
             $('#parkProgramList').append("<div>" + pData['P_PARK'] + "( "+pData['P_NAME']+" )" + "</div>");
@@ -352,6 +356,10 @@ var parkLocationBtn = '<a href="#" id="showMapBtn" data-lat="'+park.LATITUDE+'" 
     function setTourist(data){
     	var xml = $.parseXML(data);
 		$('#parkProgramList').html('');
+
+		if($(xml).find('item').length == 0)
+			$('#parkProgramList').append("<div>검색 결과가 없습니다.</div>");
+
     	$(xml).find('item').each(function(index, node){
     		var title = $(node).find("title").text();
     		var dist = parseInt($(node).find("dist").text());
