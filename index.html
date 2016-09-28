@@ -377,8 +377,9 @@
     }
 
     function setTourist(data){
-    	var xml = $.parseXML(data);
-		$('#parkProgramList').html(xml);
+    	//var xml = $.parseXML(data);
+		//$('#parkProgramList').html(data);
+		$('#parkProgramList').text(data);
 
 /*
     	$(xml).find('item').each(function(index, node){
