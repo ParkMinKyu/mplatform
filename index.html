@@ -191,7 +191,7 @@
                displayArea();
 	});
         $(document).on("click","#showMapBtn",function(){
-			 showMap(true, $(this).data("lat"), $(this).data("lng"), $(this).data("name"));
+			 JavascriptBridge.showMap(true, $(this).data("lat"), $(this).data("lng"), $(this).data("name"));
 		});
 		$(document).on("click","#programBtn",function(){
 			$('#parkInfo').text($(this).data("name") + " 프로그램");
@@ -225,7 +225,7 @@
 			 getTourist($(this).data("lat"), $(this).data("lng"), $('#contentTypeId').val());
 		});
 		$(document).on("click","#kakaoBtn",function(){
-			 sendMessage($(this).data("lat"), $(this).data("lng"), $(this).data("img"), $(this).data("name"), $(this).data("addr") );
+			 JavascriptBridge.sendMessage($(this).data("lat"), $(this).data("lng"), $(this).data("img"), $(this).data("name"), $(this).data("addr") );
 		});
         $('#backBtn').click(function(){
             var pageNo = parseInt($('#pageIdx').val());
