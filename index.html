@@ -379,6 +379,7 @@
     		var lat = $(node).find("mapy").text();
     		var tel = $(node).find("tel").text();
 			var contentid = $(node).find("contentid").text();
+			var contenttypeid = $(node).find("contenttypeid").text();
 			var addr = $(node).find("addr1").text()+$(node).find("addr2").text();
 			var img = $(node).find("firstimage").text();
 			if(img == null || img == "")
@@ -398,7 +399,7 @@
     		var parkLocationBtn = "<a href='#' id='targetMapBtn' onclick='showMapAndTarget(\""+lat+"\",\""+lng+"\",\""+title+"\");'><img src='btn_location.png' alt='공원위치 보기' width='34' height='35'></a>";
     		var telBtn = "<a href=\"tel:"+tel+"\">"+tel+"</a>";
 			var kakaoBtn = '<a href="#" id="kakaoBtn" data-lat="'+lat+'" data-lng="'+lng+'" data-name="'+title+'" data-addr="'+addr+'" data-img="'+img+'" ><img src="kakaolink_btn_small.png" alt="카카오톡 링크" width="34" height="35" ></a>';
-			var detailArea = '<ul id="detailArea"><li id="detailBtn" onclick="showDetail('+contentid+');">상세보기</li><li id="detailIntro'+contentid+'" style="display: none;">상세내용</li><li id="detailInfo'+contentid+'" style="display: none;">상세내용</li></ul>';
+			var detailArea = '<ul id="detailArea"><li id="detailBtn" onclick="showDetail('+contentid+','+contenttypeid+');">상세보기</li><li id="detailIntro'+contentid+'" style="display: none;">상세내용</li><li id="detailInfo'+contentid+'" style="display: none;">상세내용</li></ul>';
 			if($(node).find("contenttypeid").text() == "15"){
 				$('#parkProgramList').append("<div><span id='programName'>" + title + " ("+dist+")</span><br><span>시작일 : "+$(node).find("eventstartdate").text()+"</span><br><span>종료일 : "+$(node).find("eventenddate").text()+"</span><br>"+parkLocationBtn+ tel+ kakaoBtn+"<br>"+detailArea+"</div>");
 			}else{
@@ -408,9 +409,9 @@
     	pageMove(4);
     }
 
-	function showDetail(contentid){
-		getDetailIntro();
-		getDetailInfo();
+	function showDetail(contentId, contentTypeId){
+		getDetailIntro(contentId, contentTypeId);
+		getDetailInfo(contentId, contentTypeId);
 	}
 
 	function setDetailIntro(data){
