@@ -378,8 +378,8 @@
     		var lng = $(node).find("mapx").text();
     		var lat = $(node).find("mapy").text();
     		var tel = $(node).find("tel").text();
-			var contentid = $(node).find("contentid").text();
-			var contenttypeid = $(node).find("contenttypeid").text();
+			var contentid = parseInt($(node).find("contentid").text());
+			var contenttypeid = parseInt($(node).find("contenttypeid").text());
 			var addr = $(node).find("addr1").text()+$(node).find("addr2").text();
 			var img = $(node).find("firstimage").text();
 			if(img == null || img == "")
