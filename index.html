@@ -398,7 +398,11 @@
     		}
     		var parkLocationBtn = "<a href='#' id='targetMapBtn' onclick='showMapAndTarget(\""+lat+"\",\""+lng+"\",\""+title+"\");'><img src='btn_location.png' alt='공원위치 보기' width='34' height='35'></a>";
     		var telBtn = "<a href=\"tel:"+tel+"\">"+tel+"</a>";
-			$('#parkProgramList').append("<div>"+title+" ( "+dist+")<br>"+parkLocationBtn+ tel+"</div>");
+		if($(node).find("contenttypeid").text() == "15"){
+			$('#parkProgramList').append("<div><span id='programName'>" + title + " ("+dist+")</span><br><span>시작일 : "+$(node).find("eventstartdate").text()+"</span><br><span>종료일 : "+$(node).find("eventenddate").text()+"</span><br>"+parkLocationBtn+ tel+"</div>");
+		}else{
+			$('#parkProgramList').append("<div><span id='programName'>"+title+" ("+dist+")</span><br>"+parkLocationBtn+ tel+"</div>");
+		}
 
     	});
 
