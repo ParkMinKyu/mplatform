@@ -429,7 +429,9 @@
     		var contentTypeId = $(node).find("contenttypeid").text();
     		for(var i = 0 ; i < childNodes.length ; i ++){
     			var child = childNodes[i];
-    			html+="<span id='infoName'>"+getDetailTitle(contentTypeId, child.nodeName)+"</span> : <span>"+node.childNodes[i].textContent+"</span><br><br>";
+    			if(child.nodeName != 'contentid' || child.nodeName != 'contenttypeid'){
+    				html+="<span id='infoName'>"+getDetailTitle(contentTypeId, child.nodeName)+"</span> : <span>"+node.childNodes[i].textContent+"</span><br>";
+    			}
     		}
 		});
 		$('#detailIntro'+contentId).html(html);
