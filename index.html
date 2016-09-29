@@ -210,7 +210,7 @@
 		});
 		$(document).on("click","#touristBtn",function(){
 			$('#contentTypeId').val(14)
-			$('#parkInfo').text($(this).data("name") + " 주변 관광지");
+			$('#parkInfo').text($(this).data("name") + " 주변 문화시설");
 			$('#parkName').val($(this).data("name"));
 			$('#lat').val($(this).data("lat"));
 			$('#lng').val($(this).data("lng"));
@@ -424,10 +424,13 @@
 		var html = "<br>";
 		var contentId = '';
     	$(xml).find('item').each(function(index, node){
-			//var infoname = $(node).find("infoname").text();
-			//var infotext = $(node).find("infotext").text();
-			contentId = $(node).find("contentid").text();
-			html+=data+"<br>";
+    		var childNodes = node.childNodes;
+    		contentId = $(node).find("contentid").text();
+    		var contentTypeId = $(node).find("contenttypeid").text();
+    		for(var i = 0 ; i < childNodes.length ; i ++){
+    			var child = childNodes[i];
+    			html+="<span id='infoName'>"+getDetailTitle(contentTypeId, child.nodeName)+"</span> : <span>"+node.childNodes[1].textContent+"</span><br><br>";
+    		}
 		});
 		$('#detailIntro'+contentId).html(html);
 	}
