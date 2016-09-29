@@ -411,7 +411,7 @@
     }
 
 	function showDetail(contentId, contentTypeId){
-		if($('#detailIntro'+contentid).css('visibility') == 'hidden'){
+		if($('#detailIntro'+contentid).is(":visible") == true){
 			getDetailIntro(contentId, contentTypeId);
 			getDetailInfo(contentId, contentTypeId);
 		}
