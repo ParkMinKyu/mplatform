@@ -31,7 +31,39 @@ function getDetailInfo(contentId, contentTypeId){
 }
 
 function getDetailTitle(contentTypeId, title){
-    if(contentTypeId == '14'){
+    if(contentTypeId == '12'){
+		if(title == 'accomcount'){
+		    return '수용인원';
+		}else if(title == 'chkbabycarriage'){
+		    return '유모차 대여 여부';
+		}else if(title == 'chkcreditcard'){
+		    return '신용카드 가능 여부';
+		}else if(title == 'chkpet'){
+		    return '애완동물 가능 여부';
+		}else if(title == 'expagerange'){
+		    return '체험가능 연령';
+		}else if(title == 'expguide'){
+		    return '체험안내';
+		}else if(title == 'heritage1'){
+		    return '세계 문화유산 유무';
+		}else if(title == 'heritage2'){
+		    return '세계 자연유산 유무';
+		}else if(title == 'heritage3'){
+		    return '세계 기록유산 유무';
+		}else if(title == 'infocenter'){
+		    return '문의 및 안내';
+		}else if(title == 'opendate'){
+		    return '개장일';
+		}else if(title == 'parking'){
+		    return '주차시설';
+		}else if(title == 'restdate'){
+		    return '쉬는날';
+		}else if(title == 'useseason'){
+		    return '이용시기';
+		}else if(title == 'usetime'){
+		    return '이용시간';
+		}
+	}else if(contentTypeId == '14'){
         if(title == 'accomcountculture'){
             return '수용인원';
         }else if(title == 'chkbabycarriageculture'){
