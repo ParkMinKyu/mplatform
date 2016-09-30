@@ -415,6 +415,8 @@
 				$('#parkProgramList').append("<div><span id='programName'>"+title+" ("+dist+")</span><br><span>주소 : "+addr+"</sapn><br>"+parkLocationBtn+ tel+kakaoBtn+"<br>"+detailArea+"</div>");
 			}
     	});
+	if($('#parkProgramList').html() == '')
+		$('#parkProgramList').append("<div>검색 결과가 없습니다.</div>");
     	pageMove(4);
     }
 	function showDetail(contentId, contentTypeId){
