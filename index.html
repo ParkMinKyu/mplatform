@@ -408,7 +408,7 @@
     		var parkLocationBtn = "<a href='#' id='targetMapBtn' onclick='showMapAndTarget(\""+lat+"\",\""+lng+"\",\""+title+"\");'><img src='btn_location.png' alt='공원위치 보기' width='34' height='35'></a>";
     		var telBtn = "<a href=\"tel:"+tel+"\">"+tel+"</a>";
 			var kakaoBtn = '<a href="#" id="kakaoBtn" data-lat="'+lat+'" data-lng="'+lng+'" data-name="'+title+'" data-addr="'+addr+'" data-img="'+img+'" ><img src="kakaolink_btn_small.png" alt="카카오톡 링크" width="34" height="35" ></a>';
-			var detailArea = '<ul id="detailArea"><li id="detailBtn" onclick="showDetail(\''+contentId+'\',\''+contentTypeId+'\');">상세보기</li><li id="detailIntro'+contentId+'" style="display: none;"></li><li id="detailInfo'+contentId+'" style="display: none;"></li></ul>';
+			var detailArea = '<ul id="detailArea"><li id="detailBtn" onclick="showDetail(\''+contentId+'\',\''+contentTypeId+'\');">상세보기 ▼</li><li id="detailIntro'+contentId+'" style="display: none;"></li><li id="detailInfo'+contentId+'" style="display: none;"></li></ul>';
 			if($(node).find("contenttypeid").text() == "15"){
 				$('#parkProgramList').append("<div><span id='programName'>" + title + " ("+dist+")</span><br><span>시작일 : "+$(node).find("eventstartdate").text()+"</span><br><span>종료일 : "+$(node).find("eventenddate").text()+"</span><br>"+parkLocationBtn+ tel+ kakaoBtn+"<br>"+detailArea+"</div>");
 			}else{
@@ -421,6 +421,9 @@
 		if($('#detailIntro'+contentId).is(":visible") == false){
 			getDetailIntro(contentId, contentTypeId);
 			getDetailInfo(contentId, contentTypeId);
+			$('#detailBtn').text("상세보기 ▲");
+		}else{
+			$('#detailBtn').text("상세보기 ▼");
 		}
 		$('#detailIntro'+contentId).toggle();
 		$('#detailInfo'+contentId).toggle();
