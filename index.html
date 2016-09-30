@@ -6,7 +6,7 @@
 	<meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, width=device-width">
 	<style type="text/css">
 	html,body { height: 100%; margin: 0; padding: 0; font-family: "Nanum Gothic",sans-serif; font-size: 13px;}
-	h3 {margin-bottom : 0; }
+	h3 {margin-bottom : 0; font-size: 16px; font-weight:bold;}
 	#main {
 	min-height: 100%; 
 	position: relative;
@@ -69,9 +69,8 @@
 		color : #333333;
 	}
 	#programName{
-		font-size : 15px;
 		font-weight:bold;
-		color : blue;
+		color : #333333;
 	}
 	#infoName{
 		font-size : 14px;
@@ -82,16 +81,17 @@
 		list-style: none;
 		padding: 0;
 	}
-	#detailBtn{
-	    font-weight: bold;
+	.detailBtn{
+	    font-weight:normal ;
 		margin-top: 10px;
 	}
 	#parkProgramList > div{
 		border: 1px solid #82a56f;
 	    height: 100%;
-	    padding: 5px;
+	    padding: 15px;
 	    margin-top: 5px;
 	}
+	
 	#parkList{
 	  max-height: 350px;
       overflow: scroll;
@@ -99,6 +99,11 @@
 	
 	#pageNo3 #parkList img{
 	 margin-right :8px;
+	 margin-top :8px;
+	}
+	
+    #pageNo4 #parkProgramList img{
+     margin-right :8px;
 	 margin-top :8px;
 	}
 	
@@ -126,6 +131,7 @@
     top: -9999px;
     width: 0;
 }
+	
 	</style>
 </head>
 <body>
@@ -304,7 +310,7 @@
 			var list = data["SearchProgramsByParkIDService"]["row"];
 			for(var i = 0 ; i < list.length ; i ++){
 				var pData = list[i];
-				$('#parkProgramList').append("<div><span id='programName'>ㆍ" + pData['P_NAME'] + "</span><br><span>시작일 : "+pData['P_EDUDAY_S']+"</span><br><span>종료일 : "+pData['P_EDUDAY_E']+"</span><br><span>시간 : "+pData['P_EDUTIME']+"</span><br><span>요일 : "+pData['P_PRODAY']+"</span><br><span>대상 : "+pData['P_EDUPERSON']+"</span></div>");
+				$('#parkProgramList').append("<div><span id='programName'>ㆍ" + pData['P_NAME'] + "</span><br><span>기 간 : "+pData['P_EDUDAY_S']+"</span> ~ <span>"+pData['P_EDUDAY_E']+"</span><br><span>시간 : "+pData['P_EDUTIME']+"</span><br><span>요일 : "+pData['P_PRODAY']+"</span><br><span>대상 : "+pData['P_EDUPERSON']+"</span></div>");
 			}
 		}
         pageMove(4);
@@ -354,11 +360,11 @@
 			var parkLocationBtn = '<a href="#" id="showMapBtn" data-lat="'+park.LATITUDE+'" data-lng="'+park.LONGITUDE+'" data-name="'+park.P_PARK+'" data-pidx="'+park.P_IDX+'"><img src="btn_location.png" alt="공원위치 보기" width="40" height="51"></a>';
 			var programBtn = '<a href="#" id="programBtn" data-lat="'+park.LATITUDE+'" data-lng="'+park.LONGITUDE+'" data-name="'+park.P_PARK+'" data-pidx="'+park.P_IDX+'"><img src="btn_program.png" alt="공원 프로그램 보기" width="40" height="51"></a>';
 			var partyBtn = '<a href="#" id="partyBtn" data-lat="'+park.LATITUDE+'" data-lng="'+park.LONGITUDE+'" data-name="'+park.P_PARK+'" data-pidx="'+park.P_IDX+'"><img src="btn_event.png" alt="공원 주변행사 보기" width="40" height="51"></a>';
-			var culturalBtn = '<a href="#" id="culturalBtn" data-lat="'+park.LATITUDE+'" data-lng="'+park.LONGITUDE+'" data-name="'+park.P_PARK+'" data-pidx="'+park.P_IDX+'"><img src="btn_tourist spot.png" alt="공원 주변 관광지 보기" width="40" height="51"></a>';
-			var touristBtn = '<a href="#" id="touristBtn" data-lat="'+park.LATITUDE+'" data-lng="'+park.LONGITUDE+'" data-name="'+park.P_PARK+'" data-pidx="'+park.P_IDX+'"><img src="btn_facility.png" alt="공원 주변 관광지 보기" width="40" height="51"></a>';
+			var culturalBtn = '<a href="#" id="culturalBtn" data-lat="'+park.LATITUDE+'" data-lng="'+park.LONGITUDE+'" data-name="'+park.P_PARK+'" data-pidx="'+park.P_IDX+'"><img src="btn_facility.png" alt="공원 주변 문화시설 보기" width="40" height="51"></a>';
+			var touristBtn = '<a href="#" id="touristBtn" data-lat="'+park.LATITUDE+'" data-lng="'+park.LONGITUDE+'" data-name="'+park.P_PARK+'" data-pidx="'+park.P_IDX+'"><img src="btn_tourist spot.png" alt="공원 주변 관광지 보기" width="40" height="51"></a>';
 			var eateryBtn = '<a href="#" id="eateryBtn" data-lat="'+park.LATITUDE+'" data-lng="'+park.LONGITUDE+'" data-name="'+park.P_PARK+'" data-pidx="'+park.P_IDX+'"><img src="btn_restaurant.png" alt="공원 주변 음식점 보기" width="40" height="51"></a>';
 			var kakaoBtn = '<a href="#" id="kakaoBtn" data-lat="'+park.LATITUDE+'" data-lng="'+park.LONGITUDE+'" data-name="'+park.P_PARK+'" data-addr="'+park.P_ADDR+'" data-img="'+park.P_IMG+'" ><img src="kakaolink_btn_small.png" alt="카카오톡 링크" width="40" height="51"></a>';
-            $('#parkList').append('<div id="'+park.P_IDX +'">ㆍ'+park.P_PARK + '<br>' + parkLocationBtn + programBtn + partyBtn + culturalBtn + touristBtn + eateryBtn + kakaoBtn + '</div>');
+            $('#parkList').append('<div id="'+park.P_IDX +'">ㆍ'+ park.P_PARK + '<br>' + parkLocationBtn + programBtn + partyBtn + culturalBtn + touristBtn + eateryBtn + kakaoBtn + '</div>');
                     if( isFirst ){
 						 getWeather(park.LATITUDE, park.LONGITUDE);
 						 getPM1025(areaName);
@@ -375,13 +381,13 @@
     		if($(node).find('category').text() == 'SKY'){
     			var skyVal = parseInt($(node).find('obsrValue').text());
     			if( skyVal < 3 ){
-    				$('#'+ $(node).find('category').text() +' span').text("맑음");
+    				$('#'+ $(node).find('category').text() +' span').html("<img src='icon01.png' width='15' height='15'> 맑음");
     			}else if( skyVal < 6 ){
-    				$('#'+ $(node).find('category').text() +' span').text("구름 조금");
+    				$('#'+ $(node).find('category').text() +' span').html("<img src='icon02.png' width='15' height='15'> 구름조금");
     			}else if( skyVal < 9 ){
-    				$('#'+ $(node).find('category').text() +' span').text("구름 많음");
+    				$('#'+ $(node).find('category').text() +' span').html("<img src='icon03.png' width='15' height='15'> 구름많음");
     			}else{
-    				$('#'+ $(node).find('category').text() +' span').text("흐림");
+    				$('#'+ $(node).find('category').text() +' span').html("<img src='icon04.png' width='15' height='15'> 흐림");
     			}
     		}else{
     			$('#'+ $(node).find('category').text() +' span').text($(node).find('obsrValue').text());
@@ -417,26 +423,24 @@
     			dist = dist + " m"
     		}
     		var parkLocationBtn = "<a href='#' id='targetMapBtn' onclick='showMapAndTarget(\""+lat+"\",\""+lng+"\",\""+title+"\");'><img src='btn_location.png' alt='공원위치 보기' width='40' height='51'></a>";
-    		var telBtn = "<a href=\"tel:"+tel+"\">"+tel+"</a>";
-			var kakaoBtn = '<a href="#" id="kakaoBtn" data-lat="'+lat+'" data-lng="'+lng+'" data-name="'+title+'" data-addr="'+addr+'" data-img="'+img+'" ><img src="kakaolink_btn_small.png" alt="카카오톡 링크" width="40" height="51"></a>';
-			var detailArea = '<ul id="detailArea"><li id="detailBtn'+contentId+'" onclick="showDetail(\''+contentId+'\',\''+contentTypeId+'\');">상세보기 ▼</li><li id="detailIntro'+contentId+'" style="display: none;"></li><li id="detailInfo'+contentId+'" style="display: none;"></li></ul>';
+    		var telBtn = "<a href=\"tel:"+tel+"\"><img src='btn_call.png' width='40' height='51'></a>";
+			var kakaoBtn = '<a href="#" id="kakaoBtn" data-lat="'+lat+'" data-lng="'+lng+'" data-name="'+title+'" data-addr="'+addr+'" data-img="'+img+'" ><img src="kakaolink_btn_small.png" alt="카카오톡 링크"  width="40" height="51"></a>';
+			var detailArea = '<ul id="detailArea"><li id="detailBtn'+contentId+'" class="detailBtn" onclick="showDetail(\''+contentId+'\',\''+contentTypeId+'\');"><span style="border: 1px solid #82a56f; margin:5px;padding:5px;background:#bad3ad;">상세보기▼</span></li><li id="detailIntro'+contentId+'" style="display: none;"></li><li id="detailInfo'+contentId+'" style="display: none;"></li></ul>';
 			if($(node).find("contenttypeid").text() == "15"){
-				$('#parkProgramList').append("<div><span id='programName'>ㆍ" + title + " ("+dist+")</span><br><span>시작일 : "+$(node).find("eventstartdate").text()+"</span><br><span>종료일 : "+$(node).find("eventenddate").text()+"</span><br>"+parkLocationBtn+ tel+ kakaoBtn+"<br>"+detailArea+"</div>");
+				$('#parkProgramList').append("<div><span id='programName'>ㆍ" + title + " ("+dist+")</span><br><span>기 간 : "+$(node).find("eventstartdate").text()+"</span> ~ <span>"+$(node).find("eventenddate").text()+"</span><br>"+parkLocationBtn+ telBtn+ kakaoBtn+"<br>"+detailArea+"</div>");
 			}else{
-				$('#parkProgramList').append("<div><span id='programName'>ㆍ"+title+" ("+dist+")</span><br><span>주소 : "+addr+"</sapn><br>"+parkLocationBtn+ tel+kakaoBtn+"<br>"+detailArea+"</div>");
+				$('#parkProgramList').append("<div><span id='programName'>ㆍ"+title+" ("+dist+")</span><br><span>주소 : "+addr+"</sapn><br>"+parkLocationBtn+ telBtn+kakaoBtn+"<br>"+detailArea+"</div>");
 			}
     	});
-	if($('#parkProgramList').html() == '')
-		$('#parkProgramList').append("<div>검색 결과가 없습니다.</div>");
     	pageMove(4);
     }
 	function showDetail(contentId, contentTypeId){
 		if($('#detailIntro'+contentId).is(":visible") == false){
 			getDetailIntro(contentId, contentTypeId);
 			getDetailInfo(contentId, contentTypeId);
-			$('#detailBtn'+contentId).text("상세보기 ▲");
+			$('#detailBtn'+contentId+' span').text("상세보기▲");
 		}else{
-			$('#detailBtn'+contentId).text("상세보기 ▼");
+			$('#detailBtn'+contentId+' span').text("상세보기▼");
 		}
 		$('#detailIntro'+contentId).toggle();
 		$('#detailInfo'+contentId).toggle();
