@@ -15,7 +15,7 @@
 	}
 	 
 	#weather{
-	width: 155px;
+	width: 190px;
 	    float: right;
 	    margin-top: 5px;
 	}
@@ -56,52 +56,44 @@
 	
 	#parkList > div{
 		border: 1px solid #82a56f;
-	    height: 65px;
+	    height: 75px;
 	    padding: 5px;
 	    margin-top: 5px;
 	}
-
 	#programName{
 		font-size : 15px;
 		font-weight:bold;
 		color : blue;
 	}
-
 	#infoName{
 		font-size : 14px;
 		font-weight:bold;
 	}
-
 	#detailArea{
 		margin: 0;
 		list-style: none;
 		padding: 0;
 	}
-
 	#detailBtn{
 	    font-weight: bold;
 		margin-top: 10px;
 	}
-
 	#parkProgramList > div{
 		border: 1px solid #82a56f;
 	    height: 100%;
 	    padding: 5px;
 	    margin-top: 5px;
 	}
-
 	#parkList{
 	  max-height: 350px;
       overflow: scroll;
+	}		
+	
+	#pageNo3 img{
+	 margin-right :8px;
+	 margin-top :8px;
 	}
-
-	a{
-	 margin-right : 10px;
-	 margin-top :10px;
-	 width : 34px;
-	 height : 35px;
-	}
-
+	
 	#pageNo1{
 		background: url(bg_park.gif)no-repeat;
 		background-size: cover;
@@ -110,13 +102,23 @@
 		position: absolute;
 		text-align: center;
 	}
-
 	.mgt150 {
 		margin-top: 150px !important;
 	}
 	.mgb0 {
 		 bottom: 0px; position: absolute; text-align:center; width:100%; z-index:100;
 	}
+		
+.blind {
+    font-size: 0;
+    height: 0;
+    left: -9999px;
+    line-height: 0;
+    position: absolute;
+    top: -9999px;
+    width: 0;
+}
+	
 	</style>
 </head>
 <body>
@@ -153,12 +155,14 @@
 		<h3>ㆍ<span id="areaPark"></span> 공원 목록</h3>
 		<div id="parkList">
 		</div>
+		<div style="text-align:center; margin-top:5px;">
+		<img src="btn_arrow.png" alt="아래로 이동">
+		</div>
 		<div id="weather">
-			<div id="T1H">기온 : <span></span></div>
-			<div id="SKY">하늘상태 : <span></span></div>
-			<div id="REH">습도 : <span></span></div>
-			<div id="pm10Value">미세먼지 : <span></span>㎍/㎥</div>
-			<div id="pm25Value">초미세먼지 : <span></span>㎍/㎥</div>
+			<div id="T1H">ㆍ기온 : <span></span></div>
+			<div id="SKY">ㆍ하늘상태 : <span></span></div>
+			<div id="REH">ㆍ습도 : <span></span></div>
+			<div id="pm10Value">ㆍ미세먼지 : <span></span>㎍/㎥</div>
 		</div>
 	</div>
 	<div id="pageNo4" style="display: none;">
