@@ -172,10 +172,9 @@
 		<img src="btn_arrow.png" alt="아래로 이동">
 		</div>
 		<div id="weather">
-			<div id="T1H">ㆍ기온 : <span></span></div>
-			<div id="SKY">ㆍ하늘상태 : <span></span></div>
-			<div id="REH">ㆍ습도 : <span></span></div>
-			<div id="pm10Value">ㆍ미세먼지 : <span></span>㎍/㎥</div>
+			<span id="SKY"><span></span></span>/<span id="T1H"><span></span>℃</span><br>			
+			<span id="REH">ㆍ습도 : <span></span></span><br>
+			<span id="pm10Value">ㆍ미세먼지 : <span></span>㎍/㎥</span>
 		</div>
 	</div>
 	<div id="pageNo4" style="display: none;">
@@ -390,7 +389,11 @@
     				$('#'+ $(node).find('category').text() +' span').html("<img src='icon04.png' width='15' height='15'> 흐림");
     			}
     		}else{
-    			$('#'+ $(node).find('category').text() +' span').text($(node).find('obsrValue').text());
+				if($(node).find('category').text() == 'T1H'){
+				$('#'+ $(node).find('category').text() +' span').text(Math.floor(parseFloat($(node).find('obsrValue').text())*10)/10);
+				}else{
+					$('#'+ $(node).find('category').text() +' span').text($(node).find('obsrValue').text());
+				}
     		}
     	});
     }
