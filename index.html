@@ -172,6 +172,7 @@
 		<img src="btn_arrow.png" alt="아래로 이동">
 		</div>
 		<div id="weather">
+			<h4 style="margin:0;">ㆍ<span id="weatherArea"></span> 날씨</h4>
 			<span id="SKY"><span></span></span>/<span id="T1H"><span></span>℃</span><br>			
 			<span id="REH">ㆍ습도 : <span></span></span><br>
 			<span id="pm10Value">ㆍ미세먼지 : <span></span>㎍/㎥</span>
@@ -346,6 +347,7 @@
     }
     function displayParkList(areaName, sigunguCode){
     	$('#areaPark').text(areaName);
+	$('#weatherArea').text(areaName);
     	$('#areaCode').val(1);
     	$('#sigunguCode').val(sigunguCode);
 		$('#parkList').html('');
