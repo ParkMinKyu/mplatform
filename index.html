@@ -174,7 +174,7 @@
 		<div id="weather">
 			<h4 style="margin:0;">ㆍ<span id="weatherArea"></span> 날씨</h4>
 			<span id="SKY"><span></span></span>/<span id="T1H"><span></span>℃</span><br>			
-			<span id="REH">ㆍ습도 : <span></span></span><br>
+			<span id="PTY">ㆍ강수형태 : <span></span></span>/<span id="RNI">ㆍ1시간 강수량 : <span></span></span><br>
 			<span id="pm10Value">ㆍ미세먼지 : <span></span>㎍/㎥</span>
 		</div>
 	</div>
@@ -218,7 +218,7 @@
 			 getParkProgramList($(this).data("pidx"));
 		});
 		$(document).on("click","#partyBtn",function(){
-			$('#contentTypeId').val(15)
+			$'#contentTypeId').val(15)
 			$('#parkInfo').text($(this).data("name") + " 주변 행사");
 			$('#parkName').val($(this).data("name"));
 			$('#lat').val($(this).data("lat"));
