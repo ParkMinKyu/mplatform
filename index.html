@@ -218,7 +218,7 @@
 			 getParkProgramList($(this).data("pidx"));
 		});
 		$(document).on("click","#partyBtn",function(){
-			$'#contentTypeId').val(15)
+			$('#contentTypeId').val(15)
 			$('#parkInfo').text($(this).data("name") + " 주변 행사");
 			$('#parkName').val($(this).data("name"));
 			$('#lat').val($(this).data("lat"));
@@ -392,7 +392,19 @@
     			}
     		}else{
 				if($(node).find('category').text() == 'T1H'){
-				$('#'+ $(node).find('category').text() +' span').text(Math.floor(parseFloat($(node).find('obsrValue').text())*10)/10);
+					$('#'+ $(node).find('category').text() +' span').text(Math.floor(parseFloat($(node).find('obsrValue').text())*10)/10);
+				}else if($(node).find('category').text() == 'PTY'){
+					//- 강수형태(PTY) 코드 : 없음(0), 비(1), 비/눈(2), 눈(3)
+					var skyVal = parseInt($(node).find('obsrValue').text());
+					if( skyVal == 1 ){
+						$('#'+ $(node).find('category').text() +' span').html("비");
+					}else if( skyVal == 2 ){
+						$('#'+ $(node).find('category').text() +' span').html("비/눈");
+					}else if( skyVal == 3 ){
+						$('#'+ $(node).find('category').text() +' span').html("눈");
+    				}else{
+    					$('#'+ $(node).find('category').text() +' span').html("없음");
+    				}
 				}else{
 					$('#'+ $(node).find('category').text() +' span').text($(node).find('obsrValue').text());
 				}
