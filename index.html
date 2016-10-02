@@ -504,8 +504,10 @@
 				pm10 = "<span style='width:10px;background:#5bd464;'>&nbsp;보    통&nbsp;</span>&nbsp;" + pm10;
 			}else if(pm10 <= 150){
 				pm10 = "<span style='width:10px;background:#fe7f41;'>&nbsp;나    쁨&nbsp;</span>&nbsp;" + pm10;
-			}else{
+			}else if(pm10 > 150){
 				pm10 = "<span style='width:10px;background:#f94a4b;'>&nbsp;매우나쁨&nbsp;</span>&nbsp;" + pm10;
+			}else{
+				pm10 = "<span style='width:10px;background:#fff;'>측정값없음</span>&nbsp;" + pm10;
 			}
 			if(pm25 <= 15){
 				pm25 = "<span style='width:10px;background:#4e89f6;'>&nbsp;좋    음&nbsp;</span>&nbsp;" + pm25;
