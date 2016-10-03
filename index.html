@@ -568,18 +568,21 @@
     	return num * Math.PI / 180;
     }
 
-    function transferGrs80TmCoordXY(wgs84X, wgs84Y){
-    var CS_LON_RAD = parseFloat(wgs84Y) * 0.0174532925199433;
-       var CS_LAT_RAD = parseFloat(wgs84X) * 0.0174532925199433;
-       var CS_V = 6378137.0 / Math.pow(1.0 - 0.00669438 * Math.pow(Math.sin(CS_LAT_RAD), 2.0), 0.5);
-       var CS_T = Math.pow(Math.tan(CS_LAT_RAD), 2.0);
-       var CS_C = 0.00674 * Math.pow(Math.cos(CS_LAT_RAD), 2.0);
-       var CS_A = (CS_LON_RAD - 2.2165681500327987) * Math.cos(CS_LAT_RAD);
-       var CS_M = 6378137.0 * ((0.998326405 - 3.0 * Math.pow(0.00669438, 2.0) / 64.0 - 5.0 * Math.pow(0.00669438, 3.0) / 256.0) * CS_LAT_RAD - (0.0025103925 + 3.0 * Math.pow(0.00669438, 2.0) / 32.0 + 45.0 * Math.pow(0.00669438, 3.0) / 1024.0) * Math.sin(2.0 * CS_LAT_RAD) + (15.0 * Math.pow(0.00669438, 2.0) / 256.0 + 45.0 * Math.pow(0.00669438, 3.0) / 1024.0) * Math.sin(4.0 * CS_LAT_RAD) - 35.0 * Math.pow(0.00669438, 3.0) / 3072.0 * Math.sin(6.0 * CS_LAT_RAD));
-       wgs84Y = 200000.0 + 1.0 * CS_V * (CS_A + (1.0 - CS_T + CS_C) * Math.pow(CS_A, 3.0) / 6.0 + (5.0 - 18.0 * CS_T + Math.pow(CS_T, 2.0) + 72.0 * CS_C - 0.39092000000000005) * Math.pow(CS_A, 5.0) / 120.0);
-       wgs84X = 500000.0 + 1.0 * (CS_M - 4207498.01915032 + CS_V * Math.tan(CS_LAT_RAD) * (Math.pow(CS_A, 2.0) / 2.0 + (5.0 - CS_T + 9.0 * CS_C + 4.0 * Math.pow(CS_C, 2.0)) * Math.pow(CS_A, 4.0) / 24.0 + (61.0 - 58.0 * CS_T + Math.pow(CS_T, 2.0) + 600.0 * CS_C - 2.2242) * Math.pow(CS_A, 6.0) / 720.0));
-       return {lat : wgs84X, lng : wgs84Y};
-  }
+    function transferWgs84CoordXY(grs80Tmx, grs80TmY){
+	  var CS_M1 = 4207498.01915032 + (parseFloat(grs80TmY) - 500000.0) / 1.0;
+	  var CS_U1 = CS_M1 / 6378137.0 / (0.998326405 - 3.0 * Math.pow(0.00669438, 2.0) / 64.0 - 5.0 * Math.pow(0.00669438, 3.0) / 256.0);
+	  var CS_LAT1 = CS_U1 + (0.0025188299999999997 - 27.0 * Math.pow(0.00167922, 3.0) / 32.0) * Math.sin(2.0 * CS_U1) + (21.0 * Math.pow(0.00167922, 2.0) / 16.0 - 55.0 * Math.pow(0.00167922, 4.0) / 32.0) * Math.sin(4.0 * CS_U1) + 151.0 * Math.pow(0.00167922, 3.0) / 96.0 * Math.sin(6.0 * CS_U1) + 1097.0 * Math.pow(0.00167922, 4.0) / 512.0 * Math.sin(8.0 * CS_U1);
+	  var CS_V1 = 6378137.0 / Math.pow(1.0 - 0.00669438 * Math.pow(Math.sin(CS_LAT1), 2.0), 0.5);
+	  var CS_P1 = 6335439.32722994 / Math.pow(1.0 - 0.00669438 * Math.pow(Math.sin(CS_LAT1), 2.0), 1.5);
+	  var CS_T1 = Math.pow(Math.tan(CS_LAT1), 2.0);
+	  var CS_C1 = 0.00674 * Math.pow(Math.cos(CS_LAT1), 2.0);
+	  var CS_D = (parseFloat(grs80Tmx) - 200000.0) / CS_V1 / 1.0;
+	  var CS_LAT = CS_LAT1 - CS_V1 * Math.tan(CS_LAT1) / CS_P1 * Math.pow(CS_D, 2.0) / 2.0 - (5.0 + 3.0 * CS_T1 + 10.0 * CS_C1 - 4.0 * Math.pow(CS_C1, 2.0) - 0.060660000000000006) * Math.pow(CS_D, 4.0) / 24.0 + (61.0 + 90.0 * CS_T1 + 298.0 * CS_C1 + 45.0 * Math.pow(CS_T1, 2.0) - 1.69848 - 3.0 * Math.pow(CS_C1, 2.0)) * Math.pow(CS_D, 6.0) / 720.0;
+	  var CS_LON = 2.216568150032798 + (CS_D - (1.0 + 2.0 * CS_T1 + CS_C1) * Math.pow(CS_D, 3.0) / 6.0 + (5.0 - 2.0 * CS_C1 + 28.0 * CS_T1 - 3.0 * Math.pow(CS_C1, 2.0) + 0.05392 + 24.0 * Math.pow(CS_T1, 2.0)) * Math.pow(CS_D, 5.0) / 120.0) / Math.cos(CS_LAT1);
+	  var wgs84Y = (CS_LAT * 180.0 / 3.141592653589793);
+	  var wgs84X = (CS_LON * 180.0 / 3.141592653589793);
+	  return {lat : wgs84X, lng : wgs84Y}
+	 }
 </script>
 </body>
 </html>
