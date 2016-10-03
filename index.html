@@ -311,7 +311,7 @@
 	        	$('#backBtn').hide();
 	        }
 	        $('#pageNo'+pageNo).show();
-	        $('#pageNo'+pageNo+' div').show();
+	        $('#pageNo'+pageNo+' div[id!=scollArrow]').show();
 	        $('#pageIdx').val(pageNo);
     }
     function setParkList(data){
