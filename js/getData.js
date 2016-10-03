@@ -7,8 +7,6 @@ function getParkProgramList(pidx){
 }
 
 function getWeather(lat, lng){
-    console.log(lat);
-    console.log(lng);
    JavascriptBridge.getWeather(lat, lng);
 }
 

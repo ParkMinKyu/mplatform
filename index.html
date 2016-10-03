@@ -172,7 +172,7 @@
 		<h3>ㆍ<span id="areaPark"></span> 공원 목록 <span class="infoOfferer">(정보 제공:서울특별시)</span></h3>
 		<div id="parkList">
 		</div>
-		<div id="scollArrow" style="text-align:center; margin-top:5px;display:none;">
+		<div id="scollArrow" style="text-align:center; margin-top:5px; display: none;">
 			<img src="btn_arrow.png" alt="아래로 이동">
 		</div>
 		<div id="weather">
@@ -450,7 +450,6 @@
     		var lat = $(node).find("mapy").text();
     		var tel = $(node).find("tel").text();
 			var contentId = $(node).find("contentid").text();
-			console.log(contentId);
 			var contentTypeId = $(node).find("contenttypeid").text();
 			var addr = $(node).find("addr1").text()+$(node).find("addr2").text();
 			var img = $(node).find("firstimage").text();
