@@ -293,7 +293,7 @@
       return 0;
     }
     function pageMove(pageNo){
-        $('#main div').hide();
+        $('#main div[id!=scollArrow]').hide();
         if(parseInt(pageNo) > 1){
 		  $('#header').show();
 		  $('#footer').show();
