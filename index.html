@@ -172,8 +172,8 @@
 		<h3>ㆍ<span id="areaPark"></span> 공원 목록 <span class="infoOfferer">(정보 제공:서울특별시)</span></h3>
 		<div id="parkList">
 		</div>
-		<div style="text-align:center; margin-top:5px;">
-		<img src="btn_arrow.png" alt="아래로 이동">
+		<div id="scollArrow" style="text-align:center; margin-top:5px;display:none;">
+			<img src="btn_arrow.png" alt="아래로 이동">
 		</div>
 		<div id="weather">
 			<h4 style="margin:0;">ㆍ<span id="weatherArea"></span> 날씨 <span class="infoOfferer">(정보 제공:기상청)</span></h4>
@@ -370,12 +370,14 @@
     	$('#sigunguCode').val(sigunguCode);
 		$('#parkList').html('');
 		var isFirst = true;
+		var parkCnt = 0;
         for(var i = 0 ; i < parkList.row.length ; i ++){
             var park = parkList.row[i];
             var pat = /(서울[가-힣]*) ([가-힣]+)/g;
             if(pat.test(park.P_ADDR)){
                 var matchName = RegExp.$2;
                 if(matchName == areaName){
+                	parkCnt++;
                 	var locationInfo = transferWgs84CoordXY(park.G_LONGITUDE,park.G_LATITUDE);
                 	var lat = park.LATITUDE == "" ? locationInfo.lat : park.LATITUDE;
                 	var lng = park.LONGITUDE == "" ? locationInfo.lng : park.LONGITUDE;
@@ -391,6 +393,9 @@
 						 getWeather(lat, lng);
 						 getPM1025(areaName);
 						isFirst = false;
+            		}
+            		if(parkCnt > 4){
+            			$('#scollArrow').show();
             		}
 				}
             }
