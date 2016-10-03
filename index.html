@@ -259,7 +259,7 @@
 
     function goBack(){
     	var pageNo = parseInt($('#pageIdx').val());
-		if(pageNo == 2){
+		if(pageNo <= 2){
 			JavascriptBridge.exitApplication();
 		}else{
 			pageMove(pageNo - 1);
