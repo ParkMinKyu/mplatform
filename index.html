@@ -583,7 +583,7 @@
 	  var CS_LON = 2.216568150032798 + (CS_D - (1.0 + 2.0 * CS_T1 + CS_C1) * Math.pow(CS_D, 3.0) / 6.0 + (5.0 - 2.0 * CS_C1 + 28.0 * CS_T1 - 3.0 * Math.pow(CS_C1, 2.0) + 0.05392 + 24.0 * Math.pow(CS_T1, 2.0)) * Math.pow(CS_D, 5.0) / 120.0) / Math.cos(CS_LAT1);
 	  var wgs84Y = (CS_LAT * 180.0 / 3.141592653589793);
 	  var wgs84X = (CS_LON * 180.0 / 3.141592653589793);
-	  return {lat : wgs84X, lng : wgs84Y}
+	  return {lat : wgs84Y, lng : wgs84X}
 	 }
 </script>
 </body>
