@@ -19,7 +19,11 @@
 	    float: right;
 	    margin-top: 5px;
 	}
-	
+
+	.infoOfferer{
+		font-size: 12px;
+	}
+
     #weather > div
 	{
 	margin-top: 5px;
@@ -160,26 +164,26 @@
 	</div>
 
 	<div id="pageNo2" style="display: none;">
-		<h3>ㆍ지역별 공원 현황</h3>(정보 제공:서울특별시)
+		<h3>ㆍ지역별 공원 현황 <span class="infoOfferer">(정보 제공:서울특별시)</span></h3>
 		<div id="areaList" style="text-align:center;">
 		</div>
 	</div>
 	<div id="pageNo3" style=" display: none;">
-		<h3>ㆍ<span id="areaPark"></span> 공원 목록</h3>(정보 제공:서울특별시)
+		<h3>ㆍ<span id="areaPark"></span> 공원 목록 <span class="infoOfferer">(정보 제공:서울특별시)</span></h3>
 		<div id="parkList">
 		</div>
 		<div style="text-align:center; margin-top:5px;">
 		<img src="btn_arrow.png" alt="아래로 이동">
 		</div>
 		<div id="weather">
-			<h4 style="margin:0;">ㆍ<span id="weatherArea"></span> 날씨</h4>(정보 제공:기상청)
+			<h4 style="margin:0;">ㆍ<span id="weatherArea"></span> 날씨 <span class="infoOfferer">(정보 제공:기상청)</span></h4>
 			<span id="SKY"><span></span></span>/<span id="T1H"><span></span>℃</span><br>			
 			<span id="PTY">ㆍ강수형태 : <span></span></span>/<span id="RN1"><span></span>mm</span><br>
-			<span id="pm10Value">ㆍ미세먼지 : <span></span>㎍/㎥</span>(정보 제공:한국환경공단)
+			<span id="pm10Value">ㆍ미세먼지 : <span></span>㎍/㎥</span><span class="infoOfferer">(정보 제공:한국환경공단)</span>
 		</div>
 	</div>
 	<div id="pageNo4" style="display: none;">
-		<h3>ㆍ<span id="parkInfo"></span> 정보</h3><span id="infoOfferer"></span>
+		<h3>ㆍ<span id="parkInfo"></span> 정보 <span id="infoOfferer" class="infoOfferer"></span></h3>
 		<div id="parkProgramList">
 		</div>
 	</div>
