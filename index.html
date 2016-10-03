@@ -378,7 +378,6 @@
                 var matchName = RegExp.$2;
                 if(matchName == areaName){
                 	parkCnt++;
-                	console.log(parkCnt);
                 	var locationInfo = transferWgs84CoordXY(park.G_LONGITUDE,park.G_LATITUDE);
                 	var lat = park.LATITUDE == "" ? locationInfo.lat : park.LATITUDE;
                 	var lng = park.LONGITUDE == "" ? locationInfo.lng : park.LONGITUDE;
@@ -397,8 +396,10 @@
             		}
             		if(parkCnt >= 4){
             			$('#scollArrow').show();
+            			console.log(parkCnt);
             		}else{
             			$('#scollArrow').hide();
+            			console.log(parkCnt);
             		}
 				}
             }
