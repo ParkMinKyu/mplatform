@@ -276,8 +276,8 @@
     }
 
     function compare(a,b) {
-      var pat = /(서울특별시) ([가-힣]+)/g;
-      var pat2 = /(서울특별시) ([가-힣]+)/g;
+      var pat = /(서울[가-힣]*) ([가-힣]+)/g;
+      var pat2 = /(서울[가-힣]*) ([가-힣]+)/g;
       var addr1;
       var addr2;
       if(pat.test(a.P_ADDR)){
@@ -348,7 +348,7 @@
 		var sigunguCode = 1;
         for(var i = 0 ; i < parkList.row.length ; i ++){
             var park = parkList.row[i];
-            var pat = /(서울특별시) ([가-힣]+)/g;
+            var pat = /(서울[가-힣]*) ([가-힣]+)/g;
             if(pat.test(park.P_ADDR)){
                 var areaName = RegExp.$2;
                 if( $('#'+areaName).length > 0 ){
@@ -365,27 +365,29 @@
     }
     function displayParkList(areaName, sigunguCode){
     	$('#areaPark').text(areaName);
-	$('#weatherArea').text(areaName);
+		$('#weatherArea').text(areaName);
     	$('#areaCode').val(1);
     	$('#sigunguCode').val(sigunguCode);
 		$('#parkList').html('');
 		var isFirst = true;
         for(var i = 0 ; i < parkList.row.length ; i ++){
             var park = parkList.row[i];
-            var pat = /(서울특별시) ([가-힣]+)/g;
+            var pat = /(서울[가-힣]*) ([가-힣]+)/g;
             if(pat.test(park.P_ADDR)){
                 var matchName = RegExp.$2;
                 if(matchName == areaName){
-			var parkLocationBtn = '<a href="#" id="showMapBtn" data-lat="'+park.LATITUDE+'" data-lng="'+park.LONGITUDE+'" data-name="'+park.P_PARK+'" data-pidx="'+park.P_IDX+'"><img src="btn_location.png" alt="공원위치 보기" width="40" height="51"></a>';
-			var programBtn = '<a href="#" id="programBtn" data-lat="'+park.LATITUDE+'" data-lng="'+park.LONGITUDE+'" data-name="'+park.P_PARK+'" data-pidx="'+park.P_IDX+'"><img src="btn_program.png" alt="공원 프로그램 보기" width="40" height="51"></a>';
-			var partyBtn = '<a href="#" id="partyBtn" data-lat="'+park.LATITUDE+'" data-lng="'+park.LONGITUDE+'" data-name="'+park.P_PARK+'" data-pidx="'+park.P_IDX+'"><img src="btn_event.png" alt="공원 주변행사 보기" width="40" height="51"></a>';
-			var culturalBtn = '<a href="#" id="culturalBtn" data-lat="'+park.LATITUDE+'" data-lng="'+park.LONGITUDE+'" data-name="'+park.P_PARK+'" data-pidx="'+park.P_IDX+'"><img src="btn_tourist spot.png" alt="공원 주변 문화시설 보기" width="40" height="51"></a>';
-			var touristBtn = '<a href="#" id="touristBtn" data-lat="'+park.LATITUDE+'" data-lng="'+park.LONGITUDE+'" data-name="'+park.P_PARK+'" data-pidx="'+park.P_IDX+'"><img src="btn_facility.png" alt="공원 주변 관광지 보기" width="40" height="51"></a>';
-			var eateryBtn = '<a href="#" id="eateryBtn" data-lat="'+park.LATITUDE+'" data-lng="'+park.LONGITUDE+'" data-name="'+park.P_PARK+'" data-pidx="'+park.P_IDX+'"><img src="btn_restaurant.png" alt="공원 주변 음식점 보기" width="40" height="51"></a>';
-			var kakaoBtn = '<a href="#" id="kakaoBtn" data-lat="'+park.LATITUDE+'" data-lng="'+park.LONGITUDE+'" data-name="'+park.P_PARK+'" data-addr="'+park.P_ADDR+'" data-img="'+park.P_IMG+'" ><img src="kakaolink_btn_small.png" alt="카카오톡 링크" width="40" height="51"></a>';
-            $('#parkList').append('<div id="'+park.P_IDX +'">ㆍ'+ park.P_PARK + '<br>' + parkLocationBtn + programBtn + partyBtn + culturalBtn + touristBtn + eateryBtn + kakaoBtn + '</div>');
+                	var lat = park.LATITUDE == null ? transferGrs80TmCoordXY(park.G_LATITUDE, park.G_LONGITUDE).lat : park.LATITUDE;
+                	var lng = park.LONGITUDE == null ? transferGrs80TmCoordXY(park.G_LATITUDE, park.G_LONGITUDE).lng : park.LONGITUDE;
+					var parkLocationBtn = '<a href="#" id="showMapBtn" data-lat="'+lat+'" data-lng="'+lng+'" data-name="'+park.P_PARK+'" data-pidx="'+park.P_IDX+'"><img src="btn_location.png" alt="공원위치 보기" width="40" height="51"></a>';
+					var programBtn = '<a href="#" id="programBtn" data-lat="'+lat+'" data-lng="'+lng+'" data-name="'+park.P_PARK+'" data-pidx="'+park.P_IDX+'"><img src="btn_program.png" alt="공원 프로그램 보기" width="40" height="51"></a>';
+					var partyBtn = '<a href="#" id="partyBtn" data-lat="'+lat+'" data-lng="'+lng+'" data-name="'+park.P_PARK+'" data-pidx="'+park.P_IDX+'"><img src="btn_event.png" alt="공원 주변행사 보기" width="40" height="51"></a>';
+					var culturalBtn = '<a href="#" id="culturalBtn" data-lat="'+lat+'" data-lng="'+lng+'" data-name="'+park.P_PARK+'" data-pidx="'+park.P_IDX+'"><img src="btn_tourist spot.png" alt="공원 주변 문화시설 보기" width="40" height="51"></a>';
+					var touristBtn = '<a href="#" id="touristBtn" data-lat="'+lat+'" data-lng="'+lng+'" data-name="'+park.P_PARK+'" data-pidx="'+park.P_IDX+'"><img src="btn_facility.png" alt="공원 주변 관광지 보기" width="40" height="51"></a>';
+					var eateryBtn = '<a href="#" id="eateryBtn" data-lat="'+lat+'" data-lng="'+lng+'" data-name="'+park.P_PARK+'" data-pidx="'+park.P_IDX+'"><img src="btn_restaurant.png" alt="공원 주변 음식점 보기" width="40" height="51"></a>';
+					var kakaoBtn = '<a href="#" id="kakaoBtn" data-lat="'+lat+'" data-lng="'+lng+'" data-name="'+park.P_PARK+'" data-addr="'+park.P_ADDR+'" data-img="'+park.P_IMG+'" ><img src="kakaolink_btn_small.png" alt="카카오톡 링크" width="40" height="51"></a>';
+					$('#parkList').append('<div id="'+park.P_IDX +'">ㆍ'+ park.P_PARK + '<br>' + parkLocationBtn + programBtn + partyBtn + culturalBtn + touristBtn + eateryBtn + kakaoBtn + '</div>');
                     if( isFirst ){
-						 getWeather(park.LATITUDE, park.LONGITUDE);
+						 getWeather(lat, lng);
 						 getPM1025(areaName);
 						isFirst = false;
             		}
@@ -564,6 +566,19 @@
     function toRad(num){
     	return num * Math.PI / 180;
     }
+
+    function transferGrs80TmCoordXY(wgs84X, wgs84Y){
+    var CS_LON_RAD = parseFloat(wgs84Y) * 0.0174532925199433;
+       var CS_LAT_RAD = parseFloat(wgs84X) * 0.0174532925199433;
+       var CS_V = 6378137.0 / Math.pow(1.0 - 0.00669438 * Math.pow(Math.sin(CS_LAT_RAD), 2.0), 0.5);
+       var CS_T = Math.pow(Math.tan(CS_LAT_RAD), 2.0);
+       var CS_C = 0.00674 * Math.pow(Math.cos(CS_LAT_RAD), 2.0);
+       var CS_A = (CS_LON_RAD - 2.2165681500327987) * Math.cos(CS_LAT_RAD);
+       var CS_M = 6378137.0 * ((0.998326405 - 3.0 * Math.pow(0.00669438, 2.0) / 64.0 - 5.0 * Math.pow(0.00669438, 3.0) / 256.0) * CS_LAT_RAD - (0.0025103925 + 3.0 * Math.pow(0.00669438, 2.0) / 32.0 + 45.0 * Math.pow(0.00669438, 3.0) / 1024.0) * Math.sin(2.0 * CS_LAT_RAD) + (15.0 * Math.pow(0.00669438, 2.0) / 256.0 + 45.0 * Math.pow(0.00669438, 3.0) / 1024.0) * Math.sin(4.0 * CS_LAT_RAD) - 35.0 * Math.pow(0.00669438, 3.0) / 3072.0 * Math.sin(6.0 * CS_LAT_RAD));
+       wgs84Y = 200000.0 + 1.0 * CS_V * (CS_A + (1.0 - CS_T + CS_C) * Math.pow(CS_A, 3.0) / 6.0 + (5.0 - 18.0 * CS_T + Math.pow(CS_T, 2.0) + 72.0 * CS_C - 0.39092000000000005) * Math.pow(CS_A, 5.0) / 120.0);
+       wgs84X = 500000.0 + 1.0 * (CS_M - 4207498.01915032 + CS_V * Math.tan(CS_LAT_RAD) * (Math.pow(CS_A, 2.0) / 2.0 + (5.0 - CS_T + 9.0 * CS_C + 4.0 * Math.pow(CS_C, 2.0)) * Math.pow(CS_A, 4.0) / 24.0 + (61.0 - 58.0 * CS_T + Math.pow(CS_T, 2.0) + 600.0 * CS_C - 2.2242) * Math.pow(CS_A, 6.0) / 720.0));
+       return {lat : wgs84X, lng : wgs84Y};
+  }
 </script>
 </body>
 </html>
