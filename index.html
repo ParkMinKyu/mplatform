@@ -394,16 +394,16 @@
 						 getPM1025(areaName);
 						isFirst = false;
             		}
-            		if(parkCnt >= 4){
-            			$('#scollArrow').show();
-            			console.log(parkCnt);
-            		}else{
-            			$('#scollArrow').hide();
-            			console.log(parkCnt);
-            		}
 				}
             }
         }
+        if(parkCnt >= 4){
+			$('#scollArrow').show();
+			console.log(parkCnt);
+		}else{
+			$('#scollArrow').hide();
+			console.log(parkCnt);
+		}
         pageMove(3);
     }
     function setWeather(data){
