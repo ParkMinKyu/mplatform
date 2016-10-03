@@ -459,7 +459,7 @@
     			dist = dist + " m"
     		}
     		var parkLocationBtn = "<a href='#' id='targetMapBtn' onclick='showMapAndTarget(\""+lat+"\",\""+lng+"\",\""+title+"\");'><img src='btn_location.png' alt='공원위치 보기' width='40' height='51'></a>";
-    		var telBtn = (tel=='' : '' : "<a href=\"tel:"+tel+"\"><img src='btn_call.png' width='40' height='51'></a>");
+    		var telBtn = (tel == "" ? "" : "<a href=\"tel:"+tel+"\"><img src='btn_call.png' width='40' height='51'></a>");
 			var kakaoBtn = '<a href="#" id="kakaoBtn" data-lat="'+lat+'" data-lng="'+lng+'" data-name="'+title+'" data-addr="'+addr+'" data-img="'+img+'" ><img src="kakaolink_btn_small.png" alt="카카오톡 링크"  width="40" height="51"></a>';
 			var detailArea = '<ul id="detailArea"><li id="detailBtn'+contentId+'" class="detailBtn" onclick="showDetail(\''+contentId+'\',\''+contentTypeId+'\');"><span style="border: 1px solid #82a56f; margin:5px;padding:5px;background:#bad3ad;">상세보기▼</span></li><li id="detailIntro'+contentId+'" style="display: none;"></li><li id="detailInfo'+contentId+'" style="display: none;"></li></ul>';
 			if($(node).find("contenttypeid").text() == "15"){
