@@ -160,26 +160,26 @@
 	</div>
 
 	<div id="pageNo2" style="display: none;">
-		<h3>ㆍ지역별 공원 현황</h3>( 정보 제공 : 서울특별시 )
+		<h3>ㆍ지역별 공원 현황</h3>(정보 제공:서울특별시)
 		<div id="areaList" style="text-align:center;">
 		</div>
 	</div>
 	<div id="pageNo3" style=" display: none;">
-		<h3>ㆍ<span id="areaPark"></span> 공원 목록</h3>( 정보 제공 : 서울특별시 )
+		<h3>ㆍ<span id="areaPark"></span> 공원 목록</h3>(정보 제공:서울특별시)
 		<div id="parkList">
 		</div>
 		<div style="text-align:center; margin-top:5px;">
 		<img src="btn_arrow.png" alt="아래로 이동">
 		</div>
 		<div id="weather">
-			<h4 style="margin:0;">ㆍ<span id="weatherArea"></span> 날씨</h4>( 정보 제공 : 기상청/한국환경공단 )
+			<h4 style="margin:0;">ㆍ<span id="weatherArea"></span> 날씨</h4>(정보 제공:기상청)
 			<span id="SKY"><span></span></span>/<span id="T1H"><span></span>℃</span><br>			
 			<span id="PTY">ㆍ강수형태 : <span></span></span>/<span id="RN1"><span></span>mm</span><br>
-			<span id="pm10Value">ㆍ미세먼지 : <span></span>㎍/㎥</span>
+			<span id="pm10Value">ㆍ미세먼지 : <span></span>㎍/㎥</span>(정보 제공:한국환경공단)
 		</div>
 	</div>
 	<div id="pageNo4" style="display: none;">
-		<h3>ㆍ<span id="parkInfo"></span> 정보</h3>( 정보 제공 : 서울특별시/한국관광공사 )
+		<h3>ㆍ<span id="parkInfo"></span> 정보</h3><span id="infoOfferer"></span>
 		<div id="parkProgramList">
 		</div>
 	</div>
@@ -215,6 +215,7 @@
 			$('#parkName').val($(this).data("name"));
 			$('#lat').val($(this).data("lat"));
 			$('#lng').val($(this).data("lng"));
+			$('#infoOfferer').text("(정보 제공:서울특별시)");
 			 getParkProgramList($(this).data("pidx"));
 		});
 		$(document).on("click","#partyBtn",function(){
@@ -223,6 +224,7 @@
 			$('#parkName').val($(this).data("name"));
 			$('#lat').val($(this).data("lat"));
 			$('#lng').val($(this).data("lng"));
+			$('#infoOfferer').text("(정보 제공:한국관광공사)");
 			 getTourist($(this).data("lat"), $(this).data("lng"), $('#contentTypeId').val(), $('#areaCode').val(), $('#sigunguCode').val());
 		});
 		$(document).on("click","#culturalBtn",function(){
@@ -231,6 +233,7 @@
 			$('#parkName').val($(this).data("name"));
 			$('#lat').val($(this).data("lat"));
 			$('#lng').val($(this).data("lng"));
+			$('#infoOfferer').text("(정보 제공:한국관광공사)");
 			 getTourist($(this).data("lat"), $(this).data("lng"), $('#contentTypeId').val());
 		});		
 		$(document).on("click","#touristBtn",function(){
@@ -239,6 +242,7 @@
 			$('#parkName').val($(this).data("name"));
 			$('#lat').val($(this).data("lat"));
 			$('#lng').val($(this).data("lng"));
+			$('#infoOfferer').text("(정보 제공:한국관광공사)");
 			 getTourist($(this).data("lat"), $(this).data("lng"), $('#contentTypeId').val());
 		});
 		$(document).on("click","#eateryBtn",function(){
@@ -247,6 +251,7 @@
 			$('#parkName').val($(this).data("name"));
 			$('#lat').val($(this).data("lat"));
 			$('#lng').val($(this).data("lng"));
+			$('#infoOfferer').text("(정보 제공:한국관광공사)");
 			 getTourist($(this).data("lat"), $(this).data("lng"), $('#contentTypeId').val());
 		});
 		$(document).on("click","#kakaoBtn",function(){
