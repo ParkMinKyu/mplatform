@@ -376,7 +376,7 @@
             if(pat.test(park.P_ADDR)){
                 var matchName = RegExp.$2;
                 if(matchName == areaName){
-                	var locationInfo = transferWgs84CoordXY(park.G_LATITUDE, park.G_LONGITUDE).lat);
+                	var locationInfo = transferWgs84CoordXY(park.G_LATITUDE, park.G_LONGITUDE);
                 	var lat = park.LATITUDE == null ? locationInfo.lat : park.LATITUDE;
                 	var lng = park.LONGITUDE == null ? locationInfo.lng : park.LONGITUDE;
 					var parkLocationBtn = '<a href="#" id="showMapBtn" data-lat="'+lat+'" data-lng="'+lng+'" data-name="'+park.P_PARK+'" data-pidx="'+park.P_IDX+'"><img src="btn_location.png" alt="공원위치 보기" width="40" height="51"></a>';
