@@ -328,7 +328,7 @@
 			var list = data["SearchProgramsByParkIDService"]["row"];
 			for(var i = 0 ; i < list.length ; i ++){
 				var pData = list[i];
-				$('#parkProgramList').append("<div><span id='programName'>ㆍ" + pData['P_NAME'] + " <a href='http://yeyak.seoul.go.kr/search/totalSearchView.web?query='"+pData['P_NAME']+" target='_blank'>[예약하기]</a></span><br><span>기 간 : "+pData['P_EDUDAY_S']+"</span> ~ <span>"+pData['P_EDUDAY_E']+"</span><br><span>시간 : "+pData['P_EDUTIME']+"</span><br><span>요일 : "+pData['P_PRODAY']+"</span><br><span>대상 : "+pData['P_EDUPERSON']+"</span><br><span>인원 : "+pData['P_EAMAX']+"</sapn><br><span>내용 : "+pData['P_CONTENT']+"</span></div>");
+				$('#parkProgramList').append("<div><span id='programName'>ㆍ" + pData['P_NAME'] + " <a href='http://yeyak.seoul.go.kr/mobile/detailList.web?query="+pData['P_NAME']+"' target='_blank'>[예약하기]</a></span><br><span>기 간 : "+pData['P_EDUDAY_S']+"</span> ~ <span>"+pData['P_EDUDAY_E']+"</span><br><span>시간 : "+pData['P_EDUTIME']+"</span><br><span>요일 : "+pData['P_PRODAY']+"</span><br><span>대상 : "+pData['P_EDUPERSON']+"</span><br><span>인원 : "+pData['P_EAMAX']+"</sapn><br><span>내용 : "+pData['P_CONTENT']+"</span></div>");
 			}
 		}
         pageMove(4);
