@@ -342,25 +342,30 @@
         }
         return count;
     }
+
+    function getAreaNames(){
+    	return {"강남구","강동구","강북구","강서구","관악구","광진구","구로구","금천구","노원구","도봉구","동대문구","동작구","마포구","서대문구","서초구","성동구","성북구","송파구","양천구","영등포구","용산구","은평구","종로구","중구","중랑구"};
+    }
+
     function displayArea(){
 		$('#areaList').html('');
-		var sigunguCode = 1;
-        for(var i = 0 ; i < parkList.row.length ; i ++){
-            var park = parkList.row[i];
-            var pat = /(서울[가-힣]*) ([가-힣]+)/g;
-            if(pat.test(park.P_ADDR)){
-                var areaName = RegExp.$2;
-                if( $('#'+areaName).length > 0 ){
-                    var count = parseInt($('#' + areaName + ' #count').text())+1;
-                    $('#' + areaName + ' #count').text(count);
-                }
-                else{
-                    $('#areaList').append('<div onclick="displayParkList(\''+areaName+'\',\''+(sigunguCode++)+'\');" id="'+areaName+'">'+areaName+' ( 공원 <span id="count">'+1+'</span>개 )</div>');
-                 }
-            }
-        }
+		var areaNames = getAreaNames();
+		for(var j = 0 ; j < areaNames.length ; j ++){
+			var areaName = areaNames[j];
+			for(var i = 0 ; i < parkList.row.length ; i ++){
+				var park = parkList.row[i];
+				if((park.P_ADDR).indexOf(areaName) != -1){
+					if( $('#'+areaName).length > 0 ){
+						var count = parseInt($('#' + areaName + ' #count').text())+1;
+						$('#' + areaName + ' #count').text(count);
+					}
+					else{
+						$('#areaList').append('<div onclick="displayParkList(\''+areaName+'\',\''+(j+1)+'\');" id="'+areaName+'">'+areaName+' ( 공원 <span id="count">'+1+'</span>개 )</div>');
+					 }
+				}
+			}
+		}
         pageMove(2);
-        // getParkProgramList('');
     }
     function displayParkList(areaName, sigunguCode){
     	$('#areaPark').text(areaName);
@@ -370,31 +375,28 @@
 		$('#parkList').html('');
 		var isFirst = true;
 		var parkCnt = 0;
+
         for(var i = 0 ; i < parkList.row.length ; i ++){
             var park = parkList.row[i];
-            var pat = /(서울[가-힣]*) ([가-힣]+)/g;
-            if(pat.test(park.P_ADDR)){
-                var matchName = RegExp.$2;
-                if(matchName == areaName){
-                	parkCnt++;
-                	var locationInfo = transferWgs84CoordXY(park.G_LONGITUDE,park.G_LATITUDE);
-                	var lat = park.LATITUDE == "" ? locationInfo.lat : park.LATITUDE;
-                	var lng = park.LONGITUDE == "" ? locationInfo.lng : park.LONGITUDE;
-					var parkLocationBtn = '<a href="#" id="showMapBtn" data-lat="'+lat+'" data-lng="'+lng+'" data-name="'+park.P_PARK+'" data-pidx="'+park.P_IDX+'"><img src="btn_location.png" alt="공원위치 보기" width="40" height="51"></a>';
-					var programBtn = '<a href="#" id="programBtn" data-lat="'+lat+'" data-lng="'+lng+'" data-name="'+park.P_PARK+'" data-pidx="'+park.P_IDX+'"><img src="btn_program.png" alt="공원 프로그램 보기" width="40" height="51"></a>';
-					var partyBtn = '<a href="#" id="partyBtn" data-lat="'+lat+'" data-lng="'+lng+'" data-name="'+park.P_PARK+'" data-pidx="'+park.P_IDX+'"><img src="btn_event.png" alt="공원 주변행사 보기" width="40" height="51"></a>';
-					var culturalBtn = '<a href="#" id="culturalBtn" data-lat="'+lat+'" data-lng="'+lng+'" data-name="'+park.P_PARK+'" data-pidx="'+park.P_IDX+'"><img src="btn_tourist spot.png" alt="공원 주변 문화시설 보기" width="40" height="51"></a>';
-					var touristBtn = '<a href="#" id="touristBtn" data-lat="'+lat+'" data-lng="'+lng+'" data-name="'+park.P_PARK+'" data-pidx="'+park.P_IDX+'"><img src="btn_facility.png" alt="공원 주변 관광지 보기" width="40" height="51"></a>';
-					var eateryBtn = '<a href="#" id="eateryBtn" data-lat="'+lat+'" data-lng="'+lng+'" data-name="'+park.P_PARK+'" data-pidx="'+park.P_IDX+'"><img src="btn_restaurant.png" alt="공원 주변 음식점 보기" width="40" height="51"></a>';
-					var kakaoBtn = '<a href="#" id="kakaoBtn" data-lat="'+lat+'" data-lng="'+lng+'" data-name="'+park.P_PARK+'" data-addr="'+park.P_ADDR+'" data-img="'+park.P_IMG+'" ><img src="kakaolink_btn_small.png" alt="카카오톡 링크" width="40" height="51"></a>';
-					$('#parkList').append('<div id="'+park.P_IDX +'">ㆍ'+ park.P_PARK + '<br>' + parkLocationBtn + programBtn + partyBtn + culturalBtn + touristBtn + eateryBtn + kakaoBtn + '</div>');
-                    if( isFirst ){
-						 getWeather(lat, lng);
-						 getPM1025(areaName);
-						isFirst = false;
-            		}
+			if((park.P_ADDR).indexOf(areaName) != -1){
+				parkCnt++;
+				var locationInfo = transferWgs84CoordXY(park.G_LONGITUDE,park.G_LATITUDE);
+				var lat = park.LATITUDE == "" ? locationInfo.lat : park.LATITUDE;
+				var lng = park.LONGITUDE == "" ? locationInfo.lng : park.LONGITUDE;
+				var parkLocationBtn = '<a href="#" id="showMapBtn" data-lat="'+lat+'" data-lng="'+lng+'" data-name="'+park.P_PARK+'" data-pidx="'+park.P_IDX+'"><img src="btn_location.png" alt="공원위치 보기" width="40" height="51"></a>';
+				var programBtn = '<a href="#" id="programBtn" data-lat="'+lat+'" data-lng="'+lng+'" data-name="'+park.P_PARK+'" data-pidx="'+park.P_IDX+'"><img src="btn_program.png" alt="공원 프로그램 보기" width="40" height="51"></a>';
+				var partyBtn = '<a href="#" id="partyBtn" data-lat="'+lat+'" data-lng="'+lng+'" data-name="'+park.P_PARK+'" data-pidx="'+park.P_IDX+'"><img src="btn_event.png" alt="공원 주변행사 보기" width="40" height="51"></a>';
+				var culturalBtn = '<a href="#" id="culturalBtn" data-lat="'+lat+'" data-lng="'+lng+'" data-name="'+park.P_PARK+'" data-pidx="'+park.P_IDX+'"><img src="btn_tourist spot.png" alt="공원 주변 문화시설 보기" width="40" height="51"></a>';
+				var touristBtn = '<a href="#" id="touristBtn" data-lat="'+lat+'" data-lng="'+lng+'" data-name="'+park.P_PARK+'" data-pidx="'+park.P_IDX+'"><img src="btn_facility.png" alt="공원 주변 관광지 보기" width="40" height="51"></a>';
+				var eateryBtn = '<a href="#" id="eateryBtn" data-lat="'+lat+'" data-lng="'+lng+'" data-name="'+park.P_PARK+'" data-pidx="'+park.P_IDX+'"><img src="btn_restaurant.png" alt="공원 주변 음식점 보기" width="40" height="51"></a>';
+				var kakaoBtn = '<a href="#" id="kakaoBtn" data-lat="'+lat+'" data-lng="'+lng+'" data-name="'+park.P_PARK+'" data-addr="'+park.P_ADDR+'" data-img="'+park.P_IMG+'" ><img src="kakaolink_btn_small.png" alt="카카오톡 링크" width="40" height="51"></a>';
+				$('#parkList').append('<div id="'+park.P_IDX +'">ㆍ'+ park.P_PARK + '<br>' + parkLocationBtn + programBtn + partyBtn + culturalBtn + touristBtn + eateryBtn + kakaoBtn + '</div>');
+				if( isFirst ){
+					 getWeather(lat, lng);
+					 getPM1025(areaName);
+					isFirst = false;
 				}
-            }
+			}
         }
         if(parkCnt >= 4){
 			$('#scollArrow').show();
