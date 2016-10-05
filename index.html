@@ -211,7 +211,7 @@
 		});
 
 		$('#scollArrow').click(function(){
-			$('#parkList').scrollTop($('#parkList').height());
+			$('#parkList').animate({scrollTop:$('#parkList').height()});
 		});
 
         $(document).on("click","#showMapBtn",function(){
