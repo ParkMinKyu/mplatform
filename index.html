@@ -203,12 +203,17 @@
 //        쇼핑 : 38
 //        음식점 : 39
 	$(function(){
-   	  $('#pageNo1').click(function(){
-		if(parkList.row == null || parkProgramList.row == null)
-               getParkList();
-           else
-               displayArea();
-	});
+   	  	$('#pageNo1').click(function(){
+			if(parkList.row == null || parkProgramList.row == null)
+				   getParkList();
+			else
+				   displayArea();
+		});
+
+		$('#scollArrow').click(function(){
+			$('#parkList').scrollTop($('#parkList').height());
+		});
+
         $(document).on("click","#showMapBtn",function(){
 			 JavascriptBridge.showMap(true, $(this).data("lat"), $(this).data("lng"), $(this).data("name"));
 		});
