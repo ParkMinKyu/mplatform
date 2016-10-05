@@ -344,7 +344,7 @@
     }
 
     function getAreaNames(){
-    	return {"강남구","강동구","강북구","강서구","관악구","광진구","구로구","금천구","노원구","도봉구","동대문구","동작구","마포구","서대문구","서초구","성동구","성북구","송파구","양천구","영등포구","용산구","은평구","종로구","중구","중랑구"};
+    	return ["강남구","강동구","강북구","강서구","관악구","광진구","구로구","금천구","노원구","도봉구","동대문구","동작구","마포구","서대문구","서초구","성동구","성북구","송파구","양천구","영등포구","용산구","은평구","종로구","중구","중랑구"];
     }
 
     function displayArea(){
@@ -358,8 +358,7 @@
 					if( $('#'+areaName).length > 0 ){
 						var count = parseInt($('#' + areaName + ' #count').text())+1;
 						$('#' + areaName + ' #count').text(count);
-					}
-					else{
+					}else{
 						$('#areaList').append('<div onclick="displayParkList(\''+areaName+'\',\''+(j+1)+'\');" id="'+areaName+'">'+areaName+' ( 공원 <span id="count">'+1+'</span>개 )</div>');
 					 }
 				}
@@ -367,6 +366,7 @@
 		}
         pageMove(2);
     }
+
     function displayParkList(areaName, sigunguCode){
     	$('#areaPark').text(areaName);
 		$('#weatherArea').text(areaName);
