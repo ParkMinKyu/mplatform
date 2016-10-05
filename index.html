@@ -19,11 +19,9 @@
 	    float: right;
 	    margin-top: 5px;
 	}
-
 	.infoOfferer{
 		font-size: 11px;
 	}
-
     #weather > div
 	{
 	margin-top: 5px;
@@ -265,7 +263,6 @@
 			goBack();
         });
     });
-
     function goBack(){
     	var pageNo = parseInt($('#pageIdx').val());
 		if(pageNo <= 2){
@@ -274,7 +271,6 @@
 			pageMove(pageNo - 1);
 		}
     }
-
     function compare(a,b) {
       var pat = /(서울[가-힣]*) ([가-힣]+)/g;
       var pat2 = /(서울[가-힣]*) ([가-힣]+)/g;
@@ -328,7 +324,7 @@
 			var list = data["SearchProgramsByParkIDService"]["row"];
 			for(var i = 0 ; i < list.length ; i ++){
 				var pData = list[i];
-				$('#parkProgramList').append("<div><span id='programName'>ㆍ" + pData['P_NAME'] + " <a href='http://yeyak.seoul.go.kr/mobile/detailList.web?query="+pData['P_NAME']+"' target='_blank'>[예약하기]</a></span><br><span>기 간 : "+pData['P_EDUDAY_S']+"</span> ~ <span>"+pData['P_EDUDAY_E']+"</span><br><span>시간 : "+pData['P_EDUTIME']+"</span><br><span>요일 : "+pData['P_PRODAY']+"</span><br><span>대상 : "+pData['P_EDUPERSON']+"</span><br><span>인원 : "+pData['P_EAMAX']+"</sapn><br><span>내용 : "+pData['P_CONTENT']+"</span></div>");
+				$('#parkProgramList').append("<div><span id='programName'>ㆍ" + pData['P_NAME'] + " <a href='http://yeyak.seoul.go.kr/mobile/detailList.web?query="+pData['P_NAME']+"' target='_blank'>[예약하기]</a></span><br><span>기 간 : "+pData['P_EDUDAY_S']+"</span> ~ <span>"+pData['P_EDUDAY_E']+"</span><br><span>시간 : "+pData['P_EDUTIME']+"</span><br><span>요일 : "+pData['P_PRODAY']+"</span><br><span>대상 : "+pData['P_EDUPERSON']+"</span><br><span>인원 : "+pData['P_EAMAX']+"</span><br><div onclick='programDetail("+pData['G_IDX']+")' id='programDetailBtn"+pData['G_IDX']+"' style='border: 1px solid #82a56f; margin-top: 5px; padding:5px;background:#bad3ad;'>상세보기▼</div><span id='programDetail"+pData['G_IDX']+"' style='display: none;'>"+pData['P_CONTENT']+"</span></div>");
 			}
 		}
         pageMove(4);
@@ -492,6 +488,16 @@
 		$('#detailIntro'+contentId).toggle();
 		$('#detailInfo'+contentId).toggle();
 	}
+	
+	function programDetail(idx){
+		if($('#programDetail'+idx).is(":visible") == false){			
+			$('#programDetailBtn'+idx).text("상세보기▲");
+		}else{
+			$('#programDetailBtn'+idx).text("상세보기▼");
+		}
+		$('#programDetail'+idx).toggle();
+	}
+	
 	function setDetailIntro(data){
 		var xml = $.parseXML(data);
 		var html = "<br>";
@@ -575,7 +581,6 @@
     function toRad(num){
     	return num * Math.PI / 180;
     }
-
     function transferWgs84CoordXY(grs80Tmx, grs80TmY){
 	  var CS_M1 = 4207498.01915032 + (parseFloat(grs80TmY) - 500000.0) / 1.0;
 	  var CS_U1 = CS_M1 / 6378137.0 / (0.998326405 - 3.0 * Math.pow(0.00669438, 2.0) / 64.0 - 5.0 * Math.pow(0.00669438, 3.0) / 256.0);
