@@ -316,23 +316,27 @@ var parkList = {};
         displayArea();
     }
     function setParkProgramList(data){
-		$('#parkProgramList').html('<div>진행 중인 프로그램이 없습니다.</div>');
-		var list = data["SearchProgramsByParkIDService"]["row"];
-		for(var i = 0 ; i < list.length ; i ++){
-			var pData = list[i];
-			var locationInfo = transferWgs84CoordXY(pData.G_LONGITUDE,pData.G_LATITUDE);
-			var lat = pData.LATITUDE == "" ? locationInfo.lat : pData.LATITUDE;
-			var lng = pData.LONGITUDE == "" ? locationInfo.lng : pData.LONGITUDE;
-			var title = pData.P_NAME;
-			var addr = pData.P_ADDR;
-			var img = pData.P_IMG;
-			var content = pData['P_CONTENT'].replace(/[\t\n]/ig,"<br>");
-			var detail = "<ul id='detailArea'><li class='detailBtn' onclick='programDetail("+pData['G_IDX']+")'><span id='programDetailBtn"+pData['G_IDX']+"' style='border: 1px solid #82a56f; margin-top: 5px; padding:5px;background:#bad3ad;'>상세보기▼</span></li><li id='programDetail"+pData['G_IDX']+"' style='display: none;'><br>"+content+"</li>";
-			var tel = pData['P_ADMINTEL'];
-			var telBtn = (tel == "" ? "" : "<a href=\"tel:"+tel+"\"><img src='btn_call.png' width='40' height='51'></a>");
-			var reservationBtn = "<a href='http://yeyak.seoul.go.kr/mobile/detailList.web?query="+pData['P_NAME']+"' target='_blank'><img src='btn_reservation.png' width='40' height='51'></a>";
-			var kakaoBtn = '<a href="#" id="kakaoBtn" data-lat="'+lat+'" data-lng="'+lng+'" data-name="'+title+'" data-addr="'+addr+'" data-img="'+img+'" ><img src="kakaolink_btn_small.png" alt="카카오톡 링크"  width="40" height="51"></a>';
-			$('#parkProgramList').append("<div><span id='programName'>ㆍ" + pData['P_NAME'] + "</span><br><span>기 간 : "+pData['P_EDUDAY_S']+"</span> ~ <span>"+pData['P_EDUDAY_E']+"</span><br><span>시간 : "+pData['P_EDUTIME']+"</span><br><span>요일 : "+pData['P_PRODAY']+"</span><br><span>대상 : "+pData['P_EDUPERSON']+"</span><br><span>인원 : "+pData['P_EAMAX']+"</span><br>"+telBtn+reservationBtn+kakaoBtn+detail+"</div>");
+		$('#parkProgramList').html('');
+		if( data.CODE = "INFO-200" )
+			$('#parkProgramList').append("<div>진행 중인 프로그램이 없습니다.</div>");
+		else{
+			var list = data["SearchProgramsByParkIDService"]["row"];
+			for(var i = 0 ; i < list.length ; i ++){
+				var pData = list[i];
+				var locationInfo = transferWgs84CoordXY(pData.G_LONGITUDE,pData.G_LATITUDE);
+				var lat = pData.LATITUDE == "" ? locationInfo.lat : pData.LATITUDE;
+				var lng = pData.LONGITUDE == "" ? locationInfo.lng : pData.LONGITUDE;
+				var title = pData.P_NAME;
+				var addr = pData.P_ADDR;
+				var img = pData.P_IMG;
+				var content = pData['P_CONTENT'].replace(/[\t\n]/ig,"<br>");
+				var detail = "<ul id='detailArea'><li class='detailBtn' onclick='programDetail("+pData['G_IDX']+")'><span id='programDetailBtn"+pData['G_IDX']+"' style='border: 1px solid #82a56f; margin-top: 5px; padding:5px;background:#bad3ad;'>상세보기▼</span></li><li id='programDetail"+pData['G_IDX']+"' style='display: none;'><br>"+content+"</li>";
+				var tel = pData['P_ADMINTEL'];
+				var telBtn = (tel == "" ? "" : "<a href=\"tel:"+tel+"\"><img src='btn_call.png' width='40' height='51'></a>");
+				var reservationBtn = "<a href='http://yeyak.seoul.go.kr/mobile/detailList.web?query="+pData['P_NAME']+"' target='_blank'><img src='btn_reservation.png' width='40' height='51'></a>";
+				var kakaoBtn = '<a href="#" id="kakaoBtn" data-lat="'+lat+'" data-lng="'+lng+'" data-name="'+title+'" data-addr="'+addr+'" data-img="'+img+'" ><img src="kakaolink_btn_small.png" alt="카카오톡 링크"  width="40" height="51"></a>';
+				$('#parkProgramList').append("<div><span id='programName'>ㆍ" + pData['P_NAME'] + "</span><br><span>기 간 : "+pData['P_EDUDAY_S']+"</span> ~ <span>"+pData['P_EDUDAY_E']+"</span><br><span>시간 : "+pData['P_EDUTIME']+"</span><br><span>요일 : "+pData['P_PRODAY']+"</span><br><span>대상 : "+pData['P_EDUPERSON']+"</span><br><span>인원 : "+pData['P_EAMAX']+"</span><br>"+telBtn+reservationBtn+kakaoBtn+detail+"</div>");
+			}
 		}
         pageMove(4);
     }
@@ -446,7 +450,7 @@ var parkList = {};
     }
     function setTourist(data){
     	var xml = $.parseXML(data);
-		$('#parkProgramList').html('<div>검색 결과가 없습니다.</div>');
+		$('#parkProgramList').html('');
     	$(xml).find('item').each(function(index, node){
     		var title = $(node).find("title").text();
     		var dist = parseInt($(node).find("dist").text());
@@ -481,6 +485,9 @@ var parkList = {};
 				$('#parkProgramList').append("<div><span id='programName'>ㆍ"+title+" ("+dist+")</span><br><span>주소 : "+addr+"</sapn><br>"+parkLocationBtn+ telBtn+kakaoBtn+"<br>"+detailArea+"</div>");
 			}
     	});
+    	if($('#parkProgramList').text() == ''){
+    		$('#parkProgramList').append('<div>검색 결과가 없습니다.</div>');
+    	}
     	pageMove(4);
     }
 	function showDetail(contentId, contentTypeId){
