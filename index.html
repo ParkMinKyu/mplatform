@@ -520,11 +520,11 @@ var parkList = {};
     			var child = childNodes[i];
     			if(child.nodeName != 'contentid' && child.nodeName != 'contenttypeid'){
     				var text = node.childNodes[i].textContent;
-    				if(child.nodeName == 'heritage1' || child.nodeName == 'heritage2' || child.nodeName == 'heritage2'){
+    				if(child.nodeName == 'heritage1' || child.nodeName == 'heritage2' || child.nodeName == 'heritage3'){
     					if(text == '0'){
-    						text = 'O';
-    					}else if(text == '1'){
     						text = 'X';
+    					}else if(text == '1'){
+    						text = 'O';
     					}
     				}
     				html+="<span id='infoName'>"+getDetailTitle(contentTypeId, child.nodeName)+"</span> : <span>"+text+"</span><br>";
