@@ -175,7 +175,7 @@
 		<div id="weather">
 			<h4 style="margin:0;">ㆍ<span id="weatherArea"></span> 날씨 <span class="infoOfferer">(정보 제공:기상청)</span></h4>
 			<span id="SKY"><span></span></span>/<span id="T1H"><span></span>℃</span><br>			
-			<span id="PTY">ㆍ강수형태 : <span></span></span>/<span id="RN1"><span></span>mm</span><br>
+			<span id="RN1">ㆍ강수량 : <span >mm</span></span><br>
 			<span id="pm10Value">ㆍ미세먼지 : <span></span>㎍/㎥</span><br><span class="infoOfferer">(정보 제공:한국환경공단)</span>
 		</div>
 	</div>
@@ -191,7 +191,7 @@
 <script src="/mplatform/js/jquery-1.11.3.min.js" type="text/javascript"></script>
 <script src="/mplatform/js/getData.js" type="text/javascript"></script>
 <script>
-	var parkList = {};
+var parkList = {};
     var parkProgramList = {};
 //        관광지 : 12
 //        문화시설 : 14
@@ -205,11 +205,9 @@
    	  	$('#pageNo1').click(function(){
 		   getParkList();
 		});
-
 		$('#scollArrow').click(function(){
 			$('#parkList').animate({scrollTop:$('#parkList').prop('scrollHeight')});
 		});
-
         $(document).on("click","#showMapBtn",function(){
 			 JavascriptBridge.showMap(true, $(this).data("lat"), $(this).data("lng"), $(this).data("name"));
 		});
@@ -325,10 +323,19 @@
 			var list = data["SearchProgramsByParkIDService"]["row"];
 			for(var i = 0 ; i < list.length ; i ++){
 				var pData = list[i];
+				var locationInfo = transferWgs84CoordXY(pData.G_LONGITUDE,pData.G_LATITUDE);
+				var lat = pData.LATITUDE == "" ? locationInfo.lat : pData.LATITUDE;
+				var lng = pData.LONGITUDE == "" ? locationInfo.lng : pData.LONGITUDE;
+				var title = pData.P_NAME;
+				var addr = pData.P_ADDR;
+				var img = pData.P_IMG;
 				var content = pData['P_CONTENT'].replace(/[\t\n]/ig,"<br>");
 				var detail = "<ul id='detailArea'><li class='detailBtn' onclick='programDetail("+pData['G_IDX']+")'><span id='programDetailBtn"+pData['G_IDX']+"' style='border: 1px solid #82a56f; margin-top: 5px; padding:5px;background:#bad3ad;'>상세보기▼</span></li><li id='programDetail"+pData['G_IDX']+"' style='display: none;'><br>"+content+"</li>";
-				var reservationBtn = "<a href='http://yeyak.seoul.go.kr/mobile/detailList.web?query="+pData['P_NAME']+"' target='_blank'>[예약하기]</a>";
-				$('#parkProgramList').append("<div><span id='programName'>ㆍ" + pData['P_NAME'] + "</span><br><span>기 간 : "+pData['P_EDUDAY_S']+"</span> ~ <span>"+pData['P_EDUDAY_E']+"</span><br><span>시간 : "+pData['P_EDUTIME']+"</span><br><span>요일 : "+pData['P_PRODAY']+"</span><br><span>대상 : "+pData['P_EDUPERSON']+"</span><br><span>인원 : "+pData['P_EAMAX']+"</span><br>"+reservationBtn+detail+"</div>");
+				var tel = pData['P_ADMINTEL'];
+				var telBtn = (tel == "" ? "" : "<a href=\"tel:"+tel+"\"><img src='btn_call.png' width='40' height='51'></a>");
+				var reservationBtn = "<a href='http://yeyak.seoul.go.kr/mobile/detailList.web?query="+pData['P_NAME']+"' target='_blank'><img src='btn_reservation.png' width='40' height='51'></a>";
+				var kakaoBtn = '<a href="#" id="kakaoBtn" data-lat="'+lat+'" data-lng="'+lng+'" data-name="'+title+'" data-addr="'+addr+'" data-img="'+img+'" ><img src="kakaolink_btn_small.png" alt="카카오톡 링크"  width="40" height="51"></a>';
+				$('#parkProgramList').append("<div><span id='programName'>ㆍ" + pData['P_NAME'] + "</span><br><span>기 간 : "+pData['P_EDUDAY_S']+"</span> ~ <span>"+pData['P_EDUDAY_E']+"</span><br><span>시간 : "+pData['P_EDUTIME']+"</span><br><span>요일 : "+pData['P_PRODAY']+"</span><br><span>대상 : "+pData['P_EDUPERSON']+"</span><br><span>인원 : "+pData['P_EAMAX']+"</span><br>"+telBtn+reservationBtn+kakaoBtn+detail+"</div>");
 			}
 		}
         pageMove(4);
@@ -343,11 +350,9 @@
         }
         return count;
     }
-
     function getAreaNames(){
     	return ["강남구","강동구","강북구","강서구","관악구","광진구","구로구","금천구","노원구","도봉구","동대문구","동작구","마포구","서대문구","서초구","성동구","성북구","송파구","양천구","영등포구","용산구","은평구","종로구","중구","중랑구"];
     }
-
     function displayArea(){
 		$('#areaList').html('');
 		var areaNames = getAreaNames();
@@ -367,7 +372,6 @@
 		}
         pageMove(2);
     }
-
     function displayParkList(areaName, sigunguCode){
     	$('#areaPark').text(areaName);
 		$('#weatherArea').text(areaName);
@@ -376,7 +380,6 @@
 		$('#parkList').html('');
 		var isFirst = true;
 		var parkCnt = 0;
-
         for(var i = 0 ; i < parkList.row.length ; i ++){
             var park = parkList.row[i];
 			if((park.P_ADDR).indexOf(areaName) != -1){
@@ -421,21 +424,21 @@
     			}else if( skyVal == 4 ){
     				$('#'+ $(node).find('category').text() +' span').html("<img src='icon03.png' width='15' height='15'> 흐림");
     			}
-    		}else{
-				if($(node).find('category').text() == 'T1H'){
-					$('#'+ $(node).find('category').text() +' span').text(Math.floor(parseFloat($(node).find('obsrValue').text())*10)/10);
-				}else if($(node).find('category').text() == 'PTY'){
+				
+				if($(node).find('category').text() == 'PTY'){
 					//- 강수형태(PTY) 코드 : 없음(0), 비(1), 비/눈(2), 눈(3)
 					var skyVal = parseInt($(node).find('obsrValue').text());
 					if( skyVal == 1 ){
-						$('#'+ $(node).find('category').text() +' span').html("비");
+						$('#SKY span').html("<img src='icon6.png' width='15' height='15'> 비");
 					}else if( skyVal == 2 ){
-						$('#'+ $(node).find('category').text() +' span').html("비/눈");
+						$('#SKY span').html("<img src='icon5.png' width='15' height='15'> 비/눈");
 					}else if( skyVal == 3 ){
-						$('#'+ $(node).find('category').text() +' span').html("눈");
-    				}else{
-    					$('#'+ $(node).find('category').text() +' span').html("없음");
+						$('#SKY span').html("<img src='icon7.png' width='15' height='15'> 눈");
     				}
+				}
+    		}else{
+				if($(node).find('category').text() == 'T1H'){
+					$('#'+ $(node).find('category').text() +' span').text(Math.floor(parseFloat($(node).find('obsrValue').text())*10)/10);
 				}else{
 					$('#'+ $(node).find('category').text() +' span').text($(node).find('obsrValue').text());
 				}
