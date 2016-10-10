@@ -519,7 +519,15 @@ var parkList = {};
     		for(var i = 0 ; i < childNodes.length ; i ++){
     			var child = childNodes[i];
     			if(child.nodeName != 'contentid' && child.nodeName != 'contenttypeid'){
-    				html+="<span id='infoName'>"+getDetailTitle(contentTypeId, child.nodeName)+"</span> : <span>"+node.childNodes[i].textContent+"</span><br>";
+    				var text = node.childNodes[i].textContent;
+    				if(child.nodeName == 'heritage1' || child.nodeName == 'heritage2' || child.nodeName == 'heritage2'){
+    					if(text == '0'){
+    						text = 'O';
+    					}else if(text == '1'){
+    						text = 'X';
+    					}
+    				}
+    				html+="<span id='infoName'>"+getDetailTitle(contentTypeId, child.nodeName)+"</span> : <span>"+text+"</span><br>";
     			}
     		}
 		});
