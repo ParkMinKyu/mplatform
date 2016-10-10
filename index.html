@@ -411,38 +411,41 @@ var parkList = {};
     }
     function setWeather(data){
     	var xml = $.parseXML(data);
+		var isRain = false;
     	$(xml).find('item').each(function(index, node){
     		if($(node).find('category').text() == 'SKY'){
-    			//- 하늘상태(SKY) 코드 : 맑음(1), 구름조금(2), 구름많음(3), 흐림(4)
-    			var skyVal = parseInt($(node).find('obsrValue').text());
-    			if( skyVal == 1 ){
-    				$('#'+ $(node).find('category').text() +' span').html("<img src='icon01.png' width='15' height='15'> 맑음");
-    			}else if( skyVal == 2 ){
-    				$('#'+ $(node).find('category').text() +' span').html("<img src='icon04.png' width='15' height='15'> 구름조금");
-    			}else if( skyVal == 3 ){
-    				$('#'+ $(node).find('category').text() +' span').html("<img src='icon02.png' width='15' height='15'> 구름많음");
-    			}else if( skyVal == 4 ){
-    				$('#'+ $(node).find('category').text() +' span').html("<img src='icon03.png' width='15' height='15'> 흐림");
-    			}
-				
-				if($(node).find('category').text() == 'PTY'){
-					//- 강수형태(PTY) 코드 : 없음(0), 비(1), 비/눈(2), 눈(3)
+				if( !isRain ){
+					//- 하늘상태(SKY) 코드 : 맑음(1), 구름조금(2), 구름많음(3), 흐림(4)
 					var skyVal = parseInt($(node).find('obsrValue').text());
 					if( skyVal == 1 ){
-						$('#SKY span').html("<img src='icon6.png' width='15' height='15'> 비");
+						$('#'+ $(node).find('category').text() +' span').html("<img src='icon01.png' width='15' height='15'> 맑음");
 					}else if( skyVal == 2 ){
-						$('#SKY span').html("<img src='icon5.png' width='15' height='15'> 비/눈");
+						$('#'+ $(node).find('category').text() +' span').html("<img src='icon04.png' width='15' height='15'> 구름조금");
 					}else if( skyVal == 3 ){
-						$('#SKY span').html("<img src='icon7.png' width='15' height='15'> 눈");
-    				}
+						$('#'+ $(node).find('category').text() +' span').html("<img src='icon02.png' width='15' height='15'> 구름많음");
+					}else if( skyVal == 4 ){
+						$('#'+ $(node).find('category').text() +' span').html("<img src='icon03.png' width='15' height='15'> 흐림");
+					}			
 				}
-    		}else{
-				if($(node).find('category').text() == 'T1H'){
-					$('#'+ $(node).find('category').text() +' span').text(Math.floor(parseFloat($(node).find('obsrValue').text())*10)/10);
-				}else{
-					$('#'+ $(node).find('category').text() +' span').text($(node).find('obsrValue').text());
-				}
-    		}
+    		}else if($(node).find('category').text() == 'T1H'){
+				$('#'+ $(node).find('category').text() +' span').text(Math.floor(parseFloat($(node).find('obsrValue').text())*10)/10);
+			}else if($(node).find('category').text() == 'PTY'){
+				//- 강수형태(PTY) 코드 : 없음(0), 비(1), 비/눈(2), 눈(3)
+				var skyVal = parseInt($(node).find('obsrValue').text());
+				if( skyVal == 1 ){
+					$('#SKY span').html("<img src='icon6.png' width='15' height='15'> 비");
+					isRain = true;
+				}else if( skyVal == 2 ){
+					$('#SKY span').html("<img src='icon5.png' width='15' height='15'> 비/눈");
+					isRain = true;
+				}else if( skyVal == 3 ){
+					$('#SKY span').html("<img src='icon7.png' width='15' height='15'> 눈");
+					isRain = true;
+    			}
+			}else{
+				console.log($(node).find('category').text())
+				$('#'+ $(node).find('category').text() +' span').text($(node).find('obsrValue').text());
+			}    		
     	});
     }
     function setTourist(data){
