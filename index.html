@@ -317,9 +317,7 @@ var parkList = {};
     }
     function setParkProgramList(data){
 		$('#parkProgramList').html('');
-		if( data.SearchProgramsByParkIDService.RESULT.CODE == "INFO-200" )
-			$('#parkProgramList').append("<div>진행 중인 프로그램이 없습니다.</div>");
-		else{
+		if( data.SearchProgramsByParkIDService.RESULT.CODE == "INFO-000" ){
 			var list = data["SearchProgramsByParkIDService"]["row"];
 			for(var i = 0 ; i < list.length ; i ++){
 				var pData = list[i];
@@ -337,6 +335,8 @@ var parkList = {};
 				var kakaoBtn = '<a href="#" id="kakaoBtn" data-lat="'+lat+'" data-lng="'+lng+'" data-name="'+title+'" data-addr="'+addr+'" data-img="'+img+'" ><img src="kakaolink_btn_small.png" alt="카카오톡 링크"  width="40" height="51"></a>';
 				$('#parkProgramList').append("<div><span id='programName'>ㆍ" + pData['P_NAME'] + "</span><br><span>기 간 : "+pData['P_EDUDAY_S']+"</span> ~ <span>"+pData['P_EDUDAY_E']+"</span><br><span>시간 : "+pData['P_EDUTIME']+"</span><br><span>요일 : "+pData['P_PRODAY']+"</span><br><span>대상 : "+pData['P_EDUPERSON']+"</span><br><span>인원 : "+pData['P_EAMAX']+"</span><br>"+telBtn+reservationBtn+kakaoBtn+detail+"</div>");
 			}
+		}else{
+			$('#parkProgramList').append("<div>진행 중인 프로그램이 없습니다.</div>");
 		}
         pageMove(4);
     }
