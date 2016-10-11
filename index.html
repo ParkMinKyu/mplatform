@@ -317,7 +317,7 @@ var parkList = {};
     }
     function setParkProgramList(data){
 		$('#parkProgramList').html('');
-		if( data.RESULT.CODE == "INFO-200" )
+		if( data.SearchProgramsByParkIDService.RESULT.CODE == "INFO-200" )
 			$('#parkProgramList').append("<div>진행 중인 프로그램이 없습니다.</div>");
 		else{
 			var list = data["SearchProgramsByParkIDService"]["row"];
