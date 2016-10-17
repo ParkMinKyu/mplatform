@@ -95,7 +95,7 @@
 	}
 	
 	#parkList{
-	  max-height: 280px;
+	  max-height: 370px;
       overflow: scroll;
 	}		
 	
@@ -139,7 +139,7 @@
 <body>
 <div id="header" style="background-color:#7ac6de;height:39px;text-align:center;width:100%; display:none;">
 	<img id="backBtn" src="back.png" style="margin-top: 4px; margin-left: 6px; position: absolute;">
-	<img id="logo" src="btn_logo2.png" style="margin-top:5px;">
+	<img id="logo" src="logo_512.png" style="margin-top:5px;height:30px;">
 </div>
 <div id="main">
 	<input type="hidden" id="pageIdx" value="0">
@@ -172,13 +172,16 @@
 		<div id="scollArrow" style="text-align:center; margin-top:5px; display: none;">
 			<img src="btn_arrow.png" alt="아래로 이동">
 		</div>
-		<div id="weather">
-			<h4 style="margin:0;">ㆍ<span id="weatherArea"></span> 날씨 <span class="infoOfferer">(정보 제공:기상청)</span></h4>
-			<span id="SKY"><span></span></span>/<span id="T1H"><span></span>℃</span><br>			
-			<span id="RN1">ㆍ강수량 : <span ></span>mm</span><br>
-			<span id="pm10Value">ㆍ미세먼지 : <span></span>㎍/㎥</span><br><span class="infoOfferer">(정보 제공:한국환경공단)</span>
+		<div id="weather" style="right: 0px; position: absolute; margin-right: 10px; width: 250px; display: block;">
+			<h4 style="margin:0;">ㆍ<span id="weatherArea"></span> 날씨 <span class="infoOfferer">(제공:기상청 | 한국환경공단)</span></h4>
+			<div id="weather_ing" style="position:absolute; left:30px; "> </div> 
+			<div style="right: 0px; position: absolute; margin-right: 10px; display: block;">		 
+			<span id="SKY">ㆍ<span></span></span> <span id="RN1">(강수량 : <span ></span>mm)</span>/<span id="T1H"><span></span>℃</span><br>						
+			<span id="pm10Value">ㆍ미세먼지 : <span></span>㎍/㎥</span>
+			</div>
 		</div>
-	</div>
+    </div>
+	
 	<div id="pageNo4" style="display: none;">
 		<h3>ㆍ<span id="parkInfo"></span> 정보 <span id="infoOfferer" class="infoOfferer"></span></h3>
 		<div id="parkProgramList">
@@ -394,7 +397,7 @@ var parkList = {};
 				var touristBtn = '<a href="#" id="touristBtn" data-lat="'+lat+'" data-lng="'+lng+'" data-name="'+park.P_PARK+'" data-pidx="'+park.P_IDX+'"><img src="btn_facility.png" alt="공원 주변 관광지 보기" width="40" height="51"></a>';
 				var eateryBtn = '<a href="#" id="eateryBtn" data-lat="'+lat+'" data-lng="'+lng+'" data-name="'+park.P_PARK+'" data-pidx="'+park.P_IDX+'"><img src="btn_restaurant.png" alt="공원 주변 음식점 보기" width="40" height="51"></a>';
 				var kakaoBtn = '<a href="#" id="kakaoBtn" data-lat="'+lat+'" data-lng="'+lng+'" data-name="'+park.P_PARK+'" data-addr="'+park.P_ADDR+'" data-img="'+park.P_IMG+'" ><img src="kakaolink_btn_small.png" alt="카카오톡 링크" width="40" height="51"></a>';
-				$('#parkList').append('<div id="'+park.P_IDX +'">ㆍ'+ park.P_PARK + '<br>' + parkLocationBtn + programBtn + partyBtn + culturalBtn + touristBtn + eateryBtn + kakaoBtn + '</div>');
+				$('#parkList').append('<div id="'+park.P_IDX +'">'+ park.P_PARK + '<br>' + parkLocationBtn + programBtn + partyBtn + culturalBtn + touristBtn + eateryBtn + kakaoBtn + '</div>');
 				if( isFirst ){
 					 getWeather(lat, lng);
 					 getPM1025(areaName);
@@ -418,13 +421,18 @@ var parkList = {};
 					//- 하늘상태(SKY) 코드 : 맑음(1), 구름조금(2), 구름많음(3), 흐림(4)
 					var skyVal = parseInt($(node).find('obsrValue').text());
 					if( skyVal == 1 ){
-						$('#'+ $(node).find('category').text() +' span').html("<img src='icon01.png' width='15' height='15'> 맑음");
+					    $('#weather_ing').html("<img src='icon01.png' width='35' height='35'>");
+						$('#'+ $(node).find('category').text() +' span').html("맑음");
+						
 					}else if( skyVal == 2 ){
-						$('#'+ $(node).find('category').text() +' span').html("<img src='icon04.png' width='15' height='15'> 구름조금");
+					    $('#weather_ing').html("<img src='icon04.png' width='35' height='35'>");
+						$('#'+ $(node).find('category').text() +' span').html("구름조금");
 					}else if( skyVal == 3 ){
-						$('#'+ $(node).find('category').text() +' span').html("<img src='icon02.png' width='15' height='15'> 구름많음");
+					    $('#weather_ing').html("<img src='icon02.png' width='35' height='35'>");
+						$('#'+ $(node).find('category').text() +' span').html("구름많음");
 					}else if( skyVal == 4 ){
-						$('#'+ $(node).find('category').text() +' span').html("<img src='icon03.png' width='15' height='15'> 흐림");
+					    $('#weather_ing').html("<img src='icon03.png' width='35' height='35'>");
+						$('#'+ $(node).find('category').text() +' span').html("흐림");
 					}			
 				}
     		}else if($(node).find('category').text() == 'T1H'){
@@ -433,13 +441,16 @@ var parkList = {};
 				//- 강수형태(PTY) 코드 : 없음(0), 비(1), 비/눈(2), 눈(3)
 				var skyVal = parseInt($(node).find('obsrValue').text());
 				if( skyVal == 1 ){
-					$('#SKY span').html("<img src='icon6.png' width='15' height='15'> 비");
+				    $('#weather_ing').html("<img src='icon6.png' width='35' height='35'>");
+					$('#SKY span').html("비");
 					isRain = true;
 				}else if( skyVal == 2 ){
-					$('#SKY span').html("<img src='icon5.png' width='15' height='15'> 비/눈");
+				    $('#weather_ing').html("<img src='icon5.png' width='35' height='35'>");
+					$('#SKY span').html("비/눈");
 					isRain = true;
 				}else if( skyVal == 3 ){
-					$('#SKY span').html("<img src='icon7.png' width='15' height='15'> 눈");
+				    $('#weather_ing').html("<img src='icon7.png' width='35' height='35'>");
+					$('#SKY span').html("눈");
 					isRain = true;
     			}
 			}else{
