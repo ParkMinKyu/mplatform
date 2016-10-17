@@ -69,6 +69,7 @@
 	    margin-top: 5px;
 	    font-weight : bold;
 		color : #333333;
+		font-size : 14px;
 	}
 	#programName{
 		font-weight:bold;
@@ -292,6 +293,7 @@ var parkList = {};
     }
     function pageMove(pageNo){
         $('#main div[id!=scollArrow]').hide();
+	    $('#footer').css('padding-top',$('#footer').height() - $('#footer img').height()+"px")
         if(parseInt(pageNo) > 1){
 		  $('#header').show();
 		  $('#footer').show();
