@@ -424,16 +424,19 @@ var parkList = {};
 					if( skyVal == 1 ){
 					    $('#weather_ing').html("<img src='icon01.png' width='35' height='35'>");
 						$('#'+ $(node).find('category').text() +' span').html("맑음");
-						
+						$('#RN1').remove();
 					}else if( skyVal == 2 ){
 					    $('#weather_ing').html("<img src='icon04.png' width='35' height='35'>");
 						$('#'+ $(node).find('category').text() +' span').html("구름조금");
+						$('#RN1').remove();
 					}else if( skyVal == 3 ){
 					    $('#weather_ing').html("<img src='icon02.png' width='35' height='35'>");
 						$('#'+ $(node).find('category').text() +' span').html("구름많음");
+						$('#RN1').remove();
 					}else if( skyVal == 4 ){
 					    $('#weather_ing').html("<img src='icon03.png' width='35' height='35'>");
 						$('#'+ $(node).find('category').text() +' span').html("흐림");
+						$('#RN1').remove();
 					}			
 				}
     		}else if($(node).find('category').text() == 'T1H'){
