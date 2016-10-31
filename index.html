@@ -213,7 +213,10 @@ var parkList = {};
 //        쇼핑 : 38
 //        음식점 : 39
 	$(function(){
-		setTimeout(function(){$('#pageNo1').click()},1500);
+		setTimeout(function(){
+			if($('#pageIdx').val()==0)
+				$('#pageNo1').click();
+		},1500);
 		
 		$('#closeBtn').click(function(){
 			JavascriptBridge.exitApplication();
