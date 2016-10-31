@@ -310,6 +310,7 @@ var parkList = {};
     function pageMove(pageNo){
         $('#main div[id!=scollArrow]').hide();
         if(parseInt(pageNo) > 1){
+		$('#closeBtn').css('margin-left',$('#header').width()/2 - ($('#closeBtn').width() *2 ));
 		  $('#header').show();
 		  $('#footer').show();
 		  $('#main').css("min-height",($(window).height() - $('#footer').height() - $('#header').height() )+"px");
