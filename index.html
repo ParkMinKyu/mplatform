@@ -350,7 +350,7 @@ var parkList = {};
 				var telBtn = (tel == "" ? "" : "<a href=\"tel:"+tel+"\"><img src='btn_call.png' width='40' height='51'></a>");
 				var reservationBtn = "<a href='http://yeyak.seoul.go.kr/mobile/detailList.web?query="+pData['P_NAME']+"' target='_blank'><img src='btn_reservation.png' width='40' height='51'></a>";
 				var kakaoBtn = '<a href="#" id="kakaoBtn" data-lat="'+lat+'" data-lng="'+lng+'" data-name="'+title+'" data-addr="'+addr+'" data-img="'+img+'" ><img src="kakaolink_btn_small.png" alt="카카오톡 링크"  width="40" height="51"></a>';
-				$('#parkProgramList').append("<div><span id='programName'>ㆍ" + pData['P_NAME'] + "</span><br><span>기 간 : "+pData['P_EDUDAY_S']+"</span> ~ <span>"+pData['P_EDUDAY_E']+"</span><br><span>시간 : "+pData['P_EDUTIME']+"</span><br><span>요일 : "+pData['P_PRODAY']+"</span><br><span>대상 : "+pData['P_EDUPERSON']+"</span><br><span>인원 : "+pData['P_EAMAX']+"</span><br>"+telBtn+reservationBtn+kakaoBtn+detail+"</div>");
+				$('#parkProgramList').append("<div><span id='programName'>" + pData['P_NAME'] + "</span><br><span>기 간 : "+pData['P_EDUDAY_S']+"</span> ~ <span>"+pData['P_EDUDAY_E']+"</span><br><span>시간 : "+pData['P_EDUTIME']+"</span><br><span>요일 : "+pData['P_PRODAY']+"</span><br><span>대상 : "+pData['P_EDUPERSON']+"</span><br><span>인원 : "+pData['P_EAMAX']+"</span><br>"+telBtn+reservationBtn+kakaoBtn+detail+"</div>");
 			}
 		}
         pageMove(4);
